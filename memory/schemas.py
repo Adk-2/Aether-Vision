@@ -3,6 +3,8 @@
 from dataclasses import dataclass, field
 from datetime import datetime
 
+from .enums import ObjectState
+
 
 @dataclass
 class TrackedObject:
@@ -20,5 +22,5 @@ class TrackedObject:
     velocity: tuple[float, float]
     first_seen: datetime
     last_seen: datetime
-    state: str
+    state: ObjectState
     history: list[tuple[int, int]] = field(default_factory=list)
