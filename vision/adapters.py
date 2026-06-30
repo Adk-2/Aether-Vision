@@ -40,9 +40,7 @@ class DetectionAdapter:
         if len(coordinates) != BOUNDING_BOX_COORDINATE_COUNT:
             raise ValueError("A detection bounding box must have four coordinates")
 
-        x_min, y_min, x_max, y_max = (
-            int(coordinate) for coordinate in coordinates
-        )
+        x_min, y_min, x_max, y_max = (int(coordinate) for coordinate in coordinates)
         bounding_box = (x_min, y_min, x_max, y_max)
         center = ((x_min + x_max) // 2, (y_min + y_max) // 2)
         return Detection(

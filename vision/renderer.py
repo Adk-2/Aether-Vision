@@ -1,10 +1,13 @@
-"""OpenCV rendering for Project Aether detections."""
+"""OpenCV rendering for Project Aether tracks."""
+
+from typing import TYPE_CHECKING
 
 import cv2
 
 from camera import Frame
 
-from .detection import Detection
+if TYPE_CHECKING:
+    from tracking import Track
 
 WINDOW_TITLE = "Project Aether"
 QUIT_KEY = "q"
@@ -22,29 +25,31 @@ FPS_FONT_SCALE = 0.8
 FPS_LABEL = "FPS"
 FPS_DECIMAL_PLACES = 1
 CONFIDENCE_DECIMAL_PLACES = 2
+TRACK_ID_LABEL = "ID"
 
 
 class Renderer:
-    """Draw and display detections without performing inference."""
+    """Draw and display tracked detections without performing inference."""
 
     def render(
         self,
         frame: Frame,
-        detections: list[Detection],
+        tracks: list["Track"],
         fps: float,
     ) -> bool:
         """Display an annotated frame and return whether Q was pressed."""
         image = frame.image.copy()
-        for detection in detections:
-            self._draw_detection(image, detection)
+        for track in tracks:
+            self._draw_track(image, track)
         self._draw_fps(image, fps)
         cv2.imshow(WINDOW_TITLE, image)
         key = cv2.waitKey(FRAME_DELAY_MILLISECONDS) & KEY_CODE_MASK
         return key == ord(QUIT_KEY)
 
     @staticmethod
-    def _draw_detection(image: object, detection: Detection) -> None:
-        """Draw one detection box and its label."""
+    def _draw_track(image: object, track: "Track") -> None:
+        """Draw one tracked detection box and its identity label."""
+        detection = track.current_detection
         x_min, y_min, x_max, y_max = detection.bounding_box
         cv2.rectangle(
             image,
@@ -54,6 +59,7 @@ class Renderer:
             LINE_THICKNESS,
         )
         label = (
+            f"{TRACK_ID_LABEL} {track.track_id} | "
             f"{detection.class_name} "
             f"{detection.confidence:.{CONFIDENCE_DECIMAL_PLACES}f}"
         )
