@@ -1,52 +1,41 @@
-"""Application runner for continuous camera capture."""
+"""Application runner for camera capture and object detection."""
 
-import os
-import select
-import sys
-from collections.abc import Callable
+from time import perf_counter
 
-from camera import CameraError, CameraManager, Frame
+from camera import CameraManager
+from vision import DetectionAdapter, Renderer, VisionDetector
 
-QUIT_KEY = "q"
-
-
-def _quit_requested() -> bool:
-    """Return whether Q has been pressed without blocking capture."""
-    if os.name == "nt":
-        import msvcrt
-
-        if not msvcrt.kbhit():
-            return False
-        return msvcrt.getwch().lower() == QUIT_KEY
-
-    readable, _, _ = select.select([sys.stdin], [], [], 0)
-    if not readable:
-        return False
-    return sys.stdin.read(1).lower() == QUIT_KEY
-
-
-def _print_frame(frame: Frame) -> None:
-    """Print the required identifying information for a frame."""
-    print(
-        f"Frame ID: {frame.frame_id} | "
-        f"Resolution: {frame.width}x{frame.height} | "
-        f"Timestamp: {frame.timestamp.isoformat()}"
-    )
+ZERO_FPS = 0.0
 
 
 def run(
     manager: CameraManager | None = None,
-    quit_requested: Callable[[], bool] = _quit_requested,
+    detector: VisionDetector | None = None,
+    adapter: DetectionAdapter | None = None,
+    renderer: Renderer | None = None,
 ) -> None:
-    """Capture frames continuously until Q is pressed."""
+    """Capture, detect, adapt, and render frames until Q is pressed."""
     camera_manager = manager or CameraManager()
+    vision_detector = detector or VisionDetector()
+    detection_adapter = adapter or DetectionAdapter()
+    vision_renderer = renderer or Renderer()
     try:
         camera_manager.start()
-        while not quit_requested():
-            _print_frame(camera_manager.read_frame())
-    except CameraError as error:
-        print(f"Camera error: {error}", file=sys.stderr)
+        while True:
+            iteration_started = perf_counter()
+            frame = camera_manager.read_frame()
+            raw_results = vision_detector.detect(frame)
+            detections = detection_adapter.convert(raw_results, frame.timestamp)
+            elapsed_seconds = perf_counter() - iteration_started
+            fps = (
+                1.0 / elapsed_seconds
+                if elapsed_seconds > 0.0
+                else ZERO_FPS
+            )
+            if vision_renderer.render(frame, detections, fps):
+                break
     except KeyboardInterrupt:
         pass
     finally:
         camera_manager.stop()
+        vision_renderer.close()
