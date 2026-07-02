@@ -97,4 +97,6 @@ class EventEngine:
             track_id=track.track_id,
             timestamp=snapshot.timestamp,
             description=f"{object_name} {event_type.value}",
+            object_name=object_name,
+            position=track.current_detection.center,
         )

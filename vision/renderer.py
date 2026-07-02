@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 
 WINDOW_TITLE = "Project Aether"
 QUIT_KEY = "q"
+MEMORY_KEY = "m"
 FRAME_DELAY_MILLISECONDS = 1
 KEY_CODE_MASK = 0xFF
 BOUNDING_BOX_COLOR = (0, 255, 0)
@@ -31,6 +32,9 @@ TRACK_ID_LABEL = "ID"
 class Renderer:
     """Draw and display tracked detections without performing inference."""
 
+    def __init__(self) -> None:
+        self.memory_requested = False
+
     def render(
         self,
         frame: Frame,
@@ -44,6 +48,7 @@ class Renderer:
         self._draw_fps(image, fps)
         cv2.imshow(WINDOW_TITLE, image)
         key = cv2.waitKey(FRAME_DELAY_MILLISECONDS) & KEY_CODE_MASK
+        self.memory_requested = key == ord(MEMORY_KEY)
         return key == ord(QUIT_KEY)
 
     @staticmethod

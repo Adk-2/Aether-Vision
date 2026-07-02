@@ -4,6 +4,7 @@ from time import perf_counter
 
 from camera import CameraManager
 from events import EventEngine
+from memory import MemoryEngine
 from tracking import Tracker
 from vision import DetectionAdapter, Renderer, VisionDetector
 from world import WorldState
@@ -19,6 +20,7 @@ def run(
     tracker: Tracker | None = None,
     world_state: WorldState | None = None,
     event_engine: EventEngine | None = None,
+    memory_engine: MemoryEngine | None = None,
 ) -> None:
     """Capture, detect, track, model changes, and render until Q is pressed."""
     camera_manager = manager or CameraManager()
@@ -27,6 +29,7 @@ def run(
     object_tracker = tracker or Tracker()
     current_world = world_state or WorldState()
     world_event_engine = event_engine or EventEngine()
+    working_memory = memory_engine or MemoryEngine()
     vision_renderer = renderer or Renderer()
     try:
         camera_manager.start()
@@ -41,14 +44,34 @@ def run(
                 current_world.previous_snapshot,
                 snapshot,
             )
+            working_memory.process(events)
             for event in events:
                 print(event.description)
             elapsed_seconds = perf_counter() - iteration_started
             fps = 1.0 / elapsed_seconds if elapsed_seconds > 0.0 else ZERO_FPS
-            if vision_renderer.render(frame, tracks, fps):
+            should_quit = vision_renderer.render(frame, tracks, fps)
+            if getattr(vision_renderer, "memory_requested", False):
+                _print_memory(working_memory)
+            if should_quit:
                 break
     except KeyboardInterrupt:
         pass
     finally:
         camera_manager.stop()
         vision_renderer.close()
+
+
+def _print_memory(memory_engine: MemoryEngine) -> None:
+    """Print a formatted snapshot of current working memory."""
+    print("========== Working Memory ==========")
+    records = memory_engine.store.list_all()
+    if not records:
+        print("(empty)")
+    for record in records:
+        print(f"\n{record.object_name}\n")
+        print(f"Status : {record.status.value}")
+        print(f"Last Seen : {record.last_seen.isoformat()}")
+        print(f"Position : {record.last_position}")
+        print(f"History Entries : {len(record.history)}")
+        print("------------------------------------")
+    print("===================================")

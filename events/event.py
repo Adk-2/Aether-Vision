@@ -14,3 +14,5 @@ class Event:
     track_id: int
     timestamp: datetime
     description: str
+    object_name: str | None = None
+    position: tuple[int, int] | None = None
