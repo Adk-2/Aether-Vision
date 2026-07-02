@@ -12,6 +12,7 @@ if TYPE_CHECKING:
 WINDOW_TITLE = "Project Aether"
 QUIT_KEY = "q"
 MEMORY_KEY = "m"
+TIMELINE_KEY = "t"
 FRAME_DELAY_MILLISECONDS = 1
 KEY_CODE_MASK = 0xFF
 BOUNDING_BOX_COLOR = (0, 255, 0)
@@ -34,6 +35,7 @@ class Renderer:
 
     def __init__(self) -> None:
         self.memory_requested = False
+        self.timeline_requested = False
 
     def render(
         self,
@@ -49,6 +51,7 @@ class Renderer:
         cv2.imshow(WINDOW_TITLE, image)
         key = cv2.waitKey(FRAME_DELAY_MILLISECONDS) & KEY_CODE_MASK
         self.memory_requested = key == ord(MEMORY_KEY)
+        self.timeline_requested = key == ord(TIMELINE_KEY)
         return key == ord(QUIT_KEY)
 
     @staticmethod

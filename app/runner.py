@@ -5,6 +5,7 @@ from time import perf_counter
 from camera import CameraManager
 from events import EventEngine
 from memory import MemoryEngine
+from timeline import Timeline
 from tracking import Tracker
 from vision import DetectionAdapter, Renderer, VisionDetector
 from world import WorldState
@@ -21,6 +22,7 @@ def run(
     world_state: WorldState | None = None,
     event_engine: EventEngine | None = None,
     memory_engine: MemoryEngine | None = None,
+    timeline: Timeline | None = None,
 ) -> None:
     """Capture, detect, track, model changes, and render until Q is pressed."""
     camera_manager = manager or CameraManager()
@@ -30,6 +32,7 @@ def run(
     current_world = world_state or WorldState()
     world_event_engine = event_engine or EventEngine()
     working_memory = memory_engine or MemoryEngine()
+    episodic_timeline = timeline or Timeline()
     vision_renderer = renderer or Renderer()
     try:
         camera_manager.start()
@@ -45,6 +48,7 @@ def run(
                 snapshot,
             )
             working_memory.process(events)
+            episodic_timeline.process(events)
             for event in events:
                 print(event.description)
             elapsed_seconds = perf_counter() - iteration_started
@@ -52,6 +56,8 @@ def run(
             should_quit = vision_renderer.render(frame, tracks, fps)
             if getattr(vision_renderer, "memory_requested", False):
                 _print_memory(working_memory)
+            if getattr(vision_renderer, "timeline_requested", False):
+                _print_timeline(episodic_timeline)
             if should_quit:
                 break
     except KeyboardInterrupt:
@@ -75,3 +81,16 @@ def _print_memory(memory_engine: MemoryEngine) -> None:
         print(f"History Entries : {len(record.history)}")
         print("------------------------------------")
     print("===================================")
+
+
+def _print_timeline(timeline: Timeline) -> None:
+    """Print the current episodic timeline."""
+    print("========== Timeline =========")
+    entries = timeline.store.all_entries()
+    if not entries:
+        print("(empty)")
+    for entry in entries:
+        print(f"\n#{entry.sequence_number}\n")
+        print(entry.timestamp.strftime("%H:%M"))
+        print(entry.description)
+    print("=============================")
