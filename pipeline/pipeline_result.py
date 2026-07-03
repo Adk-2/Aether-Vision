@@ -1,9 +1,10 @@
 """Result produced by one complete perception cycle."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from camera import Frame
 from events import Event
+from scene import SceneGraph
 from tracking import Track
 
 
@@ -16,3 +17,4 @@ class PipelineResult:
     events: list[Event]
     fps: float
     should_quit: bool
+    scene_graph: SceneGraph = field(default_factory=SceneGraph)

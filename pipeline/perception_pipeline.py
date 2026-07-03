@@ -5,6 +5,7 @@ from time import perf_counter
 from camera import CameraManager
 from events import Event, EventEngine
 from memory import MemoryEngine
+from scene import SceneGraph, SceneGraphBuilder
 from timeline import Timeline
 from tracking import Tracker
 from vision import DetectionAdapter, Renderer, VisionDetector
@@ -29,6 +30,7 @@ class PerceptionPipeline:
         event_engine: EventEngine | None = None,
         memory_engine: MemoryEngine | None = None,
         timeline: Timeline | None = None,
+        scene_graph_builder: SceneGraphBuilder | None = None,
     ) -> None:
         self.camera_manager = manager or CameraManager()
         self.vision_detector = detector or VisionDetector()
@@ -39,6 +41,8 @@ class PerceptionPipeline:
         self.event_engine = event_engine or EventEngine()
         self.memory_engine = memory_engine or MemoryEngine()
         self.timeline = timeline or Timeline()
+        self.scene_graph_builder = scene_graph_builder or SceneGraphBuilder()
+        self.scene_graph = SceneGraph()
 
     def start(self) -> None:
         """Start resources required by the pipeline."""
@@ -52,6 +56,7 @@ class PerceptionPipeline:
         detections = self.detection_adapter.convert(raw_results, frame.timestamp)
         tracks = self.tracker.update(detections)
         snapshot = self.world_state.update(tracks, frame.timestamp)
+        self.scene_graph = self.scene_graph_builder.build(tracks)
         events = self.event_engine.generate_events(
             self.world_state.previous_snapshot,
             snapshot,
@@ -62,7 +67,14 @@ class PerceptionPipeline:
         fps = self._calculate_fps(iteration_started)
         should_quit = self.renderer.render(frame, tracks, fps)
         self._handle_shortcuts()
-        return PipelineResult(frame, tracks, events, fps, should_quit)
+        return PipelineResult(
+            frame=frame,
+            tracks=tracks,
+            events=events,
+            fps=fps,
+            should_quit=should_quit,
+            scene_graph=self.scene_graph,
+        )
 
     def close(self) -> None:
         """Release all resources owned by the pipeline."""
@@ -84,6 +96,21 @@ class PerceptionPipeline:
             self._print_memory()
         if getattr(self.renderer, "timeline_requested", False):
             self._print_timeline()
+        if getattr(self.renderer, "scene_graph_requested", False):
+            self._print_scene_graph()
+
+    def _print_scene_graph(self) -> None:
+        print("========== Scene Graph =========")
+        relations = self.scene_graph.all_relations()
+        if not relations:
+            print("(empty)")
+        for relation in relations:
+            print(
+                f"{relation.subject_name} "
+                f"{relation.relation_type.value} "
+                f"{relation.object_name}"
+            )
+        print("================================")
 
     def _print_memory(self) -> None:
         print("========== Working Memory ==========")
