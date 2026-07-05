@@ -18,3 +18,5 @@ class Track:
     age: int
     missed_frames: int
     active: bool
+    stabilized_label: str | None = None
+    identity_confidence: float | None = None

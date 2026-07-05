@@ -103,4 +103,5 @@ class SceneGraphBuilder:
 
     @staticmethod
     def _name(track: Track) -> str:
-        return f"{track.current_detection.class_name}_{track.track_id:0{TRACK_ID_WIDTH}d}"
+        label = track.stabilized_label or track.current_detection.class_name
+        return f"{label}_{track.track_id:0{TRACK_ID_WIDTH}d}"

@@ -10,6 +10,8 @@ _STATUS_BY_EVENT = {
     EventType.APPEARED: MemoryStatus.ACTIVE,
     EventType.MOVED: MemoryStatus.MOVING,
     EventType.STOPPED: MemoryStatus.STATIC,
+    EventType.STARTED_MOVING: MemoryStatus.MOVING,
+    EventType.STOPPED_MOVING: MemoryStatus.STATIC,
     EventType.DISAPPEARED: MemoryStatus.LOST,
 }
 

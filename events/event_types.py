@@ -10,3 +10,5 @@ class EventType(Enum):
     DISAPPEARED = "disappeared"
     MOVED = "moved"
     STOPPED = "stopped"
+    STARTED_MOVING = "started moving"
+    STOPPED_MOVING = "stopped moving"

@@ -5,10 +5,8 @@ from world.snapshot import WorldSnapshot
 
 from .event import Event
 from .event_types import EventType
+from .event_policy import DEFAULT_STOPPED_FRAME_THRESHOLD, EventPolicy
 from .exceptions import EventError
-
-DEFAULT_STOPPED_FRAME_THRESHOLD = 3
-MINIMUM_STOPPED_FRAME_THRESHOLD = 1
 TRACK_ID_WIDTH = 3
 
 
@@ -17,11 +15,16 @@ class EventEngine:
 
     def __init__(
         self,
-        stopped_frame_threshold: int = DEFAULT_STOPPED_FRAME_THRESHOLD,
+        stopped_frame_threshold: int | None = None,
+        policy: EventPolicy | None = None,
     ) -> None:
-        if stopped_frame_threshold < MINIMUM_STOPPED_FRAME_THRESHOLD:
-            raise EventError("Stopped frame threshold must be at least one")
-        self._stopped_frame_threshold = stopped_frame_threshold
+        if policy is not None and stopped_frame_threshold is not None:
+            raise EventError("Provide either an event policy or a stopped threshold")
+        self._policy = policy or EventPolicy(
+            stopped_frame_threshold=stopped_frame_threshold
+            if stopped_frame_threshold is not None
+            else DEFAULT_STOPPED_FRAME_THRESHOLD
+        )
         self._unchanged_frames: dict[int, int] = {}
 
     def generate_events(
@@ -69,7 +72,7 @@ class EventEngine:
 
         unchanged = self._unchanged_frames.get(current.track_id, 0) + 1
         self._unchanged_frames[current.track_id] = unchanged
-        if unchanged == self._stopped_frame_threshold:
+        if unchanged == self._policy.stopped_frame_threshold:
             return [self._event(EventType.STOPPED, current, snapshot)]
         return []
 
@@ -88,10 +91,8 @@ class EventEngine:
         snapshot: WorldSnapshot,
     ) -> Event:
         """Build a human-readable event for one track."""
-        object_name = (
-            f"{track.current_detection.class_name}_"
-            f"{track.track_id:0{TRACK_ID_WIDTH}d}"
-        )
+        label = track.stabilized_label or track.current_detection.class_name
+        object_name = f"{label}_{track.track_id:0{TRACK_ID_WIDTH}d}"
         return Event(
             event_type=event_type,
             track_id=track.track_id,

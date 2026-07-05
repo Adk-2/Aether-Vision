@@ -14,6 +14,8 @@ QUIT_KEY = "q"
 MEMORY_KEY = "m"
 TIMELINE_KEY = "t"
 SCENE_GRAPH_KEY = "g"
+IDENTITY_KEY = "i"
+BELIEF_KEY = "b"
 FRAME_DELAY_MILLISECONDS = 1
 KEY_CODE_MASK = 0xFF
 BOUNDING_BOX_COLOR = (0, 255, 0)
@@ -38,6 +40,8 @@ class Renderer:
         self.memory_requested = False
         self.timeline_requested = False
         self.scene_graph_requested = False
+        self.identity_requested = False
+        self.belief_requested = False
 
     def render(
         self,
@@ -55,6 +59,8 @@ class Renderer:
         self.memory_requested = key == ord(MEMORY_KEY)
         self.timeline_requested = key == ord(TIMELINE_KEY)
         self.scene_graph_requested = key == ord(SCENE_GRAPH_KEY)
+        self.identity_requested = key == ord(IDENTITY_KEY)
+        self.belief_requested = key == ord(BELIEF_KEY)
         return key == ord(QUIT_KEY)
 
     @staticmethod
@@ -69,10 +75,16 @@ class Renderer:
             BOUNDING_BOX_COLOR,
             LINE_THICKNESS,
         )
+        object_label = track.stabilized_label or detection.class_name
+        confidence = (
+            track.identity_confidence
+            if track.identity_confidence is not None
+            else detection.confidence
+        )
         label = (
             f"{TRACK_ID_LABEL} {track.track_id} | "
-            f"{detection.class_name} "
-            f"{detection.confidence:.{CONFIDENCE_DECIMAL_PLACES}f}"
+            f"{object_label} "
+            f"{confidence:.{CONFIDENCE_DECIMAL_PLACES}f}"
         )
         Renderer._draw_label(image, label, x_min, y_min)
 

@@ -2,12 +2,14 @@
 
 from time import perf_counter
 
+from belief import BeliefEngine, BeliefState, alternatives
 from camera import CameraManager
-from events import Event, EventEngine
+from events import Event, EventEngine, EventFilter
+from identity import IdentityResolver, top_alternatives
 from memory import MemoryEngine
 from scene import SceneGraph, SceneGraphBuilder
 from timeline import Timeline
-from tracking import Tracker
+from tracking import Track, Tracker
 from vision import DetectionAdapter, Renderer, VisionDetector
 from world import WorldState
 
@@ -28,9 +30,12 @@ class PerceptionPipeline:
         tracker: Tracker | None = None,
         world_state: WorldState | None = None,
         event_engine: EventEngine | None = None,
+        event_filter: EventFilter | None = None,
         memory_engine: MemoryEngine | None = None,
         timeline: Timeline | None = None,
         scene_graph_builder: SceneGraphBuilder | None = None,
+        identity_resolver: IdentityResolver | None = None,
+        belief_engine: BeliefEngine | None = None,
     ) -> None:
         self.camera_manager = manager or CameraManager()
         self.vision_detector = detector or VisionDetector()
@@ -39,10 +44,13 @@ class PerceptionPipeline:
         self.tracker = tracker or Tracker()
         self.world_state = world_state or WorldState()
         self.event_engine = event_engine or EventEngine()
+        self.event_filter = event_filter or EventFilter()
         self.memory_engine = memory_engine or MemoryEngine()
         self.timeline = timeline or Timeline()
         self.scene_graph_builder = scene_graph_builder or SceneGraphBuilder()
         self.scene_graph = SceneGraph()
+        self.identity_resolver = identity_resolver or IdentityResolver()
+        self.belief_engine = belief_engine or BeliefEngine()
 
     def start(self) -> None:
         """Start resources required by the pipeline."""
@@ -55,12 +63,16 @@ class PerceptionPipeline:
         raw_results = self.vision_detector.detect(frame)
         detections = self.detection_adapter.convert(raw_results, frame.timestamp)
         tracks = self.tracker.update(detections)
+        identities = self.identity_resolver.update(tracks)
+        beliefs = self.belief_engine.update(identities)
+        self._apply_beliefs(tracks, beliefs)
         snapshot = self.world_state.update(tracks, frame.timestamp)
         self.scene_graph = self.scene_graph_builder.build(tracks)
-        events = self.event_engine.generate_events(
+        generated_events = self.event_engine.generate_events(
             self.world_state.previous_snapshot,
             snapshot,
         )
+        events = self.event_filter.filter_events(generated_events)
         self.memory_engine.process(events)
         self.timeline.process(events)
         self._print_events(events)
@@ -98,6 +110,66 @@ class PerceptionPipeline:
             self._print_timeline()
         if getattr(self.renderer, "scene_graph_requested", False):
             self._print_scene_graph()
+        if getattr(self.renderer, "identity_requested", False):
+            self._print_identities()
+        if getattr(self.renderer, "belief_requested", False):
+            self._print_beliefs()
+
+    @staticmethod
+    def _apply_beliefs(tracks: list[Track], beliefs: list[BeliefState]) -> None:
+        """Expose stable beliefs to world-facing track consumers."""
+        beliefs_by_track = {state.track_id: state for state in beliefs}
+        for track in tracks:
+            state = beliefs_by_track.get(track.track_id)
+            if state is not None:
+                track.stabilized_label = state.current_belief
+                track.identity_confidence = state.confidence
+
+    def _print_beliefs(self) -> None:
+        print("========== Beliefs ==========")
+        beliefs = self.belief_engine.all()
+        if not beliefs:
+            print("(empty)")
+        for state in beliefs:
+            print(f"\nTrack {state.track_id}\n")
+            print("Current Belief\n")
+            print(f"{state.current_belief}\n")
+            print("Confidence\n")
+            print(f"{state.confidence:.2f}\n")
+            print("Frames Stable\n")
+            print(f"{state.frames_stable}\n")
+            print("Stable Since\n")
+            print(f"{state.stable_since.strftime('%H:%M')}\n")
+            print("Alternatives")
+            ranked = alternatives(self.belief_engine, state.track_id)
+            if not ranked:
+                print("\n(none)")
+            for label, _ in ranked:
+                print(f"\n{label}")
+        print("=============================")
+
+    def _print_identities(self) -> None:
+        print("========== Identity =========")
+        identities = self.identity_resolver.all()
+        if not identities:
+            print("(empty)")
+        for resolved in identities:
+            print(f"\nTrack {resolved.track_id}\n")
+            print("Current Label\n")
+            print(f"{resolved.current_label}\n")
+            print("Confidence\n")
+            print(f"{resolved.confidence:.2f}\n")
+            print("Alternatives")
+            alternatives = top_alternatives(
+                self.identity_resolver,
+                resolved.track_id,
+            )
+            if not alternatives:
+                print("\n(none)")
+            for label, confidence in alternatives:
+                print(f"\n{label}\n")
+                print(f"{confidence:.2f}")
+        print("================================")
 
     def _print_scene_graph(self) -> None:
         print("========== Scene Graph =========")
