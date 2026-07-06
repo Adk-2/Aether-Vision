@@ -16,6 +16,7 @@ TIMELINE_KEY = "t"
 SCENE_GRAPH_KEY = "g"
 IDENTITY_KEY = "i"
 BELIEF_KEY = "b"
+KNOWLEDGE_KEY = "k"
 FRAME_DELAY_MILLISECONDS = 1
 KEY_CODE_MASK = 0xFF
 BOUNDING_BOX_COLOR = (0, 255, 0)
@@ -42,6 +43,7 @@ class Renderer:
         self.scene_graph_requested = False
         self.identity_requested = False
         self.belief_requested = False
+        self.knowledge_requested = False
 
     def render(
         self,
@@ -61,6 +63,7 @@ class Renderer:
         self.scene_graph_requested = key == ord(SCENE_GRAPH_KEY)
         self.identity_requested = key == ord(IDENTITY_KEY)
         self.belief_requested = key == ord(BELIEF_KEY)
+        self.knowledge_requested = key == ord(KNOWLEDGE_KEY)
         return key == ord(QUIT_KEY)
 
     @staticmethod

@@ -6,6 +6,7 @@ from belief import BeliefEngine, BeliefState, alternatives
 from camera import CameraManager
 from events import Event, EventEngine, EventFilter
 from identity import IdentityResolver, top_alternatives
+from knowledge import KnowledgeEngine
 from memory import MemoryEngine
 from scene import SceneGraph, SceneGraphBuilder
 from timeline import Timeline
@@ -36,6 +37,7 @@ class PerceptionPipeline:
         scene_graph_builder: SceneGraphBuilder | None = None,
         identity_resolver: IdentityResolver | None = None,
         belief_engine: BeliefEngine | None = None,
+        knowledge_engine: KnowledgeEngine | None = None,
     ) -> None:
         self.camera_manager = manager or CameraManager()
         self.vision_detector = detector or VisionDetector()
@@ -51,6 +53,12 @@ class PerceptionPipeline:
         self.scene_graph = SceneGraph()
         self.identity_resolver = identity_resolver or IdentityResolver()
         self.belief_engine = belief_engine or BeliefEngine()
+        self.knowledge_engine = knowledge_engine or KnowledgeEngine(
+            self.memory_engine,
+            self.timeline,
+            self.scene_graph,
+            self.belief_engine,
+        )
 
     def start(self) -> None:
         """Start resources required by the pipeline."""
@@ -68,6 +76,7 @@ class PerceptionPipeline:
         self._apply_beliefs(tracks, beliefs)
         snapshot = self.world_state.update(tracks, frame.timestamp)
         self.scene_graph = self.scene_graph_builder.build(tracks)
+        self.knowledge_engine.use_scene_graph(self.scene_graph)
         generated_events = self.event_engine.generate_events(
             self.world_state.previous_snapshot,
             snapshot,
@@ -114,6 +123,51 @@ class PerceptionPipeline:
             self._print_identities()
         if getattr(self.renderer, "belief_requested", False):
             self._print_beliefs()
+        if getattr(self.renderer, "knowledge_requested", False):
+            self._print_knowledge()
+
+    def _print_knowledge(self) -> None:
+        print("========== Knowledge =========")
+        records = self.memory_engine.store.list_all()
+        if not records:
+            print("(empty)")
+        for record in records:
+            name = record.object_name
+            state = self.knowledge_engine.current_state(name)
+            belief = self.knowledge_engine.current_belief(name)
+            location = self.knowledge_engine.where_is(name)
+            nearby = self.knowledge_engine.objects_near(name)
+            history = self.knowledge_engine.what_happened(name)
+            display_name = belief.result if belief.success else name
+            print("\nObject\n")
+            print(f"{display_name}\n")
+            print("Current State\n")
+            print(f"{state.result.value if state.success else '(unknown)'}\n")
+            print("Belief\n")
+            print(f"{belief.result if belief.success else '(unknown)'}\n")
+            print("Confidence\n")
+            confidence = belief.confidence
+            print(f"{confidence:.2f}\n" if confidence is not None else "(unknown)\n")
+            print("Location\n")
+            print(f"{location.result if location.success else '(unknown)'}\n")
+            print("Nearby")
+            if not nearby.success or not nearby.result:
+                print("\n(none)")
+            else:
+                for object_name in nearby.result:
+                    print(f"\n{self._display_object_name(object_name)}")
+            print("\n\nRecent Events")
+            if not history.success or not history.result:
+                print("\n(none)")
+            else:
+                for entry in history.result[-5:]:
+                    print(f"\n{entry.event_type.value.title()}")
+        print("\n==============================")
+
+    @staticmethod
+    def _display_object_name(object_name: str) -> str:
+        label, separator, suffix = object_name.rpartition("_")
+        return label if separator and suffix.isdigit() else object_name
 
     @staticmethod
     def _apply_beliefs(tracks: list[Track], beliefs: list[BeliefState]) -> None:
