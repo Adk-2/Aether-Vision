@@ -1,5 +1,6 @@
 """Orchestration for one complete perception cycle."""
 
+from collections.abc import Iterable
 from time import perf_counter
 
 from belief import BeliefEngine, BeliefState, alternatives
@@ -8,6 +9,13 @@ from events import Event, EventEngine, EventFilter
 from identity import IdentityResolver, top_alternatives
 from knowledge import KnowledgeEngine
 from memory import MemoryEngine
+from reasoning import (
+    NearbyRelationshipRule,
+    ReasoningEngine,
+    RecentlyMovedRule,
+    RuleRegistry,
+    StationaryObjectRule,
+)
 from scene import SceneGraph, SceneGraphBuilder
 from timeline import Timeline
 from tracking import Track, Tracker
@@ -38,6 +46,7 @@ class PerceptionPipeline:
         identity_resolver: IdentityResolver | None = None,
         belief_engine: BeliefEngine | None = None,
         knowledge_engine: KnowledgeEngine | None = None,
+        reasoning_engine: ReasoningEngine | None = None,
     ) -> None:
         self.camera_manager = manager or CameraManager()
         self.vision_detector = detector or VisionDetector()
@@ -58,6 +67,10 @@ class PerceptionPipeline:
             self.timeline,
             self.scene_graph,
             self.belief_engine,
+        )
+        self.reasoning_engine = reasoning_engine or ReasoningEngine(
+            self.knowledge_engine,
+            self._default_rule_registry(),
         )
 
     def start(self) -> None:
@@ -125,6 +138,62 @@ class PerceptionPipeline:
             self._print_beliefs()
         if getattr(self.renderer, "knowledge_requested", False):
             self._print_knowledge()
+        if getattr(self.renderer, "reasoning_requested", False):
+            self._print_reasoning()
+
+    @staticmethod
+    def _default_rule_registry() -> RuleRegistry:
+        registry = RuleRegistry()
+        registry.register(StationaryObjectRule())
+        registry.register(NearbyRelationshipRule())
+        registry.register(RecentlyMovedRule())
+        return registry
+
+    def _print_reasoning(self) -> None:
+        print("========== Reasoning ==========")
+        snapshot = self.world_state.current_snapshot
+        visible_ids = {
+            track.track_id for track in snapshot.tracks
+        } if snapshot is not None else set()
+        records = [
+            record
+            for record in self.memory_engine.store.list_all()
+            if record.track_id in visible_ids
+        ]
+        if not records:
+            print("(empty)")
+        for record in records:
+            results = self.reasoning_engine.infer(record.object_name)
+            print("\nObject\n")
+            print(f"{self._display_object_name(record.object_name)}\n")
+            print("Conclusions")
+            if not results:
+                print("\n(none)")
+            for result in results:
+                print(f"\n{result.conclusion}\n")
+                print("Confidence\n")
+                print(f"{result.confidence:.2f}")
+            facts = self._unique_items(
+                fact for result in results for fact in result.supporting_facts
+            )
+            print("\nFacts")
+            if not facts:
+                print("\n(none)")
+            for fact in facts:
+                print(f"\n{fact}")
+            rules = self._unique_items(
+                rule for result in results for rule in result.triggered_rules
+            )
+            print("\nTriggered Rules")
+            if not rules:
+                print("\n(none)")
+            for rule in rules:
+                print(f"\n{rule}")
+        print("\n===============================")
+
+    @staticmethod
+    def _unique_items(items: Iterable[str]) -> list[str]:
+        return list(dict.fromkeys(items))
 
     def _print_knowledge(self) -> None:
         print("========== Knowledge =========")
