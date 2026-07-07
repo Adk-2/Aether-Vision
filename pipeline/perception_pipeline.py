@@ -10,7 +10,10 @@ from identity import IdentityResolver, top_alternatives
 from knowledge import KnowledgeEngine
 from memory import MemoryEngine
 from reasoning import (
+    CarryAwayRule,
     NearbyRelationshipRule,
+    ObjectPermanenceRule,
+    OcclusionRule,
     ReasoningEngine,
     RecentlyMovedRule,
     RuleRegistry,
@@ -97,6 +100,14 @@ class PerceptionPipeline:
         events = self.event_filter.filter_events(generated_events)
         self.memory_engine.process(events)
         self.timeline.process(events)
+        observe = getattr(self.reasoning_engine, "observe", None)
+        if callable(observe):
+            visible_track_ids = {track.track_id for track in tracks}
+            observe([
+                record.object_name
+                for record in self.memory_engine.store.list_all()
+                if record.track_id in visible_track_ids
+            ])
         self._print_events(events)
         fps = self._calculate_fps(iteration_started)
         should_quit = self.renderer.render(frame, tracks, fps)
@@ -147,19 +158,14 @@ class PerceptionPipeline:
         registry.register(StationaryObjectRule())
         registry.register(NearbyRelationshipRule())
         registry.register(RecentlyMovedRule())
+        registry.register(OcclusionRule())
+        registry.register(CarryAwayRule())
+        registry.register(ObjectPermanenceRule())
         return registry
 
     def _print_reasoning(self) -> None:
         print("========== Reasoning ==========")
-        snapshot = self.world_state.current_snapshot
-        visible_ids = {
-            track.track_id for track in snapshot.tracks
-        } if snapshot is not None else set()
-        records = [
-            record
-            for record in self.memory_engine.store.list_all()
-            if record.track_id in visible_ids
-        ]
+        records = self.memory_engine.store.list_all()
         if not records:
             print("(empty)")
         for record in records:

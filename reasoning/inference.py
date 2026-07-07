@@ -14,4 +14,10 @@ class Inference:
     nearby_objects: list[str] = field(default_factory=list)
     recent_events: list[str] = field(default_factory=list)
     recent_movement: bool = False
+    recently_disappeared: bool = False
+    removal_evidence: bool = False
+    destruction_evidence: bool = False
+    nearby_people: list[str] = field(default_factory=list)
+    people_recently_moved_away: list[str] = field(default_factory=list)
+    inferred_conclusions: list[str] = field(default_factory=list)
     timestamp: datetime | None = None

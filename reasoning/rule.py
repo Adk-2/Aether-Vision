@@ -84,3 +84,88 @@ class RecentlyMovedRule(Rule):
             triggered_rules=[type(self).__name__],
             timestamp=knowledge.timestamp,
         )
+
+
+class OcclusionRule(Rule):
+    """Explain an unexplained disappearance using nearby visible objects."""
+
+    confidence = 0.75
+
+    def applies(self, knowledge: Inference) -> bool:
+        return (
+            knowledge.recently_disappeared
+            and bool(knowledge.nearby_objects)
+            and not knowledge.removal_evidence
+        )
+
+    def infer(self, knowledge: Inference) -> InferenceResult:
+        return InferenceResult(
+            success=True,
+            conclusion=f"{knowledge.object_name} is probably occluded.",
+            confidence=self.confidence,
+            supporting_facts=[
+                "Recently disappeared",
+                *[f"{name} nearby" for name in knowledge.nearby_objects],
+                "No removal evidence",
+            ],
+            triggered_rules=[type(self).__name__],
+            timestamp=knowledge.timestamp,
+        )
+
+
+class CarryAwayRule(Rule):
+    """Explain a disappearance when a nearby person moved away."""
+
+    confidence = 0.80
+
+    def applies(self, knowledge: Inference) -> bool:
+        return (
+            knowledge.recently_disappeared
+            and bool(knowledge.nearby_people)
+            and bool(knowledge.people_recently_moved_away)
+        )
+
+    def infer(self, knowledge: Inference) -> InferenceResult:
+        person = knowledge.people_recently_moved_away[0]
+        return InferenceResult(
+            success=True,
+            conclusion=f"{knowledge.object_name} was probably carried away.",
+            confidence=self.confidence,
+            supporting_facts=[
+                "Recently disappeared",
+                f"{person} nearby",
+                f"{person} recently moved away",
+            ],
+            triggered_rules=[type(self).__name__],
+            timestamp=knowledge.timestamp,
+        )
+
+
+class ObjectPermanenceRule(Rule):
+    """Preserve existence when disappearance has no terminal explanation."""
+
+    confidence = 0.90
+
+    def applies(self, knowledge: Inference) -> bool:
+        return (
+            knowledge.recently_disappeared
+            and not knowledge.removal_evidence
+            and not knowledge.destruction_evidence
+        )
+
+    def infer(self, knowledge: Inference) -> InferenceResult:
+        return InferenceResult(
+            success=True,
+            conclusion=(
+                f"{knowledge.object_name} probably still exists outside "
+                "the current camera view."
+            ),
+            confidence=self.confidence,
+            supporting_facts=[
+                "Recently disappeared",
+                "No removal evidence",
+                "No destruction evidence",
+            ],
+            triggered_rules=[type(self).__name__],
+            timestamp=knowledge.timestamp,
+        )
