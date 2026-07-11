@@ -1,6 +1,7 @@
 """Orchestration for one complete perception cycle."""
 
 from collections.abc import Iterable
+from datetime import datetime
 from time import perf_counter
 
 from belief import BeliefEngine, BeliefState, alternatives
@@ -9,6 +10,7 @@ from events import Event, EventEngine, EventFilter
 from identity import IdentityResolver, top_alternatives
 from knowledge import KnowledgeEngine
 from memory import MemoryEngine
+from planning import Goal, Planner, PlannerRules
 from reasoning import (
     CarryAwayRule,
     NearbyRelationshipRule,
@@ -50,6 +52,7 @@ class PerceptionPipeline:
         belief_engine: BeliefEngine | None = None,
         knowledge_engine: KnowledgeEngine | None = None,
         reasoning_engine: ReasoningEngine | None = None,
+        planner: Planner | None = None,
     ) -> None:
         self.camera_manager = manager or CameraManager()
         self.vision_detector = detector or VisionDetector()
@@ -74,6 +77,11 @@ class PerceptionPipeline:
         self.reasoning_engine = reasoning_engine or ReasoningEngine(
             self.knowledge_engine,
             self._default_rule_registry(),
+        )
+        self.planner = planner or Planner(
+            self.knowledge_engine,
+            self.reasoning_engine,
+            PlannerRules(),
         )
 
     def start(self) -> None:
@@ -151,6 +159,8 @@ class PerceptionPipeline:
             self._print_knowledge()
         if getattr(self.renderer, "reasoning_requested", False):
             self._print_reasoning()
+        if getattr(self.renderer, "plan_requested", False):
+            self._print_plan()
 
     @staticmethod
     def _default_rule_registry() -> RuleRegistry:
@@ -182,7 +192,7 @@ class PerceptionPipeline:
             facts = self._unique_items(
                 fact for result in results for fact in result.supporting_facts
             )
-            print("\nFacts")
+            print("\nSupporting Facts")
             if not facts:
                 print("\n(none)")
             for fact in facts:
@@ -196,6 +206,46 @@ class PerceptionPipeline:
             for rule in rules:
                 print(f"\n{rule}")
         print("\n===============================")
+
+    def _print_plan(self) -> None:
+        print("========== Plan ==========")
+        goal = self._default_goal()
+        if goal is None:
+            print("(empty)")
+            print("==========================")
+            return
+        plan = self.planner.create_plan(goal)
+        print("\nGoal\n")
+        print(f"{goal.goal_type.title()} {self._display_object_name(goal.target_object)}")
+        print(f"Priority\n\n{goal.priority}")
+        print("\nPlan")
+        if not plan.actions:
+            print("\n(none)")
+        for index, action in enumerate(plan.actions, start=1):
+            print(f"\n{index}.\n")
+            print(action.description)
+            print("\nReason\n")
+            print(action.reason)
+            print("\nPriority\n")
+            print(action.priority)
+        print("\nConfidence\n")
+        print(f"{plan.confidence:.2f}")
+        print("\n==========================")
+
+    def _default_goal(self) -> Goal | None:
+        records = self.memory_engine.store.list_all()
+        if not records:
+            return None
+        target = next(
+            (record for record in records if record.status.value == "LOST"),
+            records[0],
+        )
+        return Goal(
+            goal_type="find",
+            target_object=target.object_name,
+            priority=1,
+            timestamp=datetime.now(),
+        )
 
     @staticmethod
     def _unique_items(items: Iterable[str]) -> list[str]:

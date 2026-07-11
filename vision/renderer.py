@@ -18,6 +18,7 @@ IDENTITY_KEY = "i"
 BELIEF_KEY = "b"
 KNOWLEDGE_KEY = "k"
 REASONING_KEY = "r"
+PLAN_KEY = "p"
 FRAME_DELAY_MILLISECONDS = 1
 KEY_CODE_MASK = 0xFF
 BOUNDING_BOX_COLOR = (0, 255, 0)
@@ -46,6 +47,7 @@ class Renderer:
         self.belief_requested = False
         self.knowledge_requested = False
         self.reasoning_requested = False
+        self.plan_requested = False
 
     def render(
         self,
@@ -67,6 +69,7 @@ class Renderer:
         self.belief_requested = key == ord(BELIEF_KEY)
         self.knowledge_requested = key == ord(KNOWLEDGE_KEY)
         self.reasoning_requested = key == ord(REASONING_KEY)
+        self.plan_requested = key == ord(PLAN_KEY)
         return key == ord(QUIT_KEY)
 
     @staticmethod
