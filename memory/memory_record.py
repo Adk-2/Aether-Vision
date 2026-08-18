@@ -27,3 +27,5 @@ class MemoryRecord:
     last_position: tuple[int, int] | None
     status: MemoryStatus
     history: list[Event] = field(default_factory=list)
+    confidence: float | None = None
+    restored: bool = False

@@ -11,6 +11,8 @@ from .knowledge_result import KnowledgeResult
 from .query_types import QueryType
 
 MEMORY_SOURCE = "WorkingMemory"
+CURRENT_SOURCE = "CurrentObservation"
+HISTORICAL_SOURCE = "PersistentMemory"
 TIMELINE_SOURCE = "Timeline"
 SCENE_SOURCE = "SceneGraph"
 BELIEF_SOURCE = "BeliefEngine"
@@ -30,10 +32,15 @@ class KnowledgeEngine:
         self._timeline = timeline
         self._scene_graph = scene_graph
         self._belief_engine = belief_engine
+        self._visible_track_ids: set[int] = set()
 
     def use_scene_graph(self, scene_graph: SceneGraph) -> None:
         """Point queries at the pipeline's latest graph without copying it."""
         self._scene_graph = scene_graph
+
+    def use_visible_track_ids(self, track_ids: set[int]) -> None:
+        """Point queries at track identifiers visible in the current frame."""
+        self._visible_track_ids = set(track_ids)
 
     def where_is(self, name: str) -> KnowledgeResult:
         record = self._resolve(name)
@@ -44,7 +51,7 @@ class KnowledgeEngine:
             record,
             record.last_position,
             record.last_seen,
-            [MEMORY_SOURCE],
+            [MEMORY_SOURCE, self._observation_source(record)],
         )
 
     def what_happened(self, name: str) -> KnowledgeResult:
@@ -56,6 +63,8 @@ class KnowledgeEngine:
                 [MEMORY_SOURCE, TIMELINE_SOURCE],
             )
         entries = self._timeline.store.entries_for_track(record.track_id)
+        if not entries:
+            entries = self._timeline.store.entries_for_object(record.object_name)
         timestamp = entries[-1].timestamp if entries else record.last_seen
         return self._success(
             QueryType.WHAT_HAPPENED,
@@ -132,20 +141,32 @@ class KnowledgeEngine:
         query = name.strip().casefold()
         if not query:
             return None
-        exact = self._working_memory.store.get_by_name(name.strip())
-        if exact is not None:
-            return exact
+        records = self._working_memory.store.list_all()
         matches = [
             record
-            for record in self._working_memory.store.list_all()
-            if self._label(record.object_name).casefold() == query
+            for record in records
+            if record.object_name.casefold() == query
+            or self._label(record.object_name).casefold() == query
         ]
+        visible = [
+            record for record in matches if record.track_id in self._visible_track_ids
+        ]
+        if len(visible) == 1:
+            return visible[0]
+        exact = [record for record in matches if record.object_name.casefold() == query]
+        if len(exact) == 1:
+            return exact[0]
         return matches[0] if len(matches) == 1 else None
 
     @staticmethod
     def _label(object_name: str) -> str:
         label, separator, suffix = object_name.rpartition("_")
         return label if separator and suffix.isdigit() else object_name
+
+    def _observation_source(self, record: MemoryRecord) -> str:
+        if record.track_id in self._visible_track_ids and record.status.value != "LOST":
+            return CURRENT_SOURCE
+        return HISTORICAL_SOURCE
 
     @staticmethod
     def _success(

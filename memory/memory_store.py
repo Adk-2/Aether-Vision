@@ -35,5 +35,12 @@ class MemoryStore:
     def list_all(self) -> list[MemoryRecord]:
         return list(self._records.values())
 
+    def next_historical_track_id(self) -> int:
+        """Return an unused negative track id for restored historical records."""
+        track_id = -1
+        while track_id in self._records:
+            track_id -= 1
+        return track_id
+
     def clear(self) -> None:
         self._records.clear()

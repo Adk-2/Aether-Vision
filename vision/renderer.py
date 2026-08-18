@@ -19,6 +19,9 @@ BELIEF_KEY = "b"
 KNOWLEDGE_KEY = "k"
 REASONING_KEY = "r"
 PLAN_KEY = "p"
+ASSISTANT_KEY = "a"
+STABILIZER_KEY = "s"
+PERSISTENT_MEMORY_KEY = "h"
 FRAME_DELAY_MILLISECONDS = 1
 KEY_CODE_MASK = 0xFF
 BOUNDING_BOX_COLOR = (0, 255, 0)
@@ -48,6 +51,9 @@ class Renderer:
         self.knowledge_requested = False
         self.reasoning_requested = False
         self.plan_requested = False
+        self.assistant_requested = False
+        self.stabilizer_requested = False
+        self.persistent_memory_requested = False
 
     def render(
         self,
@@ -70,6 +76,18 @@ class Renderer:
         self.knowledge_requested = key == ord(KNOWLEDGE_KEY)
         self.reasoning_requested = key == ord(REASONING_KEY)
         self.plan_requested = key == ord(PLAN_KEY)
+        self.assistant_requested = key in (
+            ord(ASSISTANT_KEY),
+            ord(ASSISTANT_KEY.upper()),
+        )
+        self.stabilizer_requested = key in (
+            ord(STABILIZER_KEY),
+            ord(STABILIZER_KEY.upper()),
+        )
+        self.persistent_memory_requested = key in (
+            ord(PERSISTENT_MEMORY_KEY),
+            ord(PERSISTENT_MEMORY_KEY.upper()),
+        )
         return key == ord(QUIT_KEY)
 
     @staticmethod

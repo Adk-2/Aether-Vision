@@ -42,6 +42,10 @@ class BeliefEngine:
         """Return beliefs in first-observed order."""
         return list(self._beliefs.values())
 
+    def replace_all(self, states: list[BeliefState]) -> None:
+        """Replace belief state from a trusted serialized snapshot."""
+        self._beliefs = {state.track_id: state for state in states}
+
     @staticmethod
     def _create(identity: Identity) -> BeliefState:
         return BeliefState(

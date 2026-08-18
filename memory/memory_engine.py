@@ -28,6 +28,9 @@ class MemoryEngine:
 
     def process_event(self, event: Event) -> None:
         record = self.store.get_by_track_id(event.track_id)
+        if record is not None and record.restored:
+            self._move_restored_record(record)
+            record = None
         if record is None:
             self.store.add(self._new_record(event))
             return
@@ -51,4 +54,10 @@ class MemoryEngine:
             last_position=event.position,
             status=MemoryStatus.ACTIVE,
             history=[event],
+            restored=False,
         )
+
+    def _move_restored_record(self, record: MemoryRecord) -> None:
+        self.store.remove(record.track_id)
+        record.track_id = self.store.next_historical_track_id()
+        self.store.add(record)

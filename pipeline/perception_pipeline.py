@@ -4,6 +4,7 @@ from collections.abc import Iterable
 from datetime import datetime
 from time import perf_counter
 
+from assistant import Assistant
 from belief import BeliefEngine, BeliefState, alternatives
 from camera import CameraManager
 from events import Event, EventEngine, EventFilter
@@ -22,9 +23,18 @@ from reasoning import (
     StationaryObjectRule,
 )
 from scene import SceneGraph, SceneGraphBuilder
+from storage import PersistenceStore, PersistentMemory
+from storage.memory_quality import compact_persistent_memory
 from timeline import Timeline
 from tracking import Track, Tracker
-from vision import DetectionAdapter, Renderer, VisionDetector
+from vision import (
+    ConfidenceFilter,
+    DetectionAdapter,
+    DetectionStabilizer,
+    Renderer,
+    StabilizationPolicy,
+    VisionDetector,
+)
 from world import WorldState
 
 from .pipeline_result import PipelineResult
@@ -40,6 +50,9 @@ class PerceptionPipeline:
         manager: CameraManager | None = None,
         detector: VisionDetector | None = None,
         adapter: DetectionAdapter | None = None,
+        stabilization_policy: StabilizationPolicy | None = None,
+        confidence_filter: ConfidenceFilter | None = None,
+        detection_stabilizer: DetectionStabilizer | None = None,
         renderer: Renderer | None = None,
         tracker: Tracker | None = None,
         world_state: WorldState | None = None,
@@ -53,10 +66,19 @@ class PerceptionPipeline:
         knowledge_engine: KnowledgeEngine | None = None,
         reasoning_engine: ReasoningEngine | None = None,
         planner: Planner | None = None,
+        assistant: Assistant | None = None,
+        persistence_store: PersistenceStore | None = None,
     ) -> None:
         self.camera_manager = manager or CameraManager()
         self.vision_detector = detector or VisionDetector()
         self.detection_adapter = adapter or DetectionAdapter()
+        policy = stabilization_policy or StabilizationPolicy()
+        self.confidence_filter = confidence_filter or ConfidenceFilter(
+            policy.confidence_threshold
+        )
+        self.detection_stabilizer = detection_stabilizer or DetectionStabilizer(
+            policy
+        )
         self.renderer = renderer or Renderer()
         self.tracker = tracker or Tracker()
         self.world_state = world_state or WorldState()
@@ -64,6 +86,8 @@ class PerceptionPipeline:
         self.event_filter = event_filter or EventFilter()
         self.memory_engine = memory_engine or MemoryEngine()
         self.timeline = timeline or Timeline()
+        self.persistence_store = persistence_store or PersistenceStore()
+        self._movement_noise_suppressed = 0
         self.scene_graph_builder = scene_graph_builder or SceneGraphBuilder()
         self.scene_graph = SceneGraph()
         self.identity_resolver = identity_resolver or IdentityResolver()
@@ -83,6 +107,12 @@ class PerceptionPipeline:
             self.reasoning_engine,
             PlannerRules(),
         )
+        self.assistant = assistant or Assistant(
+            self.knowledge_engine,
+            self.reasoning_engine,
+            self.planner,
+        )
+        self._restore_persistent_memory()
 
     def start(self) -> None:
         """Start resources required by the pipeline."""
@@ -94,13 +124,17 @@ class PerceptionPipeline:
         frame = self.camera_manager.read_frame()
         raw_results = self.vision_detector.detect(frame)
         detections = self.detection_adapter.convert(raw_results, frame.timestamp)
+        detections = self.confidence_filter.filter(detections)
         tracks = self.tracker.update(detections)
+        tracks = self.detection_stabilizer.stabilize(tracks)
         identities = self.identity_resolver.update(tracks)
         beliefs = self.belief_engine.update(identities)
         self._apply_beliefs(tracks, beliefs)
         snapshot = self.world_state.update(tracks, frame.timestamp)
         self.scene_graph = self.scene_graph_builder.build(tracks)
         self.knowledge_engine.use_scene_graph(self.scene_graph)
+        visible_track_ids = {track.track_id for track in tracks}
+        self.knowledge_engine.use_visible_track_ids(visible_track_ids)
         generated_events = self.event_engine.generate_events(
             self.world_state.previous_snapshot,
             snapshot,
@@ -108,9 +142,11 @@ class PerceptionPipeline:
         events = self.event_filter.filter_events(generated_events)
         self.memory_engine.process(events)
         self.timeline.process(events)
+        self._update_memory_confidence(tracks)
+        if events:
+            self._save_persistent_memory()
         observe = getattr(self.reasoning_engine, "observe", None)
         if callable(observe):
-            visible_track_ids = {track.track_id for track in tracks}
             observe([
                 record.object_name
                 for record in self.memory_engine.store.list_all()
@@ -161,6 +197,21 @@ class PerceptionPipeline:
             self._print_reasoning()
         if getattr(self.renderer, "plan_requested", False):
             self._print_plan()
+        if getattr(self.renderer, "assistant_requested", False):
+            self._ask_assistant()
+        if getattr(self.renderer, "stabilizer_requested", False):
+            self.detection_stabilizer.print_debug()
+        if getattr(self.renderer, "persistent_memory_requested", False):
+            self._print_persistent_memory()
+
+    def _ask_assistant(self) -> None:
+        try:
+            query = input("Ask Aether > ")
+        except EOFError:
+            return
+        if not query.strip():
+            return
+        print(self.assistant.answer(query))
 
     @staticmethod
     def _default_rule_registry() -> RuleRegistry:
@@ -387,3 +438,92 @@ class PerceptionPipeline:
             print(entry.timestamp.strftime("%H:%M"))
             print(entry.description)
         print("=============================")
+
+    def _restore_persistent_memory(self) -> None:
+        try:
+            persistent_memory = self.persistence_store.load()
+        except Exception as exc:  # noqa: BLE001 - persistence must not stop startup.
+            print(f"Warning: could not load persistent memory: {exc}")
+            return
+        for record in persistent_memory.objects:
+            self.memory_engine.store.add(record)
+        for entry in persistent_memory.timeline_entries:
+            try:
+                self.timeline.store.append(entry)
+            except Exception as exc:  # noqa: BLE001 - persistence must not stop startup.
+                print(f"Warning: skipped persistent timeline entry: {exc}")
+        self._movement_noise_suppressed = persistent_memory.movement_noise_suppressed
+        replace_all = getattr(self.belief_engine, "replace_all", None)
+        if callable(replace_all):
+            replace_all(persistent_memory.beliefs)
+
+    def _save_persistent_memory(self) -> None:
+        try:
+            self.persistence_store.save(self._persistent_snapshot())
+        except Exception as exc:  # noqa: BLE001 - persistence must not stop the loop.
+            print(f"Warning: could not save persistent memory: {exc}")
+
+    def _persistent_snapshot(self) -> PersistentMemory:
+        return PersistentMemory(
+            objects=self.memory_engine.store.list_all(),
+            timeline_entries=self.timeline.store.all_entries(),
+            beliefs=self.belief_engine.all(),
+            movement_noise_suppressed=self._movement_noise_suppressed,
+        )
+
+    def _update_memory_confidence(self, tracks: list[Track]) -> None:
+        for track in tracks:
+            record = self.memory_engine.store.get_by_track_id(track.track_id)
+            if record is None:
+                continue
+            confidence = (
+                track.identity_confidence
+                if track.identity_confidence is not None
+                else track.current_detection.confidence
+            )
+            record.confidence = confidence
+            record.restored = False
+            self.memory_engine.store.update(record)
+
+    def _print_persistent_memory(self) -> None:
+        print("========== Persistent Memory ==========")
+        memory = compact_persistent_memory(self._persistent_snapshot())
+        records = memory.objects
+        entries = memory.timeline_entries
+        print("\nRemembered Objects:")
+        if not records:
+            print("(empty)")
+        for record in sorted(records, key=lambda item: item.last_seen, reverse=True):
+            object_name, track_identity = self._object_identity_parts(record.object_name)
+            print(f"- {self._display_object_name(object_name)}")
+            if track_identity is not None:
+                print(f"  Track Identity: {track_identity}")
+            print(f"  Last Seen: {record.last_seen.strftime('%H:%M:%S')}")
+            print(f"  Last Position: {record.last_position}")
+            if record.restored:
+                print("  Observation: historical, not currently visible")
+            if record.confidence is not None:
+                print(f"  Confidence: {record.confidence:.2f}")
+            print(f"  Status: {record.status.value}")
+        print("\nHistorical Events:")
+        if not entries:
+            print("(empty)")
+        for entry in entries[-10:]:
+            object_name, track_identity = self._object_identity_parts(entry.object_name)
+            suffix = f" (track {track_identity})" if track_identity is not None else ""
+            print(
+                f"- {entry.timestamp.strftime('%H:%M:%S')} - "
+                f"{self._display_object_name(object_name)} "
+                f"{entry.event_type.value}{suffix}"
+            )
+        print(f"\nMovement Noise Suppressed: {memory.movement_noise_suppressed}")
+        print("\nMemory Source:")
+        print("Previous Sessions")
+        print("\n========================================")
+
+    @staticmethod
+    def _object_identity_parts(object_name: str) -> tuple[str, str | None]:
+        label, separator, suffix = object_name.rpartition("_")
+        if separator and suffix.isdigit():
+            return label, suffix
+        return object_name, None
