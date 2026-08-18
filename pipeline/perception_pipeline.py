@@ -1,6 +1,7 @@
 """Orchestration for one complete perception cycle."""
 
 from collections.abc import Iterable
+from dataclasses import dataclass
 from datetime import datetime
 from time import perf_counter
 
@@ -10,7 +11,7 @@ from camera import CameraManager
 from events import Event, EventEngine, EventFilter
 from identity import IdentityResolver, top_alternatives
 from knowledge import KnowledgeEngine
-from memory import MemoryEngine
+from memory import MemoryEngine, MemoryRecord, MemoryStatus
 from planning import Goal, Planner, PlannerRules
 from reasoning import (
     CarryAwayRule,
@@ -40,6 +41,20 @@ from world import WorldState
 from .pipeline_result import PipelineResult
 
 ZERO_FPS = 0.0
+RECENT_PERSISTENT_EVENT_LIMIT = 10
+
+
+@dataclass(frozen=True)
+class PersistentObjectSummary:
+    """Human-readable category summary for persistent memory display."""
+
+    category: str
+    observations: int
+    track_identities_observed: int
+    last_seen: datetime
+    last_position: tuple[int, int] | None
+    currently_observed: bool
+    last_known_state: str
 
 
 class PerceptionPipeline:
@@ -88,6 +103,7 @@ class PerceptionPipeline:
         self.timeline = timeline or Timeline()
         self.persistence_store = persistence_store or PersistenceStore()
         self._movement_noise_suppressed = 0
+        self._visible_track_ids: set[int] = set()
         self.scene_graph_builder = scene_graph_builder or SceneGraphBuilder()
         self.scene_graph = SceneGraph()
         self.identity_resolver = identity_resolver or IdentityResolver()
@@ -134,6 +150,7 @@ class PerceptionPipeline:
         self.scene_graph = self.scene_graph_builder.build(tracks)
         self.knowledge_engine.use_scene_graph(self.scene_graph)
         visible_track_ids = {track.track_id for track in tracks}
+        self._visible_track_ids = visible_track_ids
         self.knowledge_engine.use_visible_track_ids(visible_track_ids)
         generated_events = self.event_engine.generate_events(
             self.world_state.previous_snapshot,
@@ -486,44 +503,106 @@ class PerceptionPipeline:
             self.memory_engine.store.update(record)
 
     def _print_persistent_memory(self) -> None:
-        print("========== Persistent Memory ==========")
+        print("========== AETHER MEMORY ==========")
         memory = compact_persistent_memory(self._persistent_snapshot())
-        records = memory.objects
+        summaries = self._persistent_object_summaries(memory.objects)
         entries = memory.timeline_entries
-        print("\nRemembered Objects:")
-        if not records:
+        print("\nOBJECTS")
+        if not summaries:
             print("(empty)")
-        for record in sorted(records, key=lambda item: item.last_seen, reverse=True):
-            object_name, track_identity = self._object_identity_parts(record.object_name)
-            print(f"- {self._display_object_name(object_name)}")
-            if track_identity is not None:
-                print(f"  Track Identity: {track_identity}")
-            print(f"  Last Seen: {record.last_seen.strftime('%H:%M:%S')}")
-            print(f"  Last Position: {record.last_position}")
-            if record.restored:
-                print("  Observation: historical, not currently visible")
-            if record.confidence is not None:
-                print(f"  Confidence: {record.confidence:.2f}")
-            print(f"  Status: {record.status.value}")
-        print("\nHistorical Events:")
+        for summary in summaries:
+            current_status = (
+                "Currently observed" if summary.currently_observed else "Not observed"
+            )
+            print(f"\n{self._display_category_name(summary.category)}")
+            print(f"  Observations: {summary.observations}")
+            print(
+                "  Track identities observed: "
+                f"{summary.track_identities_observed}"
+            )
+            print(f"  Last Seen: {summary.last_seen.strftime('%H:%M:%S')}")
+            print(f"  Last Position: {summary.last_position}")
+            print(f"  Current Status: {current_status}")
+            print(f"  Last Known State: {summary.last_known_state}")
+        print("\nRECENT EVENTS")
         if not entries:
             print("(empty)")
-        for entry in entries[-10:]:
-            object_name, track_identity = self._object_identity_parts(entry.object_name)
-            suffix = f" (track {track_identity})" if track_identity is not None else ""
+        for entry in entries[-RECENT_PERSISTENT_EVENT_LIMIT:]:
+            category = self._object_category(entry.object_name)
             print(
                 f"- {entry.timestamp.strftime('%H:%M:%S')} - "
-                f"{self._display_object_name(object_name)} "
-                f"{entry.event_type.value}{suffix}"
+                f"{self._display_category_name(category)} "
+                f"{entry.event_type.value}"
             )
-        print(f"\nMovement Noise Suppressed: {memory.movement_noise_suppressed}")
-        print("\nMemory Source:")
-        print("Previous Sessions")
-        print("\n========================================")
+        print("\nMOVEMENT STATISTICS")
+        print(f"Movement Events Suppressed: {memory.movement_noise_suppressed}")
+        print("\nMEMORY SOURCE")
+        print(self._memory_source(memory.objects))
+        print("\n====================================")
+
+    def _persistent_object_summaries(
+        self,
+        records: list[MemoryRecord],
+    ) -> list[PersistentObjectSummary]:
+        groups: dict[str, list[MemoryRecord]] = {}
+        for record in records:
+            groups.setdefault(self._object_category(record.object_name), []).append(
+                record
+            )
+        summaries = [
+            self._persistent_object_summary(category, group)
+            for category, group in groups.items()
+        ]
+        return sorted(summaries, key=lambda item: item.last_seen, reverse=True)
+
+    def _persistent_object_summary(
+        self,
+        category: str,
+        records: list[MemoryRecord],
+    ) -> PersistentObjectSummary:
+        latest = max(records, key=lambda item: item.last_seen)
+        visible_records = [
+            record
+            for record in records
+            if record.track_id in self._visible_track_ids
+            and record.status is not MemoryStatus.LOST
+        ]
+        track_ids = {record.track_id for record in records}
+        return PersistentObjectSummary(
+            category=category,
+            observations=len(records),
+            track_identities_observed=len(track_ids),
+            last_seen=latest.last_seen,
+            last_position=latest.last_position,
+            currently_observed=bool(visible_records),
+            last_known_state=self._display_memory_state(latest.status),
+        )
 
     @staticmethod
-    def _object_identity_parts(object_name: str) -> tuple[str, str | None]:
+    def _display_memory_state(status: MemoryStatus) -> str:
+        if status is MemoryStatus.MOVING:
+            return "Moving"
+        if status is MemoryStatus.LOST:
+            return "Lost"
+        return "Static"
+
+    @staticmethod
+    def _memory_source(records: list[MemoryRecord]) -> str:
+        has_previous = any(record.restored for record in records)
+        has_current = any(not record.restored for record in records)
+        if has_current and has_previous:
+            return "Current + Previous Sessions"
+        if has_previous:
+            return "Previous Sessions"
+        return "Current Session"
+
+    @staticmethod
+    def _object_category(object_name: str) -> str:
         label, separator, suffix = object_name.rpartition("_")
         if separator and suffix.isdigit():
-            return label, suffix
-        return object_name, None
+            return label
+        return object_name
+
+    @staticmethod
+    def _display_category_name(category: str) -> str:
+        return category.title()

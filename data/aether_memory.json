@@ -2,957 +2,486 @@
   "beliefs": [
     {
       "alternative_beliefs": {},
-      "confidence": 1.0,
+      "confidence": 0.004827074290412089,
       "current_belief": "person",
-      "frames_stable": 7259,
+      "frames_stable": 9526,
       "stable_since": "2026-08-17T14:53:17.893886+00:00",
       "track_id": 0
     },
     {
       "alternative_beliefs": {
-        "cell phone": 3.381196138030619e-27,
-        "chair": 1.2085992982310972e-24,
-        "tie": 1.0525169387776953e-18
+        "cell phone": 8.647635696888937e-47,
+        "chair": 3.0910736934372763e-44,
+        "tie": 2.6918826000598726e-38
       },
-      "confidence": 6.603082473071768e-22,
+      "confidence": 3.559532848010966e-06,
       "current_belief": "person",
-      "frames_stable": 2419,
+      "frames_stable": 4686,
       "stable_since": "2026-08-18T07:11:47.445080+00:00",
       "track_id": 1
     },
     {
       "alternative_beliefs": {
-        "cell phone": 2.7074297507552504e-27
+        "cell phone": 9.566806878990639e-47
       },
-      "confidence": 1.3686427774753722e-18,
+      "confidence": 3.420365580869804e-05,
       "current_belief": "person",
-      "frames_stable": 2409,
+      "frames_stable": 4676,
       "stable_since": "2026-08-18T07:11:47.816291+00:00",
       "track_id": 2
     },
     {
       "alternative_beliefs": {
-        "cell phone": 9.803020252958803e-39,
-        "toilet": 2.265601249337294e-20
+        "cell phone": 4.692517985012537e-57,
+        "toilet": 1.084499912786917e-38
       },
-      "confidence": 1.8160384954118843e-18,
+      "confidence": 0.0007994746903140346,
       "current_belief": "person",
-      "frames_stable": 2732,
+      "frames_stable": 4999,
       "stable_since": "2026-08-17T15:09:57.219713+00:00",
       "track_id": 3
     },
     {
       "alternative_beliefs": {
-        "frisbee": 3.527992856464117e-23,
-        "tie": 0.98
+        "cell phone": 3.1007987865446693e-38,
+        "frisbee": 1.8299619903001188e-42,
+        "tie": 5.0832380434338205e-20
       },
-      "confidence": 5.978045460096178e-19,
-      "current_belief": "cell phone",
-      "frames_stable": 7218,
-      "stable_since": "2026-08-17T14:53:19.750446+00:00",
+      "confidence": 0.0009784619969907598,
+      "current_belief": "person",
+      "frames_stable": 2159,
+      "stable_since": "2026-08-18T07:42:37.514255+00:00",
       "track_id": 4
     },
     {
       "alternative_beliefs": {
-        "cell phone": 6.678137212399935e-39
+        "cell phone": 1.640342399900175e-58
       },
-      "confidence": 6.459473744934414e-64,
+      "confidence": 0.0012983114966715861,
       "current_belief": "person",
-      "frames_stable": 7216,
+      "frames_stable": 9483,
       "stable_since": "2026-08-17T14:53:19.813062+00:00",
       "track_id": 5
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 7.291899647693774e-64,
-      "current_belief": "cell phone",
-      "frames_stable": 7202,
-      "stable_since": "2026-08-17T14:53:20.280397+00:00",
+      "alternative_beliefs": {
+        "cell phone": 1.792976502464121e-81
+      },
+      "confidence": 0.0015260553905265396,
+      "current_belief": "person",
+      "frames_stable": 2088,
+      "stable_since": "2026-08-18T07:42:39.889560+00:00",
       "track_id": 6
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 1.5712663393537772e-63,
+      "alternative_beliefs": {
+        "cell phone": 1.0756850465472253e-15
+      },
+      "confidence": 1.0,
       "current_belief": "person",
-      "frames_stable": 7164,
-      "stable_since": "2026-08-17T14:53:21.533823+00:00",
+      "frames_stable": 311,
+      "stable_since": "2026-08-18T07:46:58.404146+00:00",
       "track_id": 7
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 3.6707484813943124e-63,
-      "current_belief": "cell phone",
-      "frames_stable": 7158,
-      "stable_since": "2026-08-17T14:53:21.725758+00:00",
+      "alternative_beliefs": {
+        "cat": 1.114311973423315e-18,
+        "cell phone": 5.225620228411078e-83
+      },
+      "confidence": 0.006028331831758644,
+      "current_belief": "person",
+      "frames_stable": 2018,
+      "stable_since": "2026-08-18T07:42:42.074066+00:00",
       "track_id": 8
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 2.1708638956026963e-63,
+      "alternative_beliefs": {
+        "person": 0.009402070101885509
+      },
+      "confidence": 5.7443214617372114e-18,
       "current_belief": "cell phone",
-      "frames_stable": 7154,
+      "frames_stable": 9421,
       "stable_since": "2026-08-17T14:53:21.870342+00:00",
       "track_id": 9
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 1.9230432418123903e-63,
-      "current_belief": "cell phone",
-      "frames_stable": 7154,
-      "stable_since": "2026-08-17T14:53:21.870342+00:00",
+      "alternative_beliefs": {
+        "cell phone": 2.3302807253678896e-82,
+        "remote": 4.159904091543326e-17
+      },
+      "confidence": 0.14671590294663414,
+      "current_belief": "person",
+      "frames_stable": 207,
+      "stable_since": "2026-08-18T07:47:08.552190+00:00",
       "track_id": 10
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 2.2603747351131783e-63,
-      "current_belief": "cell phone",
-      "frames_stable": 7146,
-      "stable_since": "2026-08-17T14:53:22.141976+00:00",
+      "alternative_beliefs": {
+        "cell phone": 5.899040666031701e-83
+      },
+      "confidence": 0.20683970229283702,
+      "current_belief": "person",
+      "frames_stable": 1956,
+      "stable_since": "2026-08-18T07:42:44.472308+00:00",
       "track_id": 11
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 2.606469556098395e-61,
+      "alternative_beliefs": {
+        "person": 0.37160171437460887
+      },
+      "confidence": 9.518901732404266e-18,
       "current_belief": "cell phone",
-      "frames_stable": 7122,
+      "frames_stable": 9389,
       "stable_since": "2026-08-17T14:53:22.970720+00:00",
       "track_id": 12
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 1.704405296687175e-62,
+      "alternative_beliefs": {
+        "person": 0.46407788832877006
+      },
+      "confidence": 1.2377925357365272e-17,
       "current_belief": "cell phone",
-      "frames_stable": 7045,
+      "frames_stable": 9312,
       "stable_since": "2026-08-17T14:53:25.773177+00:00",
       "track_id": 13
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 3.0636845830330263e-61,
+      "alternative_beliefs": {
+        "person": 0.5454843193824369
+      },
+      "confidence": 1.3305623594094096e-16,
       "current_belief": "cell phone",
-      "frames_stable": 6906,
+      "frames_stable": 9173,
       "stable_since": "2026-08-17T14:53:31.880969+00:00",
       "track_id": 14
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 6.88106666752319e-59,
-      "current_belief": "cell phone",
-      "frames_stable": 6889,
-      "stable_since": "2026-08-17T14:53:32.534548+00:00",
+      "alternative_beliefs": {
+        "cell phone": 1.2483204168691227e-78
+      },
+      "confidence": 1.0,
+      "current_belief": "person",
+      "frames_stable": 1884,
+      "stable_since": "2026-08-18T07:42:47.185786+00:00",
       "track_id": 15
     },
     {
       "alternative_beliefs": {
-        "cell phone": 2.2309124866415246e-55
+        "cell phone": 3.3743297709456314e-75,
+        "person": 7.338636727465504e-75
       },
-      "confidence": 4.851883906308521e-55,
-      "current_belief": "person",
-      "frames_stable": 6622,
-      "stable_since": "2026-08-17T14:53:45.681403+00:00",
+      "confidence": 4.695986759502288e-17,
+      "current_belief": "remote",
+      "frames_stable": 1870,
+      "stable_since": "2026-08-18T07:42:47.798380+00:00",
       "track_id": 16
     },
     {
       "alternative_beliefs": {
-        "person": 5.754819006356814e-58
+        "person": 9.063261426353814e-78
       },
-      "confidence": 1.2643035037360085e-57,
+      "confidence": 6.620390044969159e-17,
       "current_belief": "cell phone",
-      "frames_stable": 6615,
+      "frames_stable": 8882,
       "stable_since": "2026-08-17T14:53:45.951126+00:00",
       "track_id": 17
     },
     {
       "alternative_beliefs": {},
-      "confidence": 5.973629670049799e-59,
+      "confidence": 6.893367393762139e-17,
       "current_belief": "person",
-      "frames_stable": 6641,
+      "frames_stable": 8908,
       "stable_since": "2026-08-17T14:53:44.776842+00:00",
       "track_id": 18
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 9.511870425633014e-58,
-      "current_belief": "cell phone",
-      "frames_stable": 6525,
-      "stable_since": "2026-08-17T14:53:49.258543+00:00",
+      "alternative_beliefs": {
+        "cell phone": 2.74766551926011e-76
+      },
+      "confidence": 2.0951958902467144e-15,
+      "current_belief": "person",
+      "frames_stable": 1828,
+      "stable_since": "2026-08-18T07:42:49.560244+00:00",
       "track_id": 19
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 2.889560303885921e-57,
+      "alternative_beliefs": {
+        "person": 1.0536195879281905e-16
+      },
+      "confidence": 3.718307968485731e-77,
       "current_belief": "cell phone",
-      "frames_stable": 6525,
+      "frames_stable": 8792,
       "stable_since": "2026-08-17T14:53:49.258543+00:00",
       "track_id": 20
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 1.3409810440260176e-57,
+      "alternative_beliefs": {
+        "remote": 1.2637150416287628e-16
+      },
+      "confidence": 1.7255845101708976e-77,
       "current_belief": "cell phone",
-      "frames_stable": 6521,
+      "frames_stable": 8788,
       "stable_since": "2026-08-17T14:53:49.430277+00:00",
       "track_id": 21
     },
     {
       "alternative_beliefs": {},
-      "confidence": 3.7574462645567985e-57,
+      "confidence": 1.9315304775782234e-16,
       "current_belief": "cell phone",
-      "frames_stable": 6487,
+      "frames_stable": 8754,
       "stable_since": "2026-08-17T14:53:50.972943+00:00",
       "track_id": 22
     },
     {
       "alternative_beliefs": {},
-      "confidence": 3.6822973392656624e-57,
+      "confidence": 8.789130003093028e-16,
       "current_belief": "cell phone",
-      "frames_stable": 6452,
+      "frames_stable": 8719,
       "stable_since": "2026-08-17T14:53:52.379286+00:00",
       "track_id": 23
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 1.288552628513718e-56,
+      "alternative_beliefs": {
+        "remote": 2.4054629346762698e-14
+      },
+      "confidence": 5.3187787795584934e-14,
       "current_belief": "cell phone",
-      "frames_stable": 6436,
-      "stable_since": "2026-08-17T14:53:52.989552+00:00",
+      "frames_stable": 1655,
+      "stable_since": "2026-08-18T07:42:55.815617+00:00",
       "track_id": 24
     },
     {
       "alternative_beliefs": {},
-      "confidence": 6.615499775622953e-57,
+      "confidence": 1.746864884717485e-15,
       "current_belief": "cell phone",
-      "frames_stable": 6411,
+      "frames_stable": 8678,
       "stable_since": "2026-08-17T14:53:54.063546+00:00",
       "track_id": 25
     },
     {
       "alternative_beliefs": {},
-      "confidence": 6.353525984508283e-57,
+      "confidence": 4.8973013144292636e-14,
       "current_belief": "person",
-      "frames_stable": 6411,
+      "frames_stable": 8678,
       "stable_since": "2026-08-17T14:53:54.063546+00:00",
       "track_id": 26
     },
     {
       "alternative_beliefs": {},
-      "confidence": 4.6974340113292964e-55,
+      "confidence": 1.8198455642509393e-14,
       "current_belief": "person",
-      "frames_stable": 6198,
+      "frames_stable": 8465,
       "stable_since": "2026-08-17T14:54:02.542497+00:00",
       "track_id": 27
     },
     {
       "alternative_beliefs": {},
-      "confidence": 1.4653079363137984e-42,
+      "confidence": 6.368216820242495e-14,
       "current_belief": "person",
-      "frames_stable": 6194,
+      "frames_stable": 8461,
       "stable_since": "2026-08-17T14:54:02.704086+00:00",
       "track_id": 28
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 2.61603924027372e-54,
+      "alternative_beliefs": {
+        "cell phone": 5.641236349901782e-14
+      },
+      "confidence": 3.3663390031693693e-74,
       "current_belief": "hot dog",
-      "frames_stable": 6113,
+      "frames_stable": 8380,
       "stable_since": "2026-08-17T14:54:05.887986+00:00",
       "track_id": 29
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 3.614323678903339e-54,
-      "current_belief": "toothbrush",
-      "frames_stable": 6103,
-      "stable_since": "2026-08-17T14:54:06.221410+00:00",
+      "alternative_beliefs": {
+        "toothbrush": 6.834392894384785e-72
+      },
+      "confidence": 1.0563812673173138e-11,
+      "current_belief": "person",
+      "frames_stable": 1499,
+      "stable_since": "2026-08-18T07:43:01.594415+00:00",
       "track_id": 30
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 4.4235025917351045e-54,
-      "current_belief": "toothbrush",
-      "frames_stable": 6087,
-      "stable_since": "2026-08-17T14:54:06.871900+00:00",
+      "alternative_beliefs": {
+        "toothbrush": 8.197194888923639e-72
+      },
+      "confidence": 1.0563812673173138e-11,
+      "current_belief": "cell phone",
+      "frames_stable": 1498,
+      "stable_since": "2026-08-18T07:43:01.671407+00:00",
       "track_id": 31
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 6.493380431788295e-54,
+      "alternative_beliefs": {
+        "person": 7.793940474534663e-14
+      },
+      "confidence": 8.355730859625239e-74,
       "current_belief": "toothbrush",
-      "frames_stable": 6068,
+      "frames_stable": 8335,
       "stable_since": "2026-08-17T14:54:07.573786+00:00",
       "track_id": 32
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 1.1203837577356515e-53,
+      "alternative_beliefs": {
+        "person": 9.932170729636031e-14
+      },
+      "confidence": 1.44171826023082e-73,
       "current_belief": "toothbrush",
-      "frames_stable": 6043,
+      "frames_stable": 8310,
       "stable_since": "2026-08-17T14:54:08.494672+00:00",
       "track_id": 33
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 1.5795141375237587e-53,
-      "current_belief": "toothbrush",
-      "frames_stable": 6024,
-      "stable_since": "2026-08-17T14:54:09.273343+00:00",
+      "alternative_beliefs": {
+        "toothbrush": 2.2485716659535893e-73
+      },
+      "confidence": 1.372230175235372e-13,
+      "current_belief": "person",
+      "frames_stable": 1472,
+      "stable_since": "2026-08-18T07:43:02.653240+00:00",
       "track_id": 34
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 3.8421665522996764e-53,
+      "alternative_beliefs": {
+        "person": 3.20576576084506e-13
+      },
+      "confidence": 4.944128865714522e-73,
       "current_belief": "toothbrush",
-      "frames_stable": 6009,
+      "frames_stable": 8276,
       "stable_since": "2026-08-17T14:54:09.868152+00:00",
       "track_id": 35
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 1.580341294762302e-52,
+      "alternative_beliefs": {
+        "person": 4.2536987187460293e-13
+      },
+      "confidence": 2.0335950841168887e-72,
       "current_belief": "baseball bat",
-      "frames_stable": 5920,
+      "frames_stable": 8187,
       "stable_since": "2026-08-17T14:54:12.923165+00:00",
       "track_id": 36
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 1.8204064207764426e-52,
+      "alternative_beliefs": {
+        "person": 7.339435914540272e-13
+      },
+      "confidence": 2.342512696880837e-72,
       "current_belief": "baseball bat",
-      "frames_stable": 5903,
+      "frames_stable": 8170,
       "stable_since": "2026-08-17T14:54:13.579854+00:00",
       "track_id": 37
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 2.5150762001381696e-52,
+      "alternative_beliefs": {
+        "person": 9.937371991668635e-13
+      },
+      "confidence": 3.2364190024849386e-72,
       "current_belief": "toothbrush",
-      "frames_stable": 5887,
+      "frames_stable": 8154,
       "stable_since": "2026-08-17T14:54:14.144129+00:00",
       "track_id": 38
     },
     {
       "alternative_beliefs": {},
-      "confidence": 4.0026849348721746e-52,
+      "confidence": 1.3729487823661524e-12,
       "current_belief": "person",
-      "frames_stable": 5864,
+      "frames_stable": 8131,
       "stable_since": "2026-08-17T14:54:14.997356+00:00",
       "track_id": 39
     },
     {
       "alternative_beliefs": {},
-      "confidence": 4.428136789243276e-52,
+      "confidence": 2.321541054743803e-12,
       "current_belief": "person",
-      "frames_stable": 5858,
+      "frames_stable": 8125,
       "stable_since": "2026-08-17T14:54:15.202469+00:00",
       "track_id": 40
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 4.6107213548972056e-52,
-      "current_belief": "toothbrush",
-      "frames_stable": 5856,
-      "stable_since": "2026-08-17T14:54:15.309563+00:00",
+      "alternative_beliefs": {
+        "toothbrush": 6.177749870736552e-72
+      },
+      "confidence": 3.4078536055640897e-12,
+      "current_belief": "person",
+      "frames_stable": 1310,
+      "stable_since": "2026-08-18T07:43:08.939875+00:00",
       "track_id": 41
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 2.842165971947809e-50,
+      "alternative_beliefs": {
+        "person": 4.005643775187098e-12
+      },
+      "confidence": 3.657320585087101e-70,
       "current_belief": "cell phone",
-      "frames_stable": 5653,
+      "frames_stable": 7920,
       "stable_since": "2026-08-17T14:54:23.067708+00:00",
       "track_id": 42
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 7.202401452485081e-49,
+      "alternative_beliefs": {
+        "person": 6.374888360251309e-12
+      },
+      "confidence": 9.268104450699058e-69,
       "current_belief": "cell phone",
-      "frames_stable": 5513,
+      "frames_stable": 7780,
       "stable_since": "2026-08-17T14:54:29.378495+00:00",
       "track_id": 43
     },
     {
       "alternative_beliefs": {},
-      "confidence": 2.0181222213424128e-48,
+      "confidence": 7.961332292387374e-12,
       "current_belief": "person",
-      "frames_stable": 5442,
+      "frames_stable": 7709,
       "stable_since": "2026-08-17T14:54:33.064232+00:00",
       "track_id": 44
     },
     {
-      "alternative_beliefs": {},
-      "confidence": 2.4205428943956553e-48,
-      "current_belief": "remote",
-      "frames_stable": 5436,
-      "stable_since": "2026-08-17T14:54:33.266136+00:00",
+      "alternative_beliefs": {
+        "remote": 6.992149757315882e-67
+      },
+      "confidence": 2.677001290283536e-10,
+      "current_belief": "person",
+      "frames_stable": 1246,
+      "stable_since": "2026-08-18T07:43:11.771083+00:00",
       "track_id": 45
     },
     {
       "alternative_beliefs": {},
-      "confidence": 2.788240642275569e-48,
+      "confidence": 3.5879290646007924e-68,
       "current_belief": "cell phone",
-      "frames_stable": 5426,
+      "frames_stable": 7693,
       "stable_since": "2026-08-17T14:54:33.812383+00:00",
       "track_id": 46
     },
     {
       "alternative_beliefs": {},
-      "confidence": 4.6203870826007544e-48,
+      "confidence": 5.94554890708422e-68,
       "current_belief": "cell phone",
-      "frames_stable": 5400,
+      "frames_stable": 7667,
       "stable_since": "2026-08-17T14:54:35.122759+00:00",
       "track_id": 47
     },
     {
       "alternative_beliefs": {},
-      "confidence": 7.206173193652061e-48,
+      "confidence": 9.272957955648369e-68,
       "current_belief": "cell phone",
-      "frames_stable": 5388,
+      "frames_stable": 7655,
       "stable_since": "2026-08-17T14:54:35.710254+00:00",
       "track_id": 48
     },
     {
       "alternative_beliefs": {},
-      "confidence": 9.561799572286737e-48,
+      "confidence": 1.2304195726555356e-67,
       "current_belief": "person",
-      "frames_stable": 5364,
+      "frames_stable": 7631,
       "stable_since": "2026-08-17T14:54:36.919595+00:00",
       "track_id": 49
     }
   ],
   "memory_source": "Previous Sessions",
-  "movement_noise_suppressed": 609,
+  "movement_noise_suppressed": 935,
   "objects": [
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:20.280397+00:00",
-      "history": [
-        {
-          "description": "cell phone_006 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_006",
-          "position": [
-            553,
-            144
-          ],
-          "timestamp": "2026-08-17T14:53:20.280397+00:00",
-          "track_id": 6
-        },
-        {
-          "description": "cell phone_006 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_006",
-          "position": [
-            553,
-            144
-          ],
-          "timestamp": "2026-08-17T14:53:20.467803+00:00",
-          "track_id": 6
-        }
-      ],
-      "last_position": [
-        553,
-        144
-      ],
-      "last_seen": "2026-08-17T14:53:20.467803+00:00",
-      "object_name": "cell phone_006",
-      "status": "LOST",
-      "track_id": 6
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:21.533823+00:00",
-      "history": [
-        {
-          "description": "person_007 appeared",
-          "event_type": "appeared",
-          "object_name": "person_007",
-          "position": [
-            431,
-            239
-          ],
-          "timestamp": "2026-08-17T14:53:21.533823+00:00",
-          "track_id": 7
-        },
-        {
-          "description": "person_007 disappeared",
-          "event_type": "disappeared",
-          "object_name": "person_007",
-          "position": [
-            431,
-            239
-          ],
-          "timestamp": "2026-08-17T14:53:21.725758+00:00",
-          "track_id": 7
-        }
-      ],
-      "last_position": [
-        431,
-        239
-      ],
-      "last_seen": "2026-08-17T14:53:21.725758+00:00",
-      "object_name": "person_007",
-      "status": "LOST",
-      "track_id": 7
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:21.870342+00:00",
-      "history": [
-        {
-          "description": "cell phone_010 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_010",
-          "position": [
-            469,
-            294
-          ],
-          "timestamp": "2026-08-17T14:53:21.870342+00:00",
-          "track_id": 10
-        },
-        {
-          "description": "cell phone_010 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_010",
-          "position": [
-            469,
-            294
-          ],
-          "timestamp": "2026-08-17T14:53:22.072467+00:00",
-          "track_id": 10
-        }
-      ],
-      "last_position": [
-        469,
-        294
-      ],
-      "last_seen": "2026-08-17T14:53:22.072467+00:00",
-      "object_name": "cell phone_010",
-      "status": "LOST",
-      "track_id": 10
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:21.870342+00:00",
-      "history": [
-        {
-          "description": "cell phone_009 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_009",
-          "position": [
-            425,
-            241
-          ],
-          "timestamp": "2026-08-17T14:53:21.870342+00:00",
-          "track_id": 9
-        },
-        {
-          "description": "cell phone_009 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_009",
-          "position": [
-            416,
-            240
-          ],
-          "timestamp": "2026-08-17T14:53:22.072467+00:00",
-          "track_id": 9
-        },
-        {
-          "description": "cell phone_009 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_009",
-          "position": [
-            416,
-            240
-          ],
-          "timestamp": "2026-08-17T14:53:22.274084+00:00",
-          "track_id": 9
-        }
-      ],
-      "last_position": [
-        416,
-        240
-      ],
-      "last_seen": "2026-08-17T14:53:22.274084+00:00",
-      "object_name": "cell phone_009",
-      "status": "LOST",
-      "track_id": 9
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:22.141976+00:00",
-      "history": [
-        {
-          "description": "cell phone_011 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_011",
-          "position": [
-            478,
-            281
-          ],
-          "timestamp": "2026-08-17T14:53:22.141976+00:00",
-          "track_id": 11
-        },
-        {
-          "description": "cell phone_011 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_011",
-          "position": [
-            478,
-            281
-          ],
-          "timestamp": "2026-08-17T14:53:22.334921+00:00",
-          "track_id": 11
-        }
-      ],
-      "last_position": [
-        478,
-        281
-      ],
-      "last_seen": "2026-08-17T14:53:22.334921+00:00",
-      "object_name": "cell phone_011",
-      "status": "LOST",
-      "track_id": 11
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:21.725758+00:00",
-      "history": [
-        {
-          "description": "cell phone_008 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_008",
-          "position": [
-            451,
-            285
-          ],
-          "timestamp": "2026-08-17T14:53:21.725758+00:00",
-          "track_id": 8
-        },
-        {
-          "description": "cell phone_008 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_008",
-          "position": [
-            427,
-            267
-          ],
-          "timestamp": "2026-08-17T14:53:21.807286+00:00",
-          "track_id": 8
-        },
-        {
-          "description": "cell phone_008 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_008",
-          "position": [
-            444,
-            281
-          ],
-          "timestamp": "2026-08-17T14:53:23.171343+00:00",
-          "track_id": 8
-        }
-      ],
-      "last_position": [
-        444,
-        281
-      ],
-      "last_seen": "2026-08-17T14:53:23.171343+00:00",
-      "object_name": "cell phone_008",
-      "status": "LOST",
-      "track_id": 8
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:25.773177+00:00",
-      "history": [
-        {
-          "description": "cell phone_013 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_013",
-          "position": [
-            453,
-            290
-          ],
-          "timestamp": "2026-08-17T14:53:25.773177+00:00",
-          "track_id": 13
-        },
-        {
-          "description": "cell phone_013 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_013",
-          "position": [
-            453,
-            290
-          ],
-          "timestamp": "2026-08-17T14:53:26.044789+00:00",
-          "track_id": 13
-        }
-      ],
-      "last_position": [
-        453,
-        290
-      ],
-      "last_seen": "2026-08-17T14:53:26.044789+00:00",
-      "object_name": "cell phone_013",
-      "status": "LOST",
-      "track_id": 13
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:22.970720+00:00",
-      "history": [
-        {
-          "description": "cell phone_012 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_012",
-          "position": [
-            420,
-            271
-          ],
-          "timestamp": "2026-08-17T14:53:22.970720+00:00",
-          "track_id": 12
-        },
-        {
-          "description": "cell phone_012 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_012",
-          "position": [
-            422,
-            274
-          ],
-          "timestamp": "2026-08-17T14:53:23.046548+00:00",
-          "track_id": 12
-        },
-        {
-          "description": "cell phone_012 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_012",
-          "position": [
-            508,
-            251
-          ],
-          "timestamp": "2026-08-17T14:53:31.927954+00:00",
-          "track_id": 12
-        }
-      ],
-      "last_position": [
-        508,
-        251
-      ],
-      "last_seen": "2026-08-17T14:53:31.927954+00:00",
-      "object_name": "cell phone_012",
-      "status": "LOST",
-      "track_id": 12
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:31.880969+00:00",
-      "history": [
-        {
-          "description": "cell phone_014 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_014",
-          "position": [
-            395,
-            234
-          ],
-          "timestamp": "2026-08-17T14:53:31.880969+00:00",
-          "track_id": 14
-        },
-        {
-          "description": "cell phone_014 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_014",
-          "position": [
-            346,
-            228
-          ],
-          "timestamp": "2026-08-17T14:53:31.974463+00:00",
-          "track_id": 14
-        },
-        {
-          "description": "cell phone_014 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_014",
-          "position": [
-            327,
-            232
-          ],
-          "timestamp": "2026-08-17T14:53:32.268956+00:00",
-          "track_id": 14
-        }
-      ],
-      "last_position": [
-        327,
-        232
-      ],
-      "last_seen": "2026-08-17T14:53:32.268956+00:00",
-      "object_name": "cell phone_014",
-      "status": "LOST",
-      "track_id": 14
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:44.776842+00:00",
-      "history": [
-        {
-          "description": "person_018 appeared",
-          "event_type": "appeared",
-          "object_name": "person_018",
-          "position": [
-            211,
-            251
-          ],
-          "timestamp": "2026-08-17T14:53:44.776842+00:00",
-          "track_id": 18
-        },
-        {
-          "description": "person_018 disappeared",
-          "event_type": "disappeared",
-          "object_name": "person_018",
-          "position": [
-            211,
-            251
-          ],
-          "timestamp": "2026-08-17T14:53:45.074431+00:00",
-          "track_id": 18
-        }
-      ],
-      "last_position": [
-        211,
-        251
-      ],
-      "last_seen": "2026-08-17T14:53:45.074431+00:00",
-      "object_name": "person_018",
-      "status": "LOST",
-      "track_id": 18
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:32.534548+00:00",
-      "history": [
-        {
-          "description": "cell phone_015 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_015",
-          "position": [
-            212,
-            246
-          ],
-          "timestamp": "2026-08-17T14:53:32.534548+00:00",
-          "track_id": 15
-        },
-        {
-          "description": "cell phone_015 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_015",
-          "position": [
-            202,
-            250
-          ],
-          "timestamp": "2026-08-17T14:53:32.629151+00:00",
-          "track_id": 15
-        },
-        {
-          "description": "cell phone_015 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "cell phone_015",
-          "position": [
-            123,
-            273
-          ],
-          "timestamp": "2026-08-17T14:53:35.110801+00:00",
-          "track_id": 15
-        },
-        {
-          "description": "cell phone_015 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "cell phone_015",
-          "position": [
-            150,
-            349
-          ],
-          "timestamp": "2026-08-17T14:53:39.201933+00:00",
-          "track_id": 15
-        },
-        {
-          "description": "cell phone_015 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "cell phone_015",
-          "position": [
-            330,
-            281
-          ],
-          "timestamp": "2026-08-17T14:53:45.325157+00:00",
-          "track_id": 15
-        },
-        {
-          "description": "cell phone_015 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_015",
-          "position": [
-            330,
-            281
-          ],
-          "timestamp": "2026-08-17T14:53:45.433187+00:00",
-          "track_id": 15
-        }
-      ],
-      "last_position": [
-        330,
-        281
-      ],
-      "last_seen": "2026-08-17T14:53:45.433187+00:00",
-      "object_name": "cell phone_015",
-      "status": "LOST",
-      "track_id": 15
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:49.258543+00:00",
-      "history": [
-        {
-          "description": "cell phone_019 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_019",
-          "position": [
-            430,
-            344
-          ],
-          "timestamp": "2026-08-17T14:53:49.258543+00:00",
-          "track_id": 19
-        },
-        {
-          "description": "cell phone_019 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_019",
-          "position": [
-            384,
-            342
-          ],
-          "timestamp": "2026-08-17T14:53:49.352865+00:00",
-          "track_id": 19
-        },
-        {
-          "description": "cell phone_019 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_019",
-          "position": [
-            372,
-            337
-          ],
-          "timestamp": "2026-08-17T14:53:50.519236+00:00",
-          "track_id": 19
-        }
-      ],
-      "last_position": [
-        372,
-        337
-      ],
-      "last_seen": "2026-08-17T14:53:50.519236+00:00",
-      "object_name": "cell phone_019",
-      "status": "LOST",
-      "track_id": 19
-    },
     {
       "confidence": 0.9620610386735066,
       "first_seen": "2026-08-17T14:53:44.776842+00:00",
@@ -1020,372 +549,7 @@
       "last_seen": "2026-08-17T14:53:51.147635+00:00",
       "object_name": "person_017",
       "status": "LOST",
-      "track_id": 17
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:49.430277+00:00",
-      "history": [
-        {
-          "description": "cell phone_021 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_021",
-          "position": [
-            421,
-            346
-          ],
-          "timestamp": "2026-08-17T14:53:49.430277+00:00",
-          "track_id": 21
-        },
-        {
-          "description": "cell phone_021 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_021",
-          "position": [
-            420,
-            325
-          ],
-          "timestamp": "2026-08-17T14:53:49.492203+00:00",
-          "track_id": 21
-        },
-        {
-          "description": "cell phone_021 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_021",
-          "position": [
-            388,
-            303
-          ],
-          "timestamp": "2026-08-17T14:53:51.195004+00:00",
-          "track_id": 21
-        }
-      ],
-      "last_position": [
-        388,
-        303
-      ],
-      "last_seen": "2026-08-17T14:53:51.195004+00:00",
-      "object_name": "cell phone_021",
-      "status": "LOST",
-      "track_id": 21
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:49.258543+00:00",
-      "history": [
-        {
-          "description": "cell phone_020 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_020",
-          "position": [
-            375,
-            315
-          ],
-          "timestamp": "2026-08-17T14:53:49.258543+00:00",
-          "track_id": 20
-        },
-        {
-          "description": "cell phone_020 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_020",
-          "position": [
-            377,
-            294
-          ],
-          "timestamp": "2026-08-17T14:53:49.352865+00:00",
-          "track_id": 20
-        },
-        {
-          "description": "cell phone_020 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_020",
-          "position": [
-            451,
-            351
-          ],
-          "timestamp": "2026-08-17T14:53:52.678922+00:00",
-          "track_id": 20
-        }
-      ],
-      "last_position": [
-        451,
-        351
-      ],
-      "last_seen": "2026-08-17T14:53:52.678922+00:00",
-      "object_name": "cell phone_020",
-      "status": "LOST",
-      "track_id": 20
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:52.379286+00:00",
-      "history": [
-        {
-          "description": "cell phone_023 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_023",
-          "position": [
-            423,
-            368
-          ],
-          "timestamp": "2026-08-17T14:53:52.379286+00:00",
-          "track_id": 23
-        },
-        {
-          "description": "cell phone_023 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_023",
-          "position": [
-            422,
-            356
-          ],
-          "timestamp": "2026-08-17T14:53:52.519652+00:00",
-          "track_id": 23
-        },
-        {
-          "description": "cell phone_023 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_023",
-          "position": [
-            415,
-            361
-          ],
-          "timestamp": "2026-08-17T14:53:53.174713+00:00",
-          "track_id": 23
-        }
-      ],
-      "last_position": [
-        415,
-        361
-      ],
-      "last_seen": "2026-08-17T14:53:53.174713+00:00",
-      "object_name": "cell phone_023",
-      "status": "LOST",
-      "track_id": 23
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:50.972943+00:00",
-      "history": [
-        {
-          "description": "cell phone_022 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_022",
-          "position": [
-            419,
-            350
-          ],
-          "timestamp": "2026-08-17T14:53:50.972943+00:00",
-          "track_id": 22
-        },
-        {
-          "description": "cell phone_022 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_022",
-          "position": [
-            420,
-            353
-          ],
-          "timestamp": "2026-08-17T14:53:51.022608+00:00",
-          "track_id": 22
-        },
-        {
-          "description": "cell phone_022 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_022",
-          "position": [
-            376,
-            350
-          ],
-          "timestamp": "2026-08-17T14:53:53.222328+00:00",
-          "track_id": 22
-        }
-      ],
-      "last_position": [
-        376,
-        350
-      ],
-      "last_seen": "2026-08-17T14:53:53.222328+00:00",
-      "object_name": "cell phone_022",
-      "status": "LOST",
-      "track_id": 22
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:54.063546+00:00",
-      "history": [
-        {
-          "description": "person_026 appeared",
-          "event_type": "appeared",
-          "object_name": "person_026",
-          "position": [
-            354,
-            247
-          ],
-          "timestamp": "2026-08-17T14:53:54.063546+00:00",
-          "track_id": 26
-        },
-        {
-          "description": "person_026 disappeared",
-          "event_type": "disappeared",
-          "object_name": "person_026",
-          "position": [
-            354,
-            247
-          ],
-          "timestamp": "2026-08-17T14:53:54.312542+00:00",
-          "track_id": 26
-        }
-      ],
-      "last_position": [
-        354,
-        247
-      ],
-      "last_seen": "2026-08-17T14:53:54.312542+00:00",
-      "object_name": "person_026",
-      "status": "LOST",
-      "track_id": 26
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:54.063546+00:00",
-      "history": [
-        {
-          "description": "cell phone_025 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_025",
-          "position": [
-            347,
-            349
-          ],
-          "timestamp": "2026-08-17T14:53:54.063546+00:00",
-          "track_id": 25
-        },
-        {
-          "description": "cell phone_025 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_025",
-          "position": [
-            351,
-            348
-          ],
-          "timestamp": "2026-08-17T14:53:54.155862+00:00",
-          "track_id": 25
-        },
-        {
-          "description": "cell phone_025 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_025",
-          "position": [
-            351,
-            348
-          ],
-          "timestamp": "2026-08-17T14:53:54.424552+00:00",
-          "track_id": 25
-        }
-      ],
-      "last_position": [
-        351,
-        348
-      ],
-      "last_seen": "2026-08-17T14:53:54.424552+00:00",
-      "object_name": "cell phone_025",
-      "status": "LOST",
-      "track_id": 25
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:53:52.989552+00:00",
-      "history": [
-        {
-          "description": "cell phone_024 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_024",
-          "position": [
-            378,
-            302
-          ],
-          "timestamp": "2026-08-17T14:53:52.989552+00:00",
-          "track_id": 24
-        },
-        {
-          "description": "cell phone_024 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_024",
-          "position": [
-            373,
-            303
-          ],
-          "timestamp": "2026-08-17T14:53:53.039688+00:00",
-          "track_id": 24
-        },
-        {
-          "description": "cell phone_024 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "cell phone_024",
-          "position": [
-            391,
-            308
-          ],
-          "timestamp": "2026-08-17T14:53:55.438619+00:00",
-          "track_id": 24
-        },
-        {
-          "description": "cell phone_024 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_024",
-          "position": [
-            391,
-            308
-          ],
-          "timestamp": "2026-08-17T14:53:55.518345+00:00",
-          "track_id": 24
-        }
-      ],
-      "last_position": [
-        391,
-        308
-      ],
-      "last_seen": "2026-08-17T14:53:55.518345+00:00",
-      "object_name": "cell phone_024",
-      "status": "LOST",
-      "track_id": 24
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:02.542497+00:00",
-      "history": [
-        {
-          "description": "person_027 appeared",
-          "event_type": "appeared",
-          "object_name": "person_027",
-          "position": [
-            71,
-            407
-          ],
-          "timestamp": "2026-08-17T14:54:02.542497+00:00",
-          "track_id": 27
-        },
-        {
-          "description": "person_027 disappeared",
-          "event_type": "disappeared",
-          "object_name": "person_027",
-          "position": [
-            71,
-            407
-          ],
-          "timestamp": "2026-08-17T14:54:02.798375+00:00",
-          "track_id": 27
-        }
-      ],
-      "last_position": [
-        71,
-        407
-      ],
-      "last_seen": "2026-08-17T14:54:02.798375+00:00",
-      "object_name": "person_027",
-      "status": "LOST",
-      "track_id": 27
+      "track_id": -22
     },
     {
       "confidence": 0.9919775972116458,
@@ -1465,685 +629,7 @@
       "last_seen": "2026-08-17T14:54:02.891146+00:00",
       "object_name": "cell phone_016",
       "status": "LOST",
-      "track_id": 16
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:05.887986+00:00",
-      "history": [
-        {
-          "description": "hot dog_029 appeared",
-          "event_type": "appeared",
-          "object_name": "hot dog_029",
-          "position": [
-            149,
-            404
-          ],
-          "timestamp": "2026-08-17T14:54:05.887986+00:00",
-          "track_id": 29
-        },
-        {
-          "description": "hot dog_029 disappeared",
-          "event_type": "disappeared",
-          "object_name": "hot dog_029",
-          "position": [
-            149,
-            404
-          ],
-          "timestamp": "2026-08-17T14:54:06.083135+00:00",
-          "track_id": 29
-        }
-      ],
-      "last_position": [
-        149,
-        404
-      ],
-      "last_seen": "2026-08-17T14:54:06.083135+00:00",
-      "object_name": "hot dog_029",
-      "status": "LOST",
-      "track_id": 29
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:06.221410+00:00",
-      "history": [
-        {
-          "description": "toothbrush_030 appeared",
-          "event_type": "appeared",
-          "object_name": "toothbrush_030",
-          "position": [
-            195,
-            241
-          ],
-          "timestamp": "2026-08-17T14:54:06.221410+00:00",
-          "track_id": 30
-        },
-        {
-          "description": "toothbrush_030 started moving",
-          "event_type": "started moving",
-          "object_name": "toothbrush_030",
-          "position": [
-            195,
-            243
-          ],
-          "timestamp": "2026-08-17T14:54:06.299166+00:00",
-          "track_id": 30
-        },
-        {
-          "description": "toothbrush_030 disappeared",
-          "event_type": "disappeared",
-          "object_name": "toothbrush_030",
-          "position": [
-            200,
-            240
-          ],
-          "timestamp": "2026-08-17T14:54:06.731928+00:00",
-          "track_id": 30
-        }
-      ],
-      "last_position": [
-        200,
-        240
-      ],
-      "last_seen": "2026-08-17T14:54:06.731928+00:00",
-      "object_name": "toothbrush_030",
-      "status": "LOST",
-      "track_id": 30
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:06.871900+00:00",
-      "history": [
-        {
-          "description": "toothbrush_031 appeared",
-          "event_type": "appeared",
-          "object_name": "toothbrush_031",
-          "position": [
-            205,
-            242
-          ],
-          "timestamp": "2026-08-17T14:54:06.871900+00:00",
-          "track_id": 31
-        },
-        {
-          "description": "toothbrush_031 disappeared",
-          "event_type": "disappeared",
-          "object_name": "toothbrush_031",
-          "position": [
-            205,
-            242
-          ],
-          "timestamp": "2026-08-17T14:54:07.133674+00:00",
-          "track_id": 31
-        }
-      ],
-      "last_position": [
-        205,
-        242
-      ],
-      "last_seen": "2026-08-17T14:54:07.133674+00:00",
-      "object_name": "toothbrush_031",
-      "status": "LOST",
-      "track_id": 31
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:07.573786+00:00",
-      "history": [
-        {
-          "description": "toothbrush_032 appeared",
-          "event_type": "appeared",
-          "object_name": "toothbrush_032",
-          "position": [
-            198,
-            244
-          ],
-          "timestamp": "2026-08-17T14:54:07.573786+00:00",
-          "track_id": 32
-        },
-        {
-          "description": "toothbrush_032 disappeared",
-          "event_type": "disappeared",
-          "object_name": "toothbrush_032",
-          "position": [
-            198,
-            244
-          ],
-          "timestamp": "2026-08-17T14:54:07.778563+00:00",
-          "track_id": 32
-        }
-      ],
-      "last_position": [
-        198,
-        244
-      ],
-      "last_seen": "2026-08-17T14:54:07.778563+00:00",
-      "object_name": "toothbrush_032",
-      "status": "LOST",
-      "track_id": 32
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:08.494672+00:00",
-      "history": [
-        {
-          "description": "toothbrush_033 appeared",
-          "event_type": "appeared",
-          "object_name": "toothbrush_033",
-          "position": [
-            198,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:08.494672+00:00",
-          "track_id": 33
-        },
-        {
-          "description": "toothbrush_033 started moving",
-          "event_type": "started moving",
-          "object_name": "toothbrush_033",
-          "position": [
-            197,
-            245
-          ],
-          "timestamp": "2026-08-17T14:54:08.585458+00:00",
-          "track_id": 33
-        },
-        {
-          "description": "toothbrush_033 disappeared",
-          "event_type": "disappeared",
-          "object_name": "toothbrush_033",
-          "position": [
-            197,
-            245
-          ],
-          "timestamp": "2026-08-17T14:54:08.851470+00:00",
-          "track_id": 33
-        }
-      ],
-      "last_position": [
-        197,
-        245
-      ],
-      "last_seen": "2026-08-17T14:54:08.851470+00:00",
-      "object_name": "toothbrush_033",
-      "status": "LOST",
-      "track_id": 33
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:09.273343+00:00",
-      "history": [
-        {
-          "description": "toothbrush_034 appeared",
-          "event_type": "appeared",
-          "object_name": "toothbrush_034",
-          "position": [
-            207,
-            244
-          ],
-          "timestamp": "2026-08-17T14:54:09.273343+00:00",
-          "track_id": 34
-        },
-        {
-          "description": "toothbrush_034 disappeared",
-          "event_type": "disappeared",
-          "object_name": "toothbrush_034",
-          "position": [
-            207,
-            244
-          ],
-          "timestamp": "2026-08-17T14:54:09.525090+00:00",
-          "track_id": 34
-        }
-      ],
-      "last_position": [
-        207,
-        244
-      ],
-      "last_seen": "2026-08-17T14:54:09.525090+00:00",
-      "object_name": "toothbrush_034",
-      "status": "LOST",
-      "track_id": 34
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:09.868152+00:00",
-      "history": [
-        {
-          "description": "toothbrush_035 appeared",
-          "event_type": "appeared",
-          "object_name": "toothbrush_035",
-          "position": [
-            177,
-            249
-          ],
-          "timestamp": "2026-08-17T14:54:09.868152+00:00",
-          "track_id": 35
-        },
-        {
-          "description": "toothbrush_035 started moving",
-          "event_type": "started moving",
-          "object_name": "toothbrush_035",
-          "position": [
-            172,
-            245
-          ],
-          "timestamp": "2026-08-17T14:54:10.035860+00:00",
-          "track_id": 35
-        },
-        {
-          "description": "toothbrush_035 disappeared",
-          "event_type": "disappeared",
-          "object_name": "toothbrush_035",
-          "position": [
-            170,
-            246
-          ],
-          "timestamp": "2026-08-17T14:54:11.112547+00:00",
-          "track_id": 35
-        }
-      ],
-      "last_position": [
-        170,
-        246
-      ],
-      "last_seen": "2026-08-17T14:54:11.112547+00:00",
-      "object_name": "toothbrush_035",
-      "status": "LOST",
-      "track_id": 35
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:12.923165+00:00",
-      "history": [
-        {
-          "description": "baseball bat_036 appeared",
-          "event_type": "appeared",
-          "object_name": "baseball bat_036",
-          "position": [
-            113,
-            267
-          ],
-          "timestamp": "2026-08-17T14:54:12.923165+00:00",
-          "track_id": 36
-        },
-        {
-          "description": "baseball bat_036 started moving",
-          "event_type": "started moving",
-          "object_name": "baseball bat_036",
-          "position": [
-            111,
-            274
-          ],
-          "timestamp": "2026-08-17T14:54:13.001325+00:00",
-          "track_id": 36
-        },
-        {
-          "description": "baseball bat_036 disappeared",
-          "event_type": "disappeared",
-          "object_name": "baseball bat_036",
-          "position": [
-            125,
-            270
-          ],
-          "timestamp": "2026-08-17T14:54:13.532128+00:00",
-          "track_id": 36
-        }
-      ],
-      "last_position": [
-        125,
-        270
-      ],
-      "last_seen": "2026-08-17T14:54:13.532128+00:00",
-      "object_name": "baseball bat_036",
-      "status": "LOST",
-      "track_id": 36
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:13.579854+00:00",
-      "history": [
-        {
-          "description": "baseball bat_037 appeared",
-          "event_type": "appeared",
-          "object_name": "baseball bat_037",
-          "position": [
-            136,
-            229
-          ],
-          "timestamp": "2026-08-17T14:54:13.579854+00:00",
-          "track_id": 37
-        },
-        {
-          "description": "baseball bat_037 disappeared",
-          "event_type": "disappeared",
-          "object_name": "baseball bat_037",
-          "position": [
-            136,
-            229
-          ],
-          "timestamp": "2026-08-17T14:54:13.783266+00:00",
-          "track_id": 37
-        }
-      ],
-      "last_position": [
-        136,
-        229
-      ],
-      "last_seen": "2026-08-17T14:54:13.783266+00:00",
-      "object_name": "baseball bat_037",
-      "status": "LOST",
-      "track_id": 37
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:14.144129+00:00",
-      "history": [
-        {
-          "description": "toothbrush_038 appeared",
-          "event_type": "appeared",
-          "object_name": "toothbrush_038",
-          "position": [
-            114,
-            286
-          ],
-          "timestamp": "2026-08-17T14:54:14.144129+00:00",
-          "track_id": 38
-        },
-        {
-          "description": "toothbrush_038 disappeared",
-          "event_type": "disappeared",
-          "object_name": "toothbrush_038",
-          "position": [
-            114,
-            286
-          ],
-          "timestamp": "2026-08-17T14:54:14.393023+00:00",
-          "track_id": 38
-        }
-      ],
-      "last_position": [
-        114,
-        286
-      ],
-      "last_seen": "2026-08-17T14:54:14.393023+00:00",
-      "object_name": "toothbrush_038",
-      "status": "LOST",
-      "track_id": 38
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:14.997356+00:00",
-      "history": [
-        {
-          "description": "person_039 appeared",
-          "event_type": "appeared",
-          "object_name": "person_039",
-          "position": [
-            99,
-            369
-          ],
-          "timestamp": "2026-08-17T14:54:14.997356+00:00",
-          "track_id": 39
-        },
-        {
-          "description": "person_039 disappeared",
-          "event_type": "disappeared",
-          "object_name": "person_039",
-          "position": [
-            99,
-            369
-          ],
-          "timestamp": "2026-08-17T14:54:15.202469+00:00",
-          "track_id": 39
-        }
-      ],
-      "last_position": [
-        99,
-        369
-      ],
-      "last_seen": "2026-08-17T14:54:15.202469+00:00",
-      "object_name": "person_039",
-      "status": "LOST",
-      "track_id": 39
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:15.202469+00:00",
-      "history": [
-        {
-          "description": "person_040 appeared",
-          "event_type": "appeared",
-          "object_name": "person_040",
-          "position": [
-            408,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:15.202469+00:00",
-          "track_id": 40
-        },
-        {
-          "description": "person_040 disappeared",
-          "event_type": "disappeared",
-          "object_name": "person_040",
-          "position": [
-            408,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:15.467908+00:00",
-          "track_id": 40
-        }
-      ],
-      "last_position": [
-        408,
-        239
-      ],
-      "last_seen": "2026-08-17T14:54:15.467908+00:00",
-      "object_name": "person_040",
-      "status": "LOST",
-      "track_id": 40
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:15.309563+00:00",
-      "history": [
-        {
-          "description": "toothbrush_041 appeared",
-          "event_type": "appeared",
-          "object_name": "toothbrush_041",
-          "position": [
-            259,
-            278
-          ],
-          "timestamp": "2026-08-17T14:54:15.309563+00:00",
-          "track_id": 41
-        },
-        {
-          "description": "toothbrush_041 disappeared",
-          "event_type": "disappeared",
-          "object_name": "toothbrush_041",
-          "position": [
-            259,
-            278
-          ],
-          "timestamp": "2026-08-17T14:54:15.605871+00:00",
-          "track_id": 41
-        }
-      ],
-      "last_position": [
-        259,
-        278
-      ],
-      "last_seen": "2026-08-17T14:54:15.605871+00:00",
-      "object_name": "toothbrush_041",
-      "status": "LOST",
-      "track_id": 41
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:23.067708+00:00",
-      "history": [
-        {
-          "description": "cell phone_042 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_042",
-          "position": [
-            172,
-            307
-          ],
-          "timestamp": "2026-08-17T14:54:23.067708+00:00",
-          "track_id": 42
-        },
-        {
-          "description": "cell phone_042 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_042",
-          "position": [
-            172,
-            307
-          ],
-          "timestamp": "2026-08-17T14:54:23.407058+00:00",
-          "track_id": 42
-        }
-      ],
-      "last_position": [
-        172,
-        307
-      ],
-      "last_seen": "2026-08-17T14:54:23.407058+00:00",
-      "object_name": "cell phone_042",
-      "status": "LOST",
-      "track_id": 42
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:29.378495+00:00",
-      "history": [
-        {
-          "description": "cell phone_043 appeared",
-          "event_type": "appeared",
-          "object_name": "cell phone_043",
-          "position": [
-            211,
-            169
-          ],
-          "timestamp": "2026-08-17T14:54:29.378495+00:00",
-          "track_id": 43
-        },
-        {
-          "description": "cell phone_043 started moving",
-          "event_type": "started moving",
-          "object_name": "cell phone_043",
-          "position": [
-            211,
-            171
-          ],
-          "timestamp": "2026-08-17T14:54:29.488014+00:00",
-          "track_id": 43
-        },
-        {
-          "description": "cell phone_043 disappeared",
-          "event_type": "disappeared",
-          "object_name": "cell phone_043",
-          "position": [
-            200,
-            196
-          ],
-          "timestamp": "2026-08-17T14:54:30.831756+00:00",
-          "track_id": 43
-        }
-      ],
-      "last_position": [
-        200,
-        196
-      ],
-      "last_seen": "2026-08-17T14:54:30.831756+00:00",
-      "object_name": "cell phone_043",
-      "status": "LOST",
-      "track_id": 43
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:33.064232+00:00",
-      "history": [
-        {
-          "description": "person_044 appeared",
-          "event_type": "appeared",
-          "object_name": "person_044",
-          "position": [
-            403,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:33.064232+00:00",
-          "track_id": 44
-        },
-        {
-          "description": "person_044 disappeared",
-          "event_type": "disappeared",
-          "object_name": "person_044",
-          "position": [
-            403,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:33.266136+00:00",
-          "track_id": 44
-        }
-      ],
-      "last_position": [
-        403,
-        239
-      ],
-      "last_seen": "2026-08-17T14:54:33.266136+00:00",
-      "object_name": "person_044",
-      "status": "LOST",
-      "track_id": 44
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:33.266136+00:00",
-      "history": [
-        {
-          "description": "remote_045 appeared",
-          "event_type": "appeared",
-          "object_name": "remote_045",
-          "position": [
-            218,
-            221
-          ],
-          "timestamp": "2026-08-17T14:54:33.266136+00:00",
-          "track_id": 45
-        },
-        {
-          "description": "remote_045 started moving",
-          "event_type": "started moving",
-          "object_name": "remote_045",
-          "position": [
-            213,
-            202
-          ],
-          "timestamp": "2026-08-17T14:54:33.376006+00:00",
-          "track_id": 45
-        },
-        {
-          "description": "remote_045 disappeared",
-          "event_type": "disappeared",
-          "object_name": "remote_045",
-          "position": [
-            212,
-            200
-          ],
-          "timestamp": "2026-08-17T14:54:33.749692+00:00",
-          "track_id": 45
-        }
-      ],
-      "last_position": [
-        212,
-        200
-      ],
-      "last_seen": "2026-08-17T14:54:33.749692+00:00",
-      "object_name": "remote_045",
-      "status": "LOST",
-      "track_id": 45
+      "track_id": -21
     },
     {
       "confidence": 1.0,
@@ -2299,155 +785,6 @@
       "object_name": "person_049",
       "status": "LOST",
       "track_id": 49
-    },
-    {
-      "confidence": 1.0,
-      "first_seen": "2026-08-17T14:54:02.704086+00:00",
-      "history": [
-        {
-          "description": "person_028 appeared",
-          "event_type": "appeared",
-          "object_name": "person_028",
-          "position": [
-            320,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:02.704086+00:00",
-          "track_id": 28
-        },
-        {
-          "description": "person_028 started moving",
-          "event_type": "started moving",
-          "object_name": "person_028",
-          "position": [
-            309,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:02.798375+00:00",
-          "track_id": 28
-        },
-        {
-          "description": "person_028 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_028",
-          "position": [
-            338,
-            238
-          ],
-          "timestamp": "2026-08-17T14:54:07.010216+00:00",
-          "track_id": 28
-        },
-        {
-          "description": "person_028 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_028",
-          "position": [
-            338,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:10.348566+00:00",
-          "track_id": 28
-        },
-        {
-          "description": "person_028 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_028",
-          "position": [
-            332,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:19.324727+00:00",
-          "track_id": 28
-        },
-        {
-          "description": "person_028 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_028",
-          "position": [
-            336,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:21.575752+00:00",
-          "track_id": 28
-        },
-        {
-          "description": "person_028 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_028",
-          "position": [
-            357,
-            239
-          ],
-          "timestamp": "2026-08-17T14:54:26.572088+00:00",
-          "track_id": 28
-        },
-        {
-          "description": "person_028 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_028",
-          "position": [
-            319,
-            238
-          ],
-          "timestamp": "2026-08-17T14:55:01.170888+00:00",
-          "track_id": 28
-        }
-      ],
-      "last_position": [
-        319,
-        239
-      ],
-      "last_seen": "2026-08-17T14:55:09.396935+00:00",
-      "object_name": "person_028",
-      "status": "MOVING",
-      "track_id": 28
-    },
-    {
-      "confidence": 9.67256817206529e-26,
-      "first_seen": "2026-08-17T15:02:08.550695+00:00",
-      "history": [
-        {
-          "description": "person_005 appeared",
-          "event_type": "appeared",
-          "object_name": "person_005",
-          "position": [
-            496,
-            271
-          ],
-          "timestamp": "2026-08-17T15:02:08.550695+00:00",
-          "track_id": 5
-        },
-        {
-          "description": "person_005 started moving",
-          "event_type": "started moving",
-          "object_name": "person_005",
-          "position": [
-            489,
-            269
-          ],
-          "timestamp": "2026-08-17T15:02:08.657947+00:00",
-          "track_id": 5
-        },
-        {
-          "description": "person_005 disappeared",
-          "event_type": "disappeared",
-          "object_name": "person_005",
-          "position": [
-            489,
-            269
-          ],
-          "timestamp": "2026-08-17T15:02:08.876252+00:00",
-          "track_id": 5
-        }
-      ],
-      "last_position": [
-        489,
-        269
-      ],
-      "last_seen": "2026-08-17T15:02:08.876252+00:00",
-      "object_name": "person_005",
-      "status": "LOST",
-      "track_id": 5
     },
     {
       "confidence": 1.0,
@@ -2836,18 +1173,1721 @@
       "track_id": -3
     },
     {
-      "confidence": 0.0006273611596921231,
-      "first_seen": "2026-08-18T07:16:04.103410+00:00",
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:37.224223+00:00",
+      "history": [
+        {
+          "description": "cell phone_004 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_004",
+          "position": [
+            320,
+            247
+          ],
+          "timestamp": "2026-08-18T07:42:37.224223+00:00",
+          "track_id": 4
+        },
+        {
+          "description": "cell phone_004 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_004",
+          "position": [
+            315,
+            247
+          ],
+          "timestamp": "2026-08-18T07:42:37.287566+00:00",
+          "track_id": 4
+        },
+        {
+          "description": "person_004 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_004",
+          "position": [
+            309,
+            246
+          ],
+          "timestamp": "2026-08-18T07:42:37.652328+00:00",
+          "track_id": 4
+        },
+        {
+          "description": "person_004 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_004",
+          "position": [
+            390,
+            242
+          ],
+          "timestamp": "2026-08-18T07:42:39.546224+00:00",
+          "track_id": 4
+        }
+      ],
+      "last_position": [
+        390,
+        242
+      ],
+      "last_seen": "2026-08-18T07:42:39.546224+00:00",
+      "object_name": "cell phone_004",
+      "status": "LOST",
+      "track_id": -7
+    },
+    {
+      "confidence": 0.7142686236089985,
+      "first_seen": "2026-08-18T07:42:41.763285+00:00",
+      "history": [
+        {
+          "description": "cell phone_008 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_008",
+          "position": [
+            348,
+            255
+          ],
+          "timestamp": "2026-08-18T07:42:41.763285+00:00",
+          "track_id": 8
+        },
+        {
+          "description": "cell phone_008 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_008",
+          "position": [
+            350,
+            253
+          ],
+          "timestamp": "2026-08-18T07:42:41.840785+00:00",
+          "track_id": 8
+        },
+        {
+          "description": "person_008 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_008",
+          "position": [
+            364,
+            243
+          ],
+          "timestamp": "2026-08-18T07:42:42.231388+00:00",
+          "track_id": 8
+        }
+      ],
+      "last_position": [
+        364,
+        243
+      ],
+      "last_seen": "2026-08-18T07:42:42.231388+00:00",
+      "object_name": "cell phone_008",
+      "status": "LOST",
+      "track_id": -11
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:41.318905+00:00",
+      "history": [
+        {
+          "description": "person_007 appeared",
+          "event_type": "appeared",
+          "object_name": "person_007",
+          "position": [
+            100,
+            205
+          ],
+          "timestamp": "2026-08-18T07:42:41.318905+00:00",
+          "track_id": 7
+        },
+        {
+          "description": "person_007 started moving",
+          "event_type": "started moving",
+          "object_name": "person_007",
+          "position": [
+            102,
+            201
+          ],
+          "timestamp": "2026-08-18T07:42:41.361043+00:00",
+          "track_id": 7
+        },
+        {
+          "description": "cell phone_007 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "cell phone_007",
+          "position": [
+            86,
+            201
+          ],
+          "timestamp": "2026-08-18T07:42:41.685965+00:00",
+          "track_id": 7
+        },
+        {
+          "description": "cell phone_007 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_007",
+          "position": [
+            46,
+            224
+          ],
+          "timestamp": "2026-08-18T07:42:42.265499+00:00",
+          "track_id": 7
+        }
+      ],
+      "last_position": [
+        46,
+        224
+      ],
+      "last_seen": "2026-08-18T07:42:42.265499+00:00",
+      "object_name": "person_007",
+      "status": "LOST",
+      "track_id": -10
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:44.080756+00:00",
+      "history": [
+        {
+          "description": "cell phone_011 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_011",
+          "position": [
+            417,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:44.080756+00:00",
+          "track_id": 11
+        },
+        {
+          "description": "cell phone_011 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_011",
+          "position": [
+            423,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:44.144161+00:00",
+          "track_id": 11
+        },
+        {
+          "description": "person_011 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_011",
+          "position": [
+            420,
+            241
+          ],
+          "timestamp": "2026-08-18T07:42:44.718751+00:00",
+          "track_id": 11
+        },
+        {
+          "description": "person_011 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_011",
+          "position": [
+            423,
+            241
+          ],
+          "timestamp": "2026-08-18T07:42:45.358801+00:00",
+          "track_id": 11
+        }
+      ],
+      "last_position": [
+        423,
+        241
+      ],
+      "last_seen": "2026-08-18T07:42:45.358801+00:00",
+      "object_name": "cell phone_011",
+      "status": "LOST",
+      "track_id": -16
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:46.918735+00:00",
+      "history": [
+        {
+          "description": "cell phone_015 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_015",
+          "position": [
+            424,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:46.918735+00:00",
+          "track_id": 15
+        },
+        {
+          "description": "cell phone_015 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_015",
+          "position": [
+            421,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:47.091076+00:00",
+          "track_id": 15
+        },
+        {
+          "description": "person_015 started moving",
+          "event_type": "started moving",
+          "object_name": "person_015",
+          "position": [
+            424,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:47.388947+00:00",
+          "track_id": 15
+        },
+        {
+          "description": "person_015 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_015",
+          "position": [
+            424,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:47.655891+00:00",
+          "track_id": 15
+        }
+      ],
+      "last_position": [
+        424,
+        240
+      ],
+      "last_seen": "2026-08-18T07:42:47.655891+00:00",
+      "object_name": "cell phone_015",
+      "status": "LOST",
+      "track_id": -20
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:47.544304+00:00",
+      "history": [
+        {
+          "description": "person_016 appeared",
+          "event_type": "appeared",
+          "object_name": "person_016",
+          "position": [
+            110,
+            231
+          ],
+          "timestamp": "2026-08-18T07:42:47.544304+00:00",
+          "track_id": 16
+        },
+        {
+          "description": "remote_016 started moving",
+          "event_type": "started moving",
+          "object_name": "remote_016",
+          "position": [
+            109,
+            231
+          ],
+          "timestamp": "2026-08-18T07:42:47.904997+00:00",
+          "track_id": 16
+        },
+        {
+          "description": "remote_016 disappeared",
+          "event_type": "disappeared",
+          "object_name": "remote_016",
+          "position": [
+            109,
+            229
+          ],
+          "timestamp": "2026-08-18T07:42:48.263955+00:00",
+          "track_id": 16
+        }
+      ],
+      "last_position": [
+        109,
+        229
+      ],
+      "last_seen": "2026-08-18T07:42:48.263955+00:00",
+      "object_name": "person_016",
+      "status": "LOST",
+      "track_id": 16
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:48.494827+00:00",
+      "history": [
+        {
+          "description": "cell phone_017 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_017",
+          "position": [
+            92,
+            223
+          ],
+          "timestamp": "2026-08-18T07:42:48.494827+00:00",
+          "track_id": 17
+        },
+        {
+          "description": "cell phone_017 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_017",
+          "position": [
+            89,
+            222
+          ],
+          "timestamp": "2026-08-18T07:42:48.574267+00:00",
+          "track_id": 17
+        },
+        {
+          "description": "cell phone_017 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_017",
+          "position": [
+            87,
+            222
+          ],
+          "timestamp": "2026-08-18T07:42:48.920520+00:00",
+          "track_id": 17
+        }
+      ],
+      "last_position": [
+        87,
+        222
+      ],
+      "last_seen": "2026-08-18T07:42:48.920520+00:00",
+      "object_name": "cell phone_017",
+      "status": "LOST",
+      "track_id": 17
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:48.779406+00:00",
+      "history": [
+        {
+          "description": "person_018 appeared",
+          "event_type": "appeared",
+          "object_name": "person_018",
+          "position": [
+            420,
+            241
+          ],
+          "timestamp": "2026-08-18T07:42:48.779406+00:00",
+          "track_id": 18
+        },
+        {
+          "description": "person_018 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_018",
+          "position": [
+            420,
+            241
+          ],
+          "timestamp": "2026-08-18T07:42:48.998062+00:00",
+          "track_id": 18
+        }
+      ],
+      "last_position": [
+        420,
+        241
+      ],
+      "last_seen": "2026-08-18T07:42:48.998062+00:00",
+      "object_name": "person_018",
+      "status": "LOST",
+      "track_id": 18
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:39.576527+00:00",
+      "history": [
+        {
+          "description": "cell phone_006 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_006",
+          "position": [
+            332,
+            241
+          ],
+          "timestamp": "2026-08-18T07:42:39.576527+00:00",
+          "track_id": 6
+        },
+        {
+          "description": "cell phone_006 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_006",
+          "position": [
+            331,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:39.639328+00:00",
+          "track_id": 6
+        },
+        {
+          "description": "person_006 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_006",
+          "position": [
+            318,
+            241
+          ],
+          "timestamp": "2026-08-18T07:42:47.951763+00:00",
+          "track_id": 6
+        },
+        {
+          "description": "person_006 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_006",
+          "position": [
+            379,
+            241
+          ],
+          "timestamp": "2026-08-18T07:42:49.357014+00:00",
+          "track_id": 6
+        }
+      ],
+      "last_position": [
+        379,
+        241
+      ],
+      "last_seen": "2026-08-18T07:42:49.357014+00:00",
+      "object_name": "cell phone_006",
+      "status": "LOST",
+      "track_id": -9
+    },
+    {
+      "confidence": 3.529080145327706e-61,
+      "first_seen": "2026-08-18T07:42:49.592387+00:00",
+      "history": [
+        {
+          "description": "cell phone_020 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_020",
+          "position": [
+            259,
+            286
+          ],
+          "timestamp": "2026-08-18T07:42:49.592387+00:00",
+          "track_id": 20
+        },
+        {
+          "description": "cell phone_020 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_020",
+          "position": [
+            259,
+            286
+          ],
+          "timestamp": "2026-08-18T07:42:49.792441+00:00",
+          "track_id": 20
+        }
+      ],
+      "last_position": [
+        259,
+        286
+      ],
+      "last_seen": "2026-08-18T07:42:49.792441+00:00",
+      "object_name": "cell phone_020",
+      "status": "LOST",
+      "track_id": 20
+    },
+    {
+      "confidence": 1.3654854562361205e-61,
+      "first_seen": "2026-08-18T07:42:49.920108+00:00",
+      "history": [
+        {
+          "description": "cell phone_021 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_021",
+          "position": [
+            197,
+            251
+          ],
+          "timestamp": "2026-08-18T07:42:49.920108+00:00",
+          "track_id": 21
+        },
+        {
+          "description": "cell phone_021 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_021",
+          "position": [
+            196,
+            251
+          ],
+          "timestamp": "2026-08-18T07:42:49.964323+00:00",
+          "track_id": 21
+        },
+        {
+          "description": "cell phone_021 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_021",
+          "position": [
+            196,
+            251
+          ],
+          "timestamp": "2026-08-18T07:42:50.209988+00:00",
+          "track_id": 21
+        }
+      ],
+      "last_position": [
+        196,
+        251
+      ],
+      "last_seen": "2026-08-18T07:42:50.209988+00:00",
+      "object_name": "cell phone_021",
+      "status": "LOST",
+      "track_id": 21
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:50.760361+00:00",
+      "history": [
+        {
+          "description": "cell phone_022 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_022",
+          "position": [
+            79,
+            233
+          ],
+          "timestamp": "2026-08-18T07:42:50.760361+00:00",
+          "track_id": 22
+        },
+        {
+          "description": "cell phone_022 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_022",
+          "position": [
+            79,
+            233
+          ],
+          "timestamp": "2026-08-18T07:42:51.002446+00:00",
+          "track_id": 22
+        }
+      ],
+      "last_position": [
+        79,
+        233
+      ],
+      "last_seen": "2026-08-18T07:42:51.002446+00:00",
+      "object_name": "cell phone_022",
+      "status": "LOST",
+      "track_id": 22
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:51.079797+00:00",
+      "history": [
+        {
+          "description": "cell phone_023 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_023",
+          "position": [
+            135,
+            213
+          ],
+          "timestamp": "2026-08-18T07:42:51.079797+00:00",
+          "track_id": 23
+        },
+        {
+          "description": "cell phone_023 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_023",
+          "position": [
+            142,
+            210
+          ],
+          "timestamp": "2026-08-18T07:42:51.157721+00:00",
+          "track_id": 23
+        },
+        {
+          "description": "cell phone_023 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_023",
+          "position": [
+            142,
+            228
+          ],
+          "timestamp": "2026-08-18T07:42:53.590210+00:00",
+          "track_id": 23
+        }
+      ],
+      "last_position": [
+        142,
+        228
+      ],
+      "last_seen": "2026-08-18T07:42:53.590210+00:00",
+      "object_name": "cell phone_023",
+      "status": "LOST",
+      "track_id": 23
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:54.442757+00:00",
+      "history": [
+        {
+          "description": "cell phone_025 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_025",
+          "position": [
+            53,
+            224
+          ],
+          "timestamp": "2026-08-18T07:42:54.442757+00:00",
+          "track_id": 25
+        },
+        {
+          "description": "cell phone_025 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_025",
+          "position": [
+            53,
+            225
+          ],
+          "timestamp": "2026-08-18T07:42:54.519529+00:00",
+          "track_id": 25
+        },
+        {
+          "description": "cell phone_025 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_025",
+          "position": [
+            53,
+            225
+          ],
+          "timestamp": "2026-08-18T07:42:54.755571+00:00",
+          "track_id": 25
+        }
+      ],
+      "last_position": [
+        53,
+        225
+      ],
+      "last_seen": "2026-08-18T07:42:54.755571+00:00",
+      "object_name": "cell phone_025",
+      "status": "LOST",
+      "track_id": 25
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:49.187418+00:00",
+      "history": [
+        {
+          "description": "cell phone_019 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_019",
+          "position": [
+            328,
+            241
+          ],
+          "timestamp": "2026-08-18T07:42:49.187418+00:00",
+          "track_id": 19
+        },
+        {
+          "description": "cell phone_019 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_019",
+          "position": [
+            327,
+            242
+          ],
+          "timestamp": "2026-08-18T07:42:49.311216+00:00",
+          "track_id": 19
+        },
+        {
+          "description": "person_019 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_019",
+          "position": [
+            322,
+            239
+          ],
+          "timestamp": "2026-08-18T07:42:49.792441+00:00",
+          "track_id": 19
+        },
+        {
+          "description": "person_019 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_019",
+          "position": [
+            340,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:54.133477+00:00",
+          "track_id": 19
+        },
+        {
+          "description": "person_019 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_019",
+          "position": [
+            361,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:55.133481+00:00",
+          "track_id": 19
+        }
+      ],
+      "last_position": [
+        361,
+        240
+      ],
+      "last_seen": "2026-08-18T07:42:55.133481+00:00",
+      "object_name": "cell phone_019",
+      "status": "LOST",
+      "track_id": 19
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:58.804057+00:00",
+      "history": [
+        {
+          "description": "person_027 appeared",
+          "event_type": "appeared",
+          "object_name": "person_027",
+          "position": [
+            394,
+            265
+          ],
+          "timestamp": "2026-08-18T07:42:58.804057+00:00",
+          "track_id": 27
+        },
+        {
+          "description": "person_027 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_027",
+          "position": [
+            394,
+            265
+          ],
+          "timestamp": "2026-08-18T07:42:59.035913+00:00",
+          "track_id": 27
+        }
+      ],
+      "last_position": [
+        394,
+        265
+      ],
+      "last_seen": "2026-08-18T07:42:59.035913+00:00",
+      "object_name": "person_027",
+      "status": "LOST",
+      "track_id": 27
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:42:54.968269+00:00",
+      "history": [
+        {
+          "description": "person_026 appeared",
+          "event_type": "appeared",
+          "object_name": "person_026",
+          "position": [
+            293,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:54.968269+00:00",
+          "track_id": 26
+        },
+        {
+          "description": "person_026 started moving",
+          "event_type": "started moving",
+          "object_name": "person_026",
+          "position": [
+            318,
+            240
+          ],
+          "timestamp": "2026-08-18T07:42:55.053483+00:00",
+          "track_id": 26
+        },
+        {
+          "description": "person_026 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_026",
+          "position": [
+            320,
+            240
+          ],
+          "timestamp": "2026-08-18T07:43:00.802756+00:00",
+          "track_id": 26
+        }
+      ],
+      "last_position": [
+        320,
+        240
+      ],
+      "last_seen": "2026-08-18T07:43:00.802756+00:00",
+      "object_name": "person_026",
+      "status": "LOST",
+      "track_id": 26
+    },
+    {
+      "confidence": 5.967378061066325e-61,
+      "first_seen": "2026-08-18T07:43:00.855355+00:00",
+      "history": [
+        {
+          "description": "hot dog_029 appeared",
+          "event_type": "appeared",
+          "object_name": "hot dog_029",
+          "position": [
+            72,
+            232
+          ],
+          "timestamp": "2026-08-18T07:43:00.855355+00:00",
+          "track_id": 29
+        },
+        {
+          "description": "hot dog_029 disappeared",
+          "event_type": "disappeared",
+          "object_name": "hot dog_029",
+          "position": [
+            72,
+            232
+          ],
+          "timestamp": "2026-08-18T07:43:01.081890+00:00",
+          "track_id": 29
+        }
+      ],
+      "last_position": [
+        72,
+        232
+      ],
+      "last_seen": "2026-08-18T07:43:01.081890+00:00",
+      "object_name": "hot dog_029",
+      "status": "LOST",
+      "track_id": 29
+    },
+    {
+      "confidence": 0.905502769792109,
+      "first_seen": "2026-08-18T07:42:53.654248+00:00",
+      "history": [
+        {
+          "description": "cell phone_024 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_024",
+          "position": [
+            85,
+            221
+          ],
+          "timestamp": "2026-08-18T07:42:53.654248+00:00",
+          "track_id": 24
+        },
+        {
+          "description": "cell phone_024 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_024",
+          "position": [
+            82,
+            222
+          ],
+          "timestamp": "2026-08-18T07:42:53.729998+00:00",
+          "track_id": 24
+        },
+        {
+          "description": "remote_024 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "remote_024",
+          "position": [
+            69,
+            221
+          ],
+          "timestamp": "2026-08-18T07:42:54.133477+00:00",
+          "track_id": 24
+        },
+        {
+          "description": "cell phone_024 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "cell phone_024",
+          "position": [
+            122,
+            219
+          ],
+          "timestamp": "2026-08-18T07:42:58.446195+00:00",
+          "track_id": 24
+        },
+        {
+          "description": "cell phone_024 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_024",
+          "position": [
+            86,
+            236
+          ],
+          "timestamp": "2026-08-18T07:43:01.191085+00:00",
+          "track_id": 24
+        }
+      ],
+      "last_position": [
+        86,
+        236
+      ],
+      "last_seen": "2026-08-18T07:43:01.191085+00:00",
+      "object_name": "cell phone_024",
+      "status": "LOST",
+      "track_id": 24
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:43:00.616129+00:00",
+      "history": [
+        {
+          "description": "person_028 appeared",
+          "event_type": "appeared",
+          "object_name": "person_028",
+          "position": [
+            396,
+            241
+          ],
+          "timestamp": "2026-08-18T07:43:00.616129+00:00",
+          "track_id": 28
+        },
+        {
+          "description": "person_028 started moving",
+          "event_type": "started moving",
+          "object_name": "person_028",
+          "position": [
+            390,
+            240
+          ],
+          "timestamp": "2026-08-18T07:43:00.708916+00:00",
+          "track_id": 28
+        },
+        {
+          "description": "person_028 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_028",
+          "position": [
+            408,
+            239
+          ],
+          "timestamp": "2026-08-18T07:43:01.393615+00:00",
+          "track_id": 28
+        }
+      ],
+      "last_position": [
+        408,
+        239
+      ],
+      "last_seen": "2026-08-18T07:43:01.393615+00:00",
+      "object_name": "person_028",
+      "status": "LOST",
+      "track_id": 28
+    },
+    {
+      "confidence": 1.07208040488969e-60,
+      "first_seen": "2026-08-18T07:43:01.594415+00:00",
+      "history": [
+        {
+          "description": "toothbrush_032 appeared",
+          "event_type": "appeared",
+          "object_name": "toothbrush_032",
+          "position": [
+            413,
+            268
+          ],
+          "timestamp": "2026-08-18T07:43:01.594415+00:00",
+          "track_id": 32
+        },
+        {
+          "description": "toothbrush_032 disappeared",
+          "event_type": "disappeared",
+          "object_name": "toothbrush_032",
+          "position": [
+            413,
+            268
+          ],
+          "timestamp": "2026-08-18T07:43:01.798750+00:00",
+          "track_id": 32
+        }
+      ],
+      "last_position": [
+        413,
+        268
+      ],
+      "last_seen": "2026-08-18T07:43:01.798750+00:00",
+      "object_name": "toothbrush_032",
+      "status": "LOST",
+      "track_id": 32
+    },
+    {
+      "confidence": 1.4515641137027216e-60,
+      "first_seen": "2026-08-18T07:43:02.046628+00:00",
+      "history": [
+        {
+          "description": "toothbrush_033 appeared",
+          "event_type": "appeared",
+          "object_name": "toothbrush_033",
+          "position": [
+            413,
+            267
+          ],
+          "timestamp": "2026-08-18T07:43:02.046628+00:00",
+          "track_id": 33
+        },
+        {
+          "description": "toothbrush_033 disappeared",
+          "event_type": "disappeared",
+          "object_name": "toothbrush_033",
+          "position": [
+            413,
+            267
+          ],
+          "timestamp": "2026-08-18T07:43:02.218664+00:00",
+          "track_id": 33
+        }
+      ],
+      "last_position": [
+        413,
+        267
+      ],
+      "last_seen": "2026-08-18T07:43:02.218664+00:00",
+      "object_name": "toothbrush_033",
+      "status": "LOST",
+      "track_id": 33
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:43:02.264504+00:00",
+      "history": [
+        {
+          "description": "toothbrush_034 appeared",
+          "event_type": "appeared",
+          "object_name": "toothbrush_034",
+          "position": [
+            393,
+            268
+          ],
+          "timestamp": "2026-08-18T07:43:02.264504+00:00",
+          "track_id": 34
+        },
+        {
+          "description": "toothbrush_034 started moving",
+          "event_type": "started moving",
+          "object_name": "toothbrush_034",
+          "position": [
+            399,
+            269
+          ],
+          "timestamp": "2026-08-18T07:43:02.472273+00:00",
+          "track_id": 34
+        },
+        {
+          "description": "person_034 started moving",
+          "event_type": "started moving",
+          "object_name": "person_034",
+          "position": [
+            393,
+            268
+          ],
+          "timestamp": "2026-08-18T07:43:02.653240+00:00",
+          "track_id": 34
+        },
+        {
+          "description": "person_034 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_034",
+          "position": [
+            393,
+            268
+          ],
+          "timestamp": "2026-08-18T07:43:02.932220+00:00",
+          "track_id": 34
+        }
+      ],
+      "last_position": [
+        393,
+        268
+      ],
+      "last_seen": "2026-08-18T07:43:02.932220+00:00",
+      "object_name": "toothbrush_034",
+      "status": "LOST",
+      "track_id": 34
+    },
+    {
+      "confidence": 1.5422614234956543e-60,
+      "first_seen": "2026-08-18T07:43:04.200153+00:00",
+      "history": [
+        {
+          "description": "toothbrush_035 appeared",
+          "event_type": "appeared",
+          "object_name": "toothbrush_035",
+          "position": [
+            393,
+            268
+          ],
+          "timestamp": "2026-08-18T07:43:04.200153+00:00",
+          "track_id": 35
+        },
+        {
+          "description": "toothbrush_035 disappeared",
+          "event_type": "disappeared",
+          "object_name": "toothbrush_035",
+          "position": [
+            393,
+            268
+          ],
+          "timestamp": "2026-08-18T07:43:04.429679+00:00",
+          "track_id": 35
+        }
+      ],
+      "last_position": [
+        393,
+        268
+      ],
+      "last_seen": "2026-08-18T07:43:04.429679+00:00",
+      "object_name": "toothbrush_035",
+      "status": "LOST",
+      "track_id": 35
+    },
+    {
+      "confidence": 4.7807689697317987e-60,
+      "first_seen": "2026-08-18T07:43:04.615583+00:00",
+      "history": [
+        {
+          "description": "baseball bat_036 appeared",
+          "event_type": "appeared",
+          "object_name": "baseball bat_036",
+          "position": [
+            402,
+            267
+          ],
+          "timestamp": "2026-08-18T07:43:04.615583+00:00",
+          "track_id": 36
+        },
+        {
+          "description": "baseball bat_036 started moving",
+          "event_type": "started moving",
+          "object_name": "baseball bat_036",
+          "position": [
+            400,
+            264
+          ],
+          "timestamp": "2026-08-18T07:43:04.691489+00:00",
+          "track_id": 36
+        },
+        {
+          "description": "baseball bat_036 disappeared",
+          "event_type": "disappeared",
+          "object_name": "baseball bat_036",
+          "position": [
+            400,
+            264
+          ],
+          "timestamp": "2026-08-18T07:43:04.925644+00:00",
+          "track_id": 36
+        }
+      ],
+      "last_position": [
+        400,
+        264
+      ],
+      "last_seen": "2026-08-18T07:43:04.925644+00:00",
+      "object_name": "baseball bat_036",
+      "status": "LOST",
+      "track_id": 36
+    },
+    {
+      "confidence": 3.191679475312339e-60,
+      "first_seen": "2026-08-18T07:43:05.623181+00:00",
+      "history": [
+        {
+          "description": "baseball bat_037 appeared",
+          "event_type": "appeared",
+          "object_name": "baseball bat_037",
+          "position": [
+            401,
+            263
+          ],
+          "timestamp": "2026-08-18T07:43:05.623181+00:00",
+          "track_id": 37
+        },
+        {
+          "description": "baseball bat_037 started moving",
+          "event_type": "started moving",
+          "object_name": "baseball bat_037",
+          "position": [
+            390,
+            267
+          ],
+          "timestamp": "2026-08-18T07:43:05.701435+00:00",
+          "track_id": 37
+        },
+        {
+          "description": "baseball bat_037 disappeared",
+          "event_type": "disappeared",
+          "object_name": "baseball bat_037",
+          "position": [
+            390,
+            267
+          ],
+          "timestamp": "2026-08-18T07:43:06.168871+00:00",
+          "track_id": 37
+        }
+      ],
+      "last_position": [
+        390,
+        267
+      ],
+      "last_seen": "2026-08-18T07:43:06.168871+00:00",
+      "object_name": "baseball bat_037",
+      "status": "LOST",
+      "track_id": 37
+    },
+    {
+      "confidence": 3.2568157911350394e-60,
+      "first_seen": "2026-08-18T07:43:06.496191+00:00",
+      "history": [
+        {
+          "description": "toothbrush_038 appeared",
+          "event_type": "appeared",
+          "object_name": "toothbrush_038",
+          "position": [
+            395,
+            265
+          ],
+          "timestamp": "2026-08-18T07:43:06.496191+00:00",
+          "track_id": 38
+        },
+        {
+          "description": "toothbrush_038 disappeared",
+          "event_type": "disappeared",
+          "object_name": "toothbrush_038",
+          "position": [
+            395,
+            265
+          ],
+          "timestamp": "2026-08-18T07:43:06.698675+00:00",
+          "track_id": 38
+        }
+      ],
+      "last_position": [
+        395,
+        265
+      ],
+      "last_seen": "2026-08-18T07:43:06.698675+00:00",
+      "object_name": "toothbrush_038",
+      "status": "LOST",
+      "track_id": 38
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:43:07.058099+00:00",
+      "history": [
+        {
+          "description": "person_039 appeared",
+          "event_type": "appeared",
+          "object_name": "person_039",
+          "position": [
+            408,
+            265
+          ],
+          "timestamp": "2026-08-18T07:43:07.058099+00:00",
+          "track_id": 39
+        },
+        {
+          "description": "person_039 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_039",
+          "position": [
+            408,
+            265
+          ],
+          "timestamp": "2026-08-18T07:43:07.275537+00:00",
+          "track_id": 39
+        }
+      ],
+      "last_position": [
+        408,
+        265
+      ],
+      "last_seen": "2026-08-18T07:43:07.275537+00:00",
+      "object_name": "person_039",
+      "status": "LOST",
+      "track_id": 39
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:43:07.772735+00:00",
+      "history": [
+        {
+          "description": "person_040 appeared",
+          "event_type": "appeared",
+          "object_name": "person_040",
+          "position": [
+            404,
+            264
+          ],
+          "timestamp": "2026-08-18T07:43:07.772735+00:00",
+          "track_id": 40
+        },
+        {
+          "description": "person_040 started moving",
+          "event_type": "started moving",
+          "object_name": "person_040",
+          "position": [
+            400,
+            266
+          ],
+          "timestamp": "2026-08-18T07:43:07.866636+00:00",
+          "track_id": 40
+        },
+        {
+          "description": "person_040 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_040",
+          "position": [
+            404,
+            268
+          ],
+          "timestamp": "2026-08-18T07:43:08.333270+00:00",
+          "track_id": 40
+        }
+      ],
+      "last_position": [
+        404,
+        268
+      ],
+      "last_seen": "2026-08-18T07:43:08.333270+00:00",
+      "object_name": "person_040",
+      "status": "LOST",
+      "track_id": 40
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:43:08.630068+00:00",
+      "history": [
+        {
+          "description": "toothbrush_041 appeared",
+          "event_type": "appeared",
+          "object_name": "toothbrush_041",
+          "position": [
+            396,
+            262
+          ],
+          "timestamp": "2026-08-18T07:43:08.630068+00:00",
+          "track_id": 41
+        },
+        {
+          "description": "toothbrush_041 started moving",
+          "event_type": "started moving",
+          "object_name": "toothbrush_041",
+          "position": [
+            389,
+            267
+          ],
+          "timestamp": "2026-08-18T07:43:08.878769+00:00",
+          "track_id": 41
+        },
+        {
+          "description": "person_041 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_041",
+          "position": [
+            389,
+            267
+          ],
+          "timestamp": "2026-08-18T07:43:09.017727+00:00",
+          "track_id": 41
+        },
+        {
+          "description": "person_041 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_041",
+          "position": [
+            389,
+            267
+          ],
+          "timestamp": "2026-08-18T07:43:09.129352+00:00",
+          "track_id": 41
+        }
+      ],
+      "last_position": [
+        389,
+        267
+      ],
+      "last_seen": "2026-08-18T07:43:09.129352+00:00",
+      "object_name": "toothbrush_041",
+      "status": "LOST",
+      "track_id": 41
+    },
+    {
+      "confidence": 9.130418954731631e-59,
+      "first_seen": "2026-08-18T07:43:09.175805+00:00",
+      "history": [
+        {
+          "description": "cell phone_042 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_042",
+          "position": [
+            404,
+            263
+          ],
+          "timestamp": "2026-08-18T07:43:09.175805+00:00",
+          "track_id": 42
+        },
+        {
+          "description": "cell phone_042 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_042",
+          "position": [
+            404,
+            263
+          ],
+          "timestamp": "2026-08-18T07:43:09.499129+00:00",
+          "track_id": 42
+        }
+      ],
+      "last_position": [
+        404,
+        263
+      ],
+      "last_seen": "2026-08-18T07:43:09.499129+00:00",
+      "object_name": "cell phone_042",
+      "status": "LOST",
+      "track_id": 42
+    },
+    {
+      "confidence": 1.453845765909805e-57,
+      "first_seen": "2026-08-18T07:43:10.120363+00:00",
+      "history": [
+        {
+          "description": "cell phone_043 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_043",
+          "position": [
+            403,
+            264
+          ],
+          "timestamp": "2026-08-18T07:43:10.120363+00:00",
+          "track_id": 43
+        },
+        {
+          "description": "cell phone_043 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_043",
+          "position": [
+            396,
+            263
+          ],
+          "timestamp": "2026-08-18T07:43:10.214850+00:00",
+          "track_id": 43
+        },
+        {
+          "description": "cell phone_043 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_043",
+          "position": [
+            396,
+            263
+          ],
+          "timestamp": "2026-08-18T07:43:10.465665+00:00",
+          "track_id": 43
+        }
+      ],
+      "last_position": [
+        396,
+        263
+      ],
+      "last_seen": "2026-08-18T07:43:10.465665+00:00",
+      "object_name": "cell phone_043",
+      "status": "LOST",
+      "track_id": 43
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:43:10.697579+00:00",
+      "history": [
+        {
+          "description": "person_044 appeared",
+          "event_type": "appeared",
+          "object_name": "person_044",
+          "position": [
+            398,
+            267
+          ],
+          "timestamp": "2026-08-18T07:43:10.697579+00:00",
+          "track_id": 44
+        },
+        {
+          "description": "person_044 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_044",
+          "position": [
+            398,
+            267
+          ],
+          "timestamp": "2026-08-18T07:43:10.948873+00:00",
+          "track_id": 44
+        }
+      ],
+      "last_position": [
+        398,
+        267
+      ],
+      "last_seen": "2026-08-18T07:43:10.948873+00:00",
+      "object_name": "person_044",
+      "status": "LOST",
+      "track_id": 44
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:43:01.191085+00:00",
+      "history": [
+        {
+          "description": "toothbrush_030 appeared",
+          "event_type": "appeared",
+          "object_name": "toothbrush_030",
+          "position": [
+            323,
+            240
+          ],
+          "timestamp": "2026-08-18T07:43:01.191085+00:00",
+          "track_id": 30
+        },
+        {
+          "description": "toothbrush_030 started moving",
+          "event_type": "started moving",
+          "object_name": "toothbrush_030",
+          "position": [
+            321,
+            240
+          ],
+          "timestamp": "2026-08-18T07:43:01.256642+00:00",
+          "track_id": 30
+        },
+        {
+          "description": "person_030 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_030",
+          "position": [
+            319,
+            239
+          ],
+          "timestamp": "2026-08-18T07:43:02.700132+00:00",
+          "track_id": 30
+        },
+        {
+          "description": "person_030 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_030",
+          "position": [
+            320,
+            241
+          ],
+          "timestamp": "2026-08-18T07:43:11.570216+00:00",
+          "track_id": 30
+        }
+      ],
+      "last_position": [
+        320,
+        241
+      ],
+      "last_seen": "2026-08-18T07:43:11.570216+00:00",
+      "object_name": "toothbrush_030",
+      "status": "LOST",
+      "track_id": 30
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:43:01.256642+00:00",
+      "history": [
+        {
+          "description": "toothbrush_031 appeared",
+          "event_type": "appeared",
+          "object_name": "toothbrush_031",
+          "position": [
+            196,
+            261
+          ],
+          "timestamp": "2026-08-18T07:43:01.256642+00:00",
+          "track_id": 31
+        },
+        {
+          "description": "toothbrush_031 started moving",
+          "event_type": "started moving",
+          "object_name": "toothbrush_031",
+          "position": [
+            199,
+            262
+          ],
+          "timestamp": "2026-08-18T07:43:01.347033+00:00",
+          "track_id": 31
+        },
+        {
+          "description": "cell phone_031 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "cell phone_031",
+          "position": [
+            192,
+            261
+          ],
+          "timestamp": "2026-08-18T07:43:01.843562+00:00",
+          "track_id": 31
+        },
+        {
+          "description": "cell phone_031 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_031",
+          "position": [
+            172,
+            278
+          ],
+          "timestamp": "2026-08-18T07:43:11.570216+00:00",
+          "track_id": 31
+        }
+      ],
+      "last_position": [
+        172,
+        278
+      ],
+      "last_seen": "2026-08-18T07:43:11.570216+00:00",
+      "object_name": "toothbrush_031",
+      "status": "LOST",
+      "track_id": 31
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:43:11.398003+00:00",
+      "history": [
+        {
+          "description": "remote_045 appeared",
+          "event_type": "appeared",
+          "object_name": "remote_045",
+          "position": [
+            370,
+            239
+          ],
+          "timestamp": "2026-08-18T07:43:11.398003+00:00",
+          "track_id": 45
+        },
+        {
+          "description": "remote_045 started moving",
+          "event_type": "started moving",
+          "object_name": "remote_045",
+          "position": [
+            380,
+            240
+          ],
+          "timestamp": "2026-08-18T07:43:11.444898+00:00",
+          "track_id": 45
+        },
+        {
+          "description": "person_045 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_045",
+          "position": [
+            360,
+            239
+          ],
+          "timestamp": "2026-08-18T07:43:11.802464+00:00",
+          "track_id": 45
+        }
+      ],
+      "last_position": [
+        330,
+        257
+      ],
+      "last_seen": "2026-08-18T07:43:17.017921+00:00",
+      "object_name": "remote_045",
+      "status": "MOVING",
+      "track_id": 45
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:46:29.573394+00:00",
       "history": [
         {
           "description": "person_001 appeared",
           "event_type": "appeared",
           "object_name": "person_001",
           "position": [
-            106,
-            463
+            284,
+            246
           ],
-          "timestamp": "2026-08-18T07:16:04.103410+00:00",
+          "timestamp": "2026-08-18T07:46:29.573394+00:00",
           "track_id": 1
         },
         {
@@ -2855,35 +2895,57 @@
           "event_type": "disappeared",
           "object_name": "person_001",
           "position": [
-            106,
-            463
+            284,
+            246
           ],
-          "timestamp": "2026-08-18T07:16:04.444363+00:00",
+          "timestamp": "2026-08-18T07:46:29.947888+00:00",
           "track_id": 1
         }
       ],
       "last_position": [
-        106,
-        463
+        284,
+        246
       ],
-      "last_seen": "2026-08-18T07:16:04.444363+00:00",
+      "last_seen": "2026-08-18T07:46:29.947888+00:00",
       "object_name": "person_001",
       "status": "LOST",
       "track_id": 1
     },
     {
       "confidence": 1.0,
-      "first_seen": "2026-08-18T07:16:04.875699+00:00",
+      "first_seen": "2026-08-18T07:46:35.059166+00:00",
       "history": [
         {
           "description": "person_002 appeared",
           "event_type": "appeared",
           "object_name": "person_002",
           "position": [
-            167,
-            270
+            249,
+            250
           ],
-          "timestamp": "2026-08-18T07:16:04.875699+00:00",
+          "timestamp": "2026-08-18T07:46:35.059166+00:00",
+          "track_id": 2
+        },
+        {
+          "description": "person_002 started moving",
+          "event_type": "started moving",
+          "object_name": "person_002",
+          "position": [
+            249,
+            251
+          ],
+          "timestamp": "2026-08-18T07:46:35.234008+00:00",
+          "track_id": 2
+        },
+        {
+          "description": "person_002 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_002",
+          "position": [
+            289,
+            247
+          ],
+          "timestamp": "2026-08-18T07:46:38.772219+00:00",
           "track_id": 2
         },
         {
@@ -2891,35 +2953,35 @@
           "event_type": "disappeared",
           "object_name": "person_002",
           "position": [
-            167,
-            270
+            289,
+            247
           ],
-          "timestamp": "2026-08-18T07:16:05.067033+00:00",
+          "timestamp": "2026-08-18T07:46:39.393618+00:00",
           "track_id": 2
         }
       ],
       "last_position": [
-        167,
-        270
+        289,
+        247
       ],
-      "last_seen": "2026-08-18T07:16:05.067033+00:00",
+      "last_seen": "2026-08-18T07:46:39.393618+00:00",
       "object_name": "person_002",
       "status": "LOST",
       "track_id": 2
     },
     {
       "confidence": 1.0,
-      "first_seen": "2026-08-18T07:16:05.115279+00:00",
+      "first_seen": "2026-08-18T07:46:40.013076+00:00",
       "history": [
         {
           "description": "person_003 appeared",
           "event_type": "appeared",
           "object_name": "person_003",
           "position": [
-            183,
-            272
+            268,
+            247
           ],
-          "timestamp": "2026-08-18T07:16:05.115279+00:00",
+          "timestamp": "2026-08-18T07:46:40.013076+00:00",
           "track_id": 3
         },
         {
@@ -2927,10 +2989,32 @@
           "event_type": "started moving",
           "object_name": "person_003",
           "position": [
-            177,
-            272
+            286,
+            248
           ],
-          "timestamp": "2026-08-18T07:16:05.184328+00:00",
+          "timestamp": "2026-08-18T07:46:40.318794+00:00",
+          "track_id": 3
+        },
+        {
+          "description": "person_003 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_003",
+          "position": [
+            272,
+            250
+          ],
+          "timestamp": "2026-08-18T07:46:50.711255+00:00",
+          "track_id": 3
+        },
+        {
+          "description": "person_003 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_003",
+          "position": [
+            288,
+            253
+          ],
+          "timestamp": "2026-08-18T07:46:54.056088+00:00",
           "track_id": 3
         },
         {
@@ -2938,35 +3022,176 @@
           "event_type": "disappeared",
           "object_name": "person_003",
           "position": [
-            201,
-            270
+            288,
+            253
           ],
-          "timestamp": "2026-08-18T07:16:05.708977+00:00",
+          "timestamp": "2026-08-18T07:46:54.276228+00:00",
           "track_id": 3
         }
       ],
       "last_position": [
-        201,
-        270
+        288,
+        253
       ],
-      "last_seen": "2026-08-18T07:16:05.708977+00:00",
+      "last_seen": "2026-08-18T07:46:54.276228+00:00",
       "object_name": "person_003",
       "status": "LOST",
       "track_id": 3
     },
     {
       "confidence": 1.0,
-      "first_seen": "2026-08-18T07:15:54.195282+00:00",
+      "first_seen": "2026-08-18T07:46:54.429866+00:00",
+      "history": [
+        {
+          "description": "person_004 appeared",
+          "event_type": "appeared",
+          "object_name": "person_004",
+          "position": [
+            290,
+            252
+          ],
+          "timestamp": "2026-08-18T07:46:54.429866+00:00",
+          "track_id": 4
+        },
+        {
+          "description": "person_004 started moving",
+          "event_type": "started moving",
+          "object_name": "person_004",
+          "position": [
+            291,
+            252
+          ],
+          "timestamp": "2026-08-18T07:46:54.537267+00:00",
+          "track_id": 4
+        },
+        {
+          "description": "person_004 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_004",
+          "position": [
+            287,
+            251
+          ],
+          "timestamp": "2026-08-18T07:46:55.365941+00:00",
+          "track_id": 4
+        }
+      ],
+      "last_position": [
+        287,
+        251
+      ],
+      "last_seen": "2026-08-18T07:46:55.365941+00:00",
+      "object_name": "person_004",
+      "status": "LOST",
+      "track_id": 4
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:46:55.675262+00:00",
+      "history": [
+        {
+          "description": "person_005 appeared",
+          "event_type": "appeared",
+          "object_name": "person_005",
+          "position": [
+            295,
+            253
+          ],
+          "timestamp": "2026-08-18T07:46:55.675262+00:00",
+          "track_id": 5
+        },
+        {
+          "description": "person_005 started moving",
+          "event_type": "started moving",
+          "object_name": "person_005",
+          "position": [
+            292,
+            252
+          ],
+          "timestamp": "2026-08-18T07:46:55.872820+00:00",
+          "track_id": 5
+        },
+        {
+          "description": "person_005 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_005",
+          "position": [
+            293,
+            252
+          ],
+          "timestamp": "2026-08-18T07:46:56.726038+00:00",
+          "track_id": 5
+        }
+      ],
+      "last_position": [
+        293,
+        252
+      ],
+      "last_seen": "2026-08-18T07:46:56.726038+00:00",
+      "object_name": "person_005",
+      "status": "LOST",
+      "track_id": 5
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:46:56.943088+00:00",
+      "history": [
+        {
+          "description": "person_006 appeared",
+          "event_type": "appeared",
+          "object_name": "person_006",
+          "position": [
+            289,
+            252
+          ],
+          "timestamp": "2026-08-18T07:46:56.943088+00:00",
+          "track_id": 6
+        },
+        {
+          "description": "person_006 started moving",
+          "event_type": "started moving",
+          "object_name": "person_006",
+          "position": [
+            291,
+            253
+          ],
+          "timestamp": "2026-08-18T07:46:57.036640+00:00",
+          "track_id": 6
+        },
+        {
+          "description": "person_006 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_006",
+          "position": [
+            291,
+            253
+          ],
+          "timestamp": "2026-08-18T07:46:57.423789+00:00",
+          "track_id": 6
+        }
+      ],
+      "last_position": [
+        291,
+        253
+      ],
+      "last_seen": "2026-08-18T07:46:57.423789+00:00",
+      "object_name": "person_006",
+      "status": "LOST",
+      "track_id": 6
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:45:49.499573+00:00",
       "history": [
         {
           "description": "person_000 appeared",
           "event_type": "appeared",
           "object_name": "person_000",
           "position": [
-            318,
-            239
+            321,
+            260
           ],
-          "timestamp": "2026-08-18T07:15:54.195282+00:00",
+          "timestamp": "2026-08-18T07:45:49.499573+00:00",
           "track_id": 0
         },
         {
@@ -2974,10 +3199,10 @@
           "event_type": "started moving",
           "object_name": "person_000",
           "position": [
-            298,
-            270
+            316,
+            262
           ],
-          "timestamp": "2026-08-18T07:16:03.853284+00:00",
+          "timestamp": "2026-08-18T07:46:05.031840+00:00",
           "track_id": 0
         },
         {
@@ -2985,10 +3210,10 @@
           "event_type": "stopped moving",
           "object_name": "person_000",
           "position": [
-            335,
-            266
+            303,
+            246
           ],
-          "timestamp": "2026-08-18T07:16:07.880179+00:00",
+          "timestamp": "2026-08-18T07:46:08.808729+00:00",
           "track_id": 0
         },
         {
@@ -2996,10 +3221,10 @@
           "event_type": "stopped moving",
           "object_name": "person_000",
           "position": [
-            376,
-            250
+            315,
+            245
           ],
-          "timestamp": "2026-08-18T07:16:16.708056+00:00",
+          "timestamp": "2026-08-18T07:46:27.201668+00:00",
           "track_id": 0
         },
         {
@@ -3007,134 +3232,433 @@
           "event_type": "stopped moving",
           "object_name": "person_000",
           "position": [
-            374,
-            269
+            343,
+            254
           ],
-          "timestamp": "2026-08-18T07:16:19.274027+00:00",
+          "timestamp": "2026-08-18T07:47:03.000045+00:00",
           "track_id": 0
         },
         {
-          "description": "person_000 stopped moving",
-          "event_type": "stopped moving",
+          "description": "person_000 disappeared",
+          "event_type": "disappeared",
           "object_name": "person_000",
           "position": [
-            374,
-            268
+            305,
+            252
           ],
-          "timestamp": "2026-08-18T07:16:24.122493+00:00",
-          "track_id": 0
-        },
-        {
-          "description": "person_000 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_000",
-          "position": [
-            376,
-            248
-          ],
-          "timestamp": "2026-08-18T07:16:26.356340+00:00",
-          "track_id": 0
-        },
-        {
-          "description": "person_000 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_000",
-          "position": [
-            372,
-            250
-          ],
-          "timestamp": "2026-08-18T07:16:30.323669+00:00",
-          "track_id": 0
-        },
-        {
-          "description": "person_000 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_000",
-          "position": [
-            353,
-            264
-          ],
-          "timestamp": "2026-08-18T07:16:34.053189+00:00",
-          "track_id": 0
-        },
-        {
-          "description": "person_000 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_000",
-          "position": [
-            373,
-            272
-          ],
-          "timestamp": "2026-08-18T07:16:41.635545+00:00",
-          "track_id": 0
-        },
-        {
-          "description": "person_000 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_000",
-          "position": [
-            370,
-            270
-          ],
-          "timestamp": "2026-08-18T07:17:01.032385+00:00",
-          "track_id": 0
-        },
-        {
-          "description": "person_000 stopped moving",
-          "event_type": "stopped moving",
-          "object_name": "person_000",
-          "position": [
-            360,
-            264
-          ],
-          "timestamp": "2026-08-18T07:17:27.081713+00:00",
+          "timestamp": "2026-08-18T07:47:04.150918+00:00",
           "track_id": 0
         }
       ],
       "last_position": [
-        359,
-        265
+        305,
+        252
       ],
-      "last_seen": "2026-08-18T07:17:27.189954+00:00",
+      "last_seen": "2026-08-18T07:47:04.150918+00:00",
       "object_name": "person_000",
-      "status": "MOVING",
+      "status": "LOST",
       "track_id": 0
     },
     {
-      "confidence": 6.100046387853244e-19,
-      "first_seen": "2026-08-18T07:18:19.333248+00:00",
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:47:04.553880+00:00",
       "history": [
         {
-          "description": "cell phone_004 appeared",
+          "description": "person_008 appeared",
           "event_type": "appeared",
-          "object_name": "cell phone_004",
+          "object_name": "person_008",
           "position": [
-            156,
-            461
+            302,
+            253
           ],
-          "timestamp": "2026-08-18T07:18:19.333248+00:00",
-          "track_id": 4
+          "timestamp": "2026-08-18T07:47:04.553880+00:00",
+          "track_id": 8
         },
         {
-          "description": "cell phone_004 disappeared",
+          "description": "person_008 disappeared",
           "event_type": "disappeared",
-          "object_name": "cell phone_004",
+          "object_name": "person_008",
           "position": [
-            156,
-            461
+            302,
+            253
           ],
-          "timestamp": "2026-08-18T07:18:19.801909+00:00",
-          "track_id": 4
+          "timestamp": "2026-08-18T07:47:04.897070+00:00",
+          "track_id": 8
         }
       ],
       "last_position": [
-        156,
-        461
+        302,
+        253
       ],
-      "last_seen": "2026-08-18T07:18:19.801909+00:00",
-      "object_name": "cell phone_004",
+      "last_seen": "2026-08-18T07:47:04.897070+00:00",
+      "object_name": "person_008",
       "status": "LOST",
-      "track_id": 4
+      "track_id": 8
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:46:57.517151+00:00",
+      "history": [
+        {
+          "description": "cell phone_007 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_007",
+          "position": [
+            286,
+            253
+          ],
+          "timestamp": "2026-08-18T07:46:57.517151+00:00",
+          "track_id": 7
+        },
+        {
+          "description": "cell phone_007 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_007",
+          "position": [
+            287,
+            253
+          ],
+          "timestamp": "2026-08-18T07:46:57.625248+00:00",
+          "track_id": 7
+        },
+        {
+          "description": "person_007 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_007",
+          "position": [
+            288,
+            252
+          ],
+          "timestamp": "2026-08-18T07:46:58.669119+00:00",
+          "track_id": 7
+        },
+        {
+          "description": "person_007 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_007",
+          "position": [
+            293,
+            252
+          ],
+          "timestamp": "2026-08-18T07:47:02.133913+00:00",
+          "track_id": 7
+        },
+        {
+          "description": "person_007 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_007",
+          "position": [
+            319,
+            263
+          ],
+          "timestamp": "2026-08-18T07:47:05.392800+00:00",
+          "track_id": 7
+        }
+      ],
+      "last_position": [
+        319,
+        253
+      ],
+      "last_seen": "2026-08-18T07:47:05.470145+00:00",
+      "object_name": "cell phone_007",
+      "status": "MOVING",
+      "track_id": 7
+    },
+    {
+      "confidence": 6.109634792645545e-16,
+      "first_seen": "2026-08-18T07:47:05.843780+00:00",
+      "history": [
+        {
+          "description": "cell phone_009 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_009",
+          "position": [
+            294,
+            251
+          ],
+          "timestamp": "2026-08-18T07:47:05.843780+00:00",
+          "track_id": 9
+        },
+        {
+          "description": "cell phone_009 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_009",
+          "position": [
+            294,
+            251
+          ],
+          "timestamp": "2026-08-18T07:47:06.200823+00:00",
+          "track_id": 9
+        }
+      ],
+      "last_position": [
+        294,
+        251
+      ],
+      "last_seen": "2026-08-18T07:47:06.200823+00:00",
+      "object_name": "cell phone_009",
+      "status": "LOST",
+      "track_id": 9
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:47:07.431826+00:00",
+      "history": [
+        {
+          "description": "cell phone_010 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_010",
+          "position": [
+            323,
+            251
+          ],
+          "timestamp": "2026-08-18T07:47:07.431826+00:00",
+          "track_id": 10
+        },
+        {
+          "description": "cell phone_010 started moving",
+          "event_type": "started moving",
+          "object_name": "cell phone_010",
+          "position": [
+            357,
+            261
+          ],
+          "timestamp": "2026-08-18T07:47:07.558663+00:00",
+          "track_id": 10
+        },
+        {
+          "description": "person_010 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_010",
+          "position": [
+            333,
+            253
+          ],
+          "timestamp": "2026-08-18T07:47:09.112727+00:00",
+          "track_id": 10
+        },
+        {
+          "description": "person_010 stopped moving",
+          "event_type": "stopped moving",
+          "object_name": "person_010",
+          "position": [
+            323,
+            251
+          ],
+          "timestamp": "2026-08-18T07:47:14.861877+00:00",
+          "track_id": 10
+        },
+        {
+          "description": "person_010 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_010",
+          "position": [
+            322,
+            252
+          ],
+          "timestamp": "2026-08-18T07:47:16.448608+00:00",
+          "track_id": 10
+        }
+      ],
+      "last_position": [
+        322,
+        252
+      ],
+      "last_seen": "2026-08-18T07:47:16.448608+00:00",
+      "object_name": "cell phone_010",
+      "status": "LOST",
+      "track_id": 10
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:47:16.743362+00:00",
+      "history": [
+        {
+          "description": "person_011 appeared",
+          "event_type": "appeared",
+          "object_name": "person_011",
+          "position": [
+            311,
+            252
+          ],
+          "timestamp": "2026-08-18T07:47:16.743362+00:00",
+          "track_id": 11
+        },
+        {
+          "description": "person_011 started moving",
+          "event_type": "started moving",
+          "object_name": "person_011",
+          "position": [
+            314,
+            251
+          ],
+          "timestamp": "2026-08-18T07:47:16.974672+00:00",
+          "track_id": 11
+        },
+        {
+          "description": "person_011 disappeared",
+          "event_type": "disappeared",
+          "object_name": "person_011",
+          "position": [
+            300,
+            251
+          ],
+          "timestamp": "2026-08-18T07:47:18.036340+00:00",
+          "track_id": 11
+        }
+      ],
+      "last_position": [
+        300,
+        251
+      ],
+      "last_seen": "2026-08-18T07:47:18.036340+00:00",
+      "object_name": "person_011",
+      "status": "LOST",
+      "track_id": 11
+    },
+    {
+      "confidence": 2.5615871413360415e-17,
+      "first_seen": "2026-08-18T07:47:20.167890+00:00",
+      "history": [
+        {
+          "description": "cell phone_012 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_012",
+          "position": [
+            282,
+            255
+          ],
+          "timestamp": "2026-08-18T07:47:20.167890+00:00",
+          "track_id": 12
+        },
+        {
+          "description": "cell phone_012 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_012",
+          "position": [
+            282,
+            255
+          ],
+          "timestamp": "2026-08-18T07:47:20.602440+00:00",
+          "track_id": 12
+        }
+      ],
+      "last_position": [
+        282,
+        255
+      ],
+      "last_seen": "2026-08-18T07:47:20.602440+00:00",
+      "object_name": "cell phone_012",
+      "status": "LOST",
+      "track_id": 12
+    },
+    {
+      "confidence": 2.6672086019742208e-17,
+      "first_seen": "2026-08-18T07:47:21.041237+00:00",
+      "history": [
+        {
+          "description": "cell phone_013 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_013",
+          "position": [
+            284,
+            255
+          ],
+          "timestamp": "2026-08-18T07:47:21.041237+00:00",
+          "track_id": 13
+        },
+        {
+          "description": "cell phone_013 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_013",
+          "position": [
+            284,
+            255
+          ],
+          "timestamp": "2026-08-18T07:47:21.398950+00:00",
+          "track_id": 13
+        }
+      ],
+      "last_position": [
+        284,
+        255
+      ],
+      "last_seen": "2026-08-18T07:47:21.398950+00:00",
+      "object_name": "cell phone_013",
+      "status": "LOST",
+      "track_id": 13
+    },
+    {
+      "confidence": 2.4392311788463305e-16,
+      "first_seen": "2026-08-18T07:47:21.630197+00:00",
+      "history": [
+        {
+          "description": "cell phone_014 appeared",
+          "event_type": "appeared",
+          "object_name": "cell phone_014",
+          "position": [
+            276,
+            254
+          ],
+          "timestamp": "2026-08-18T07:47:21.630197+00:00",
+          "track_id": 14
+        },
+        {
+          "description": "cell phone_014 disappeared",
+          "event_type": "disappeared",
+          "object_name": "cell phone_014",
+          "position": [
+            276,
+            254
+          ],
+          "timestamp": "2026-08-18T07:47:21.988388+00:00",
+          "track_id": 14
+        }
+      ],
+      "last_position": [
+        276,
+        254
+      ],
+      "last_seen": "2026-08-18T07:47:21.988388+00:00",
+      "object_name": "cell phone_014",
+      "status": "LOST",
+      "track_id": 14
+    },
+    {
+      "confidence": 1.0,
+      "first_seen": "2026-08-18T07:47:23.328323+00:00",
+      "history": [
+        {
+          "description": "person_015 appeared",
+          "event_type": "appeared",
+          "object_name": "person_015",
+          "position": [
+            280,
+            253
+          ],
+          "timestamp": "2026-08-18T07:47:23.328323+00:00",
+          "track_id": 15
+        },
+        {
+          "description": "person_015 started moving",
+          "event_type": "started moving",
+          "object_name": "person_015",
+          "position": [
+            263,
+            253
+          ],
+          "timestamp": "2026-08-18T07:47:23.700911+00:00",
+          "track_id": 15
+        }
+      ],
+      "last_position": [
+        267,
+        252
+      ],
+      "last_seen": "2026-08-18T07:47:24.044264+00:00",
+      "object_name": "person_015",
+      "status": "MOVING",
+      "track_id": 15
     }
   ],
   "schema_version": 1,
@@ -4842,6 +5366,1190 @@
       "sequence_number": 213,
       "timestamp": "2026-08-18T07:18:19.801909+00:00",
       "track_id": 4
+    },
+    {
+      "description": "person_000 appeared",
+      "event_type": "appeared",
+      "object_name": "person_000",
+      "sequence_number": 214,
+      "timestamp": "2026-08-18T07:42:26.839932+00:00",
+      "track_id": 0
+    },
+    {
+      "description": "person_000 started moving",
+      "event_type": "started moving",
+      "object_name": "person_000",
+      "sequence_number": 215,
+      "timestamp": "2026-08-18T07:42:33.884572+00:00",
+      "track_id": 0
+    },
+    {
+      "description": "person_001 appeared",
+      "event_type": "appeared",
+      "object_name": "person_001",
+      "sequence_number": 216,
+      "timestamp": "2026-08-18T07:42:33.884572+00:00",
+      "track_id": 1
+    },
+    {
+      "description": "person_001 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_001",
+      "sequence_number": 217,
+      "timestamp": "2026-08-18T07:42:34.873241+00:00",
+      "track_id": 1
+    },
+    {
+      "description": "person_002 appeared",
+      "event_type": "appeared",
+      "object_name": "person_002",
+      "sequence_number": 218,
+      "timestamp": "2026-08-18T07:42:35.275795+00:00",
+      "track_id": 2
+    },
+    {
+      "description": "person_002 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_002",
+      "sequence_number": 219,
+      "timestamp": "2026-08-18T07:42:35.480081+00:00",
+      "track_id": 2
+    },
+    {
+      "description": "person_003 appeared",
+      "event_type": "appeared",
+      "object_name": "person_003",
+      "sequence_number": 220,
+      "timestamp": "2026-08-18T07:42:35.688033+00:00",
+      "track_id": 3
+    },
+    {
+      "description": "person_003 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_003",
+      "sequence_number": 221,
+      "timestamp": "2026-08-18T07:42:36.487894+00:00",
+      "track_id": 3
+    },
+    {
+      "description": "cell phone_004 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_004",
+      "sequence_number": 222,
+      "timestamp": "2026-08-18T07:42:37.224223+00:00",
+      "track_id": 4
+    },
+    {
+      "description": "cell phone_004 started moving",
+      "event_type": "started moving",
+      "object_name": "cell phone_004",
+      "sequence_number": 223,
+      "timestamp": "2026-08-18T07:42:37.287566+00:00",
+      "track_id": 4
+    },
+    {
+      "description": "person_000 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_000",
+      "sequence_number": 224,
+      "timestamp": "2026-08-18T07:42:37.883543+00:00",
+      "track_id": 0
+    },
+    {
+      "description": "person_005 appeared",
+      "event_type": "appeared",
+      "object_name": "person_005",
+      "sequence_number": 225,
+      "timestamp": "2026-08-18T07:42:39.189157+00:00",
+      "track_id": 5
+    },
+    {
+      "description": "person_004 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_004",
+      "sequence_number": 226,
+      "timestamp": "2026-08-18T07:42:39.546224+00:00",
+      "track_id": 4
+    },
+    {
+      "description": "cell phone_006 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_006",
+      "sequence_number": 227,
+      "timestamp": "2026-08-18T07:42:39.576527+00:00",
+      "track_id": 6
+    },
+    {
+      "description": "cell phone_006 started moving",
+      "event_type": "started moving",
+      "object_name": "cell phone_006",
+      "sequence_number": 228,
+      "timestamp": "2026-08-18T07:42:39.639328+00:00",
+      "track_id": 6
+    },
+    {
+      "description": "person_005 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_005",
+      "sequence_number": 229,
+      "timestamp": "2026-08-18T07:42:39.889560+00:00",
+      "track_id": 5
+    },
+    {
+      "description": "person_007 appeared",
+      "event_type": "appeared",
+      "object_name": "person_007",
+      "sequence_number": 230,
+      "timestamp": "2026-08-18T07:42:41.318905+00:00",
+      "track_id": 7
+    },
+    {
+      "description": "cell phone_007 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "cell phone_007",
+      "sequence_number": 231,
+      "timestamp": "2026-08-18T07:42:41.685965+00:00",
+      "track_id": 7
+    },
+    {
+      "description": "cell phone_008 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_008",
+      "sequence_number": 232,
+      "timestamp": "2026-08-18T07:42:41.763285+00:00",
+      "track_id": 8
+    },
+    {
+      "description": "person_008 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_008",
+      "sequence_number": 233,
+      "timestamp": "2026-08-18T07:42:42.231388+00:00",
+      "track_id": 8
+    },
+    {
+      "description": "cell phone_007 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_007",
+      "sequence_number": 234,
+      "timestamp": "2026-08-18T07:42:42.265499+00:00",
+      "track_id": 7
+    },
+    {
+      "description": "cell phone_009 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_009",
+      "sequence_number": 235,
+      "timestamp": "2026-08-18T07:42:42.556859+00:00",
+      "track_id": 9
+    },
+    {
+      "description": "cell phone_010 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_010",
+      "sequence_number": 236,
+      "timestamp": "2026-08-18T07:42:43.317973+00:00",
+      "track_id": 10
+    },
+    {
+      "description": "cell phone_010 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_010",
+      "sequence_number": 237,
+      "timestamp": "2026-08-18T07:42:43.646311+00:00",
+      "track_id": 10
+    },
+    {
+      "description": "cell phone_011 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_011",
+      "sequence_number": 238,
+      "timestamp": "2026-08-18T07:42:44.080756+00:00",
+      "track_id": 11
+    },
+    {
+      "description": "cell phone_009 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_009",
+      "sequence_number": 239,
+      "timestamp": "2026-08-18T07:42:44.080756+00:00",
+      "track_id": 9
+    },
+    {
+      "description": "cell phone_012 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_012",
+      "sequence_number": 240,
+      "timestamp": "2026-08-18T07:42:44.144161+00:00",
+      "track_id": 12
+    },
+    {
+      "description": "person_011 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "person_011",
+      "sequence_number": 241,
+      "timestamp": "2026-08-18T07:42:44.718751+00:00",
+      "track_id": 11
+    },
+    {
+      "description": "cell phone_012 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_012",
+      "sequence_number": 242,
+      "timestamp": "2026-08-18T07:42:45.092431+00:00",
+      "track_id": 12
+    },
+    {
+      "description": "cell phone_013 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_013",
+      "sequence_number": 243,
+      "timestamp": "2026-08-18T07:42:45.280354+00:00",
+      "track_id": 13
+    },
+    {
+      "description": "person_011 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_011",
+      "sequence_number": 244,
+      "timestamp": "2026-08-18T07:42:45.358801+00:00",
+      "track_id": 11
+    },
+    {
+      "description": "cell phone_013 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_013",
+      "sequence_number": 245,
+      "timestamp": "2026-08-18T07:42:45.561729+00:00",
+      "track_id": 13
+    },
+    {
+      "description": "cell phone_014 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_014",
+      "sequence_number": 246,
+      "timestamp": "2026-08-18T07:42:45.701098+00:00",
+      "track_id": 14
+    },
+    {
+      "description": "cell phone_015 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_015",
+      "sequence_number": 247,
+      "timestamp": "2026-08-18T07:42:46.918735+00:00",
+      "track_id": 15
+    },
+    {
+      "description": "person_015 started moving",
+      "event_type": "started moving",
+      "object_name": "person_015",
+      "sequence_number": 248,
+      "timestamp": "2026-08-18T07:42:47.388947+00:00",
+      "track_id": 15
+    },
+    {
+      "description": "person_016 appeared",
+      "event_type": "appeared",
+      "object_name": "person_016",
+      "sequence_number": 249,
+      "timestamp": "2026-08-18T07:42:47.544304+00:00",
+      "track_id": 16
+    },
+    {
+      "description": "person_015 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_015",
+      "sequence_number": 250,
+      "timestamp": "2026-08-18T07:42:47.655891+00:00",
+      "track_id": 15
+    },
+    {
+      "description": "remote_016 started moving",
+      "event_type": "started moving",
+      "object_name": "remote_016",
+      "sequence_number": 251,
+      "timestamp": "2026-08-18T07:42:47.904997+00:00",
+      "track_id": 16
+    },
+    {
+      "description": "remote_016 disappeared",
+      "event_type": "disappeared",
+      "object_name": "remote_016",
+      "sequence_number": 252,
+      "timestamp": "2026-08-18T07:42:48.263955+00:00",
+      "track_id": 16
+    },
+    {
+      "description": "cell phone_017 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_017",
+      "sequence_number": 253,
+      "timestamp": "2026-08-18T07:42:48.494827+00:00",
+      "track_id": 17
+    },
+    {
+      "description": "person_018 appeared",
+      "event_type": "appeared",
+      "object_name": "person_018",
+      "sequence_number": 254,
+      "timestamp": "2026-08-18T07:42:48.779406+00:00",
+      "track_id": 18
+    },
+    {
+      "description": "cell phone_017 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_017",
+      "sequence_number": 255,
+      "timestamp": "2026-08-18T07:42:48.920520+00:00",
+      "track_id": 17
+    },
+    {
+      "description": "person_018 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_018",
+      "sequence_number": 256,
+      "timestamp": "2026-08-18T07:42:48.998062+00:00",
+      "track_id": 18
+    },
+    {
+      "description": "cell phone_019 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_019",
+      "sequence_number": 257,
+      "timestamp": "2026-08-18T07:42:49.187418+00:00",
+      "track_id": 19
+    },
+    {
+      "description": "person_006 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_006",
+      "sequence_number": 258,
+      "timestamp": "2026-08-18T07:42:49.357014+00:00",
+      "track_id": 6
+    },
+    {
+      "description": "cell phone_020 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_020",
+      "sequence_number": 259,
+      "timestamp": "2026-08-18T07:42:49.592387+00:00",
+      "track_id": 20
+    },
+    {
+      "description": "cell phone_020 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_020",
+      "sequence_number": 260,
+      "timestamp": "2026-08-18T07:42:49.792441+00:00",
+      "track_id": 20
+    },
+    {
+      "description": "cell phone_021 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_021",
+      "sequence_number": 261,
+      "timestamp": "2026-08-18T07:42:49.920108+00:00",
+      "track_id": 21
+    },
+    {
+      "description": "cell phone_021 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_021",
+      "sequence_number": 262,
+      "timestamp": "2026-08-18T07:42:50.209988+00:00",
+      "track_id": 21
+    },
+    {
+      "description": "cell phone_014 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_014",
+      "sequence_number": 263,
+      "timestamp": "2026-08-18T07:42:50.663389+00:00",
+      "track_id": 14
+    },
+    {
+      "description": "cell phone_022 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_022",
+      "sequence_number": 264,
+      "timestamp": "2026-08-18T07:42:50.760361+00:00",
+      "track_id": 22
+    },
+    {
+      "description": "cell phone_022 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_022",
+      "sequence_number": 265,
+      "timestamp": "2026-08-18T07:42:51.002446+00:00",
+      "track_id": 22
+    },
+    {
+      "description": "cell phone_023 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_023",
+      "sequence_number": 266,
+      "timestamp": "2026-08-18T07:42:51.079797+00:00",
+      "track_id": 23
+    },
+    {
+      "description": "cell phone_023 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_023",
+      "sequence_number": 267,
+      "timestamp": "2026-08-18T07:42:53.590210+00:00",
+      "track_id": 23
+    },
+    {
+      "description": "cell phone_024 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_024",
+      "sequence_number": 268,
+      "timestamp": "2026-08-18T07:42:53.654248+00:00",
+      "track_id": 24
+    },
+    {
+      "description": "person_019 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "person_019",
+      "sequence_number": 269,
+      "timestamp": "2026-08-18T07:42:54.133477+00:00",
+      "track_id": 19
+    },
+    {
+      "description": "remote_024 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "remote_024",
+      "sequence_number": 270,
+      "timestamp": "2026-08-18T07:42:54.133477+00:00",
+      "track_id": 24
+    },
+    {
+      "description": "cell phone_025 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_025",
+      "sequence_number": 271,
+      "timestamp": "2026-08-18T07:42:54.442757+00:00",
+      "track_id": 25
+    },
+    {
+      "description": "cell phone_025 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_025",
+      "sequence_number": 272,
+      "timestamp": "2026-08-18T07:42:54.755571+00:00",
+      "track_id": 25
+    },
+    {
+      "description": "person_026 appeared",
+      "event_type": "appeared",
+      "object_name": "person_026",
+      "sequence_number": 273,
+      "timestamp": "2026-08-18T07:42:54.968269+00:00",
+      "track_id": 26
+    },
+    {
+      "description": "person_019 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_019",
+      "sequence_number": 274,
+      "timestamp": "2026-08-18T07:42:55.133481+00:00",
+      "track_id": 19
+    },
+    {
+      "description": "cell phone_024 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "cell phone_024",
+      "sequence_number": 275,
+      "timestamp": "2026-08-18T07:42:58.446195+00:00",
+      "track_id": 24
+    },
+    {
+      "description": "person_027 appeared",
+      "event_type": "appeared",
+      "object_name": "person_027",
+      "sequence_number": 276,
+      "timestamp": "2026-08-18T07:42:58.804057+00:00",
+      "track_id": 27
+    },
+    {
+      "description": "person_027 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_027",
+      "sequence_number": 277,
+      "timestamp": "2026-08-18T07:42:59.035913+00:00",
+      "track_id": 27
+    },
+    {
+      "description": "person_028 appeared",
+      "event_type": "appeared",
+      "object_name": "person_028",
+      "sequence_number": 278,
+      "timestamp": "2026-08-18T07:43:00.616129+00:00",
+      "track_id": 28
+    },
+    {
+      "description": "person_026 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_026",
+      "sequence_number": 279,
+      "timestamp": "2026-08-18T07:43:00.802756+00:00",
+      "track_id": 26
+    },
+    {
+      "description": "hot dog_029 appeared",
+      "event_type": "appeared",
+      "object_name": "hot dog_029",
+      "sequence_number": 280,
+      "timestamp": "2026-08-18T07:43:00.855355+00:00",
+      "track_id": 29
+    },
+    {
+      "description": "hot dog_029 disappeared",
+      "event_type": "disappeared",
+      "object_name": "hot dog_029",
+      "sequence_number": 281,
+      "timestamp": "2026-08-18T07:43:01.081890+00:00",
+      "track_id": 29
+    },
+    {
+      "description": "toothbrush_030 appeared",
+      "event_type": "appeared",
+      "object_name": "toothbrush_030",
+      "sequence_number": 282,
+      "timestamp": "2026-08-18T07:43:01.191085+00:00",
+      "track_id": 30
+    },
+    {
+      "description": "cell phone_024 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_024",
+      "sequence_number": 283,
+      "timestamp": "2026-08-18T07:43:01.191085+00:00",
+      "track_id": 24
+    },
+    {
+      "description": "toothbrush_030 started moving",
+      "event_type": "started moving",
+      "object_name": "toothbrush_030",
+      "sequence_number": 284,
+      "timestamp": "2026-08-18T07:43:01.256642+00:00",
+      "track_id": 30
+    },
+    {
+      "description": "toothbrush_031 appeared",
+      "event_type": "appeared",
+      "object_name": "toothbrush_031",
+      "sequence_number": 285,
+      "timestamp": "2026-08-18T07:43:01.256642+00:00",
+      "track_id": 31
+    },
+    {
+      "description": "person_028 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_028",
+      "sequence_number": 286,
+      "timestamp": "2026-08-18T07:43:01.393615+00:00",
+      "track_id": 28
+    },
+    {
+      "description": "toothbrush_032 appeared",
+      "event_type": "appeared",
+      "object_name": "toothbrush_032",
+      "sequence_number": 287,
+      "timestamp": "2026-08-18T07:43:01.594415+00:00",
+      "track_id": 32
+    },
+    {
+      "description": "toothbrush_032 disappeared",
+      "event_type": "disappeared",
+      "object_name": "toothbrush_032",
+      "sequence_number": 288,
+      "timestamp": "2026-08-18T07:43:01.798750+00:00",
+      "track_id": 32
+    },
+    {
+      "description": "toothbrush_033 appeared",
+      "event_type": "appeared",
+      "object_name": "toothbrush_033",
+      "sequence_number": 289,
+      "timestamp": "2026-08-18T07:43:02.046628+00:00",
+      "track_id": 33
+    },
+    {
+      "description": "toothbrush_033 disappeared",
+      "event_type": "disappeared",
+      "object_name": "toothbrush_033",
+      "sequence_number": 290,
+      "timestamp": "2026-08-18T07:43:02.218664+00:00",
+      "track_id": 33
+    },
+    {
+      "description": "toothbrush_034 appeared",
+      "event_type": "appeared",
+      "object_name": "toothbrush_034",
+      "sequence_number": 291,
+      "timestamp": "2026-08-18T07:43:02.264504+00:00",
+      "track_id": 34
+    },
+    {
+      "description": "person_034 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_034",
+      "sequence_number": 292,
+      "timestamp": "2026-08-18T07:43:02.932220+00:00",
+      "track_id": 34
+    },
+    {
+      "description": "toothbrush_035 appeared",
+      "event_type": "appeared",
+      "object_name": "toothbrush_035",
+      "sequence_number": 293,
+      "timestamp": "2026-08-18T07:43:04.200153+00:00",
+      "track_id": 35
+    },
+    {
+      "description": "toothbrush_035 disappeared",
+      "event_type": "disappeared",
+      "object_name": "toothbrush_035",
+      "sequence_number": 294,
+      "timestamp": "2026-08-18T07:43:04.429679+00:00",
+      "track_id": 35
+    },
+    {
+      "description": "baseball bat_036 appeared",
+      "event_type": "appeared",
+      "object_name": "baseball bat_036",
+      "sequence_number": 295,
+      "timestamp": "2026-08-18T07:43:04.615583+00:00",
+      "track_id": 36
+    },
+    {
+      "description": "baseball bat_036 started moving",
+      "event_type": "started moving",
+      "object_name": "baseball bat_036",
+      "sequence_number": 296,
+      "timestamp": "2026-08-18T07:43:04.691489+00:00",
+      "track_id": 36
+    },
+    {
+      "description": "baseball bat_036 disappeared",
+      "event_type": "disappeared",
+      "object_name": "baseball bat_036",
+      "sequence_number": 297,
+      "timestamp": "2026-08-18T07:43:04.925644+00:00",
+      "track_id": 36
+    },
+    {
+      "description": "baseball bat_037 appeared",
+      "event_type": "appeared",
+      "object_name": "baseball bat_037",
+      "sequence_number": 298,
+      "timestamp": "2026-08-18T07:43:05.623181+00:00",
+      "track_id": 37
+    },
+    {
+      "description": "baseball bat_037 disappeared",
+      "event_type": "disappeared",
+      "object_name": "baseball bat_037",
+      "sequence_number": 299,
+      "timestamp": "2026-08-18T07:43:06.168871+00:00",
+      "track_id": 37
+    },
+    {
+      "description": "toothbrush_038 appeared",
+      "event_type": "appeared",
+      "object_name": "toothbrush_038",
+      "sequence_number": 300,
+      "timestamp": "2026-08-18T07:43:06.496191+00:00",
+      "track_id": 38
+    },
+    {
+      "description": "toothbrush_038 disappeared",
+      "event_type": "disappeared",
+      "object_name": "toothbrush_038",
+      "sequence_number": 301,
+      "timestamp": "2026-08-18T07:43:06.698675+00:00",
+      "track_id": 38
+    },
+    {
+      "description": "person_039 appeared",
+      "event_type": "appeared",
+      "object_name": "person_039",
+      "sequence_number": 302,
+      "timestamp": "2026-08-18T07:43:07.058099+00:00",
+      "track_id": 39
+    },
+    {
+      "description": "person_039 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_039",
+      "sequence_number": 303,
+      "timestamp": "2026-08-18T07:43:07.275537+00:00",
+      "track_id": 39
+    },
+    {
+      "description": "person_040 appeared",
+      "event_type": "appeared",
+      "object_name": "person_040",
+      "sequence_number": 304,
+      "timestamp": "2026-08-18T07:43:07.772735+00:00",
+      "track_id": 40
+    },
+    {
+      "description": "person_040 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_040",
+      "sequence_number": 305,
+      "timestamp": "2026-08-18T07:43:08.333270+00:00",
+      "track_id": 40
+    },
+    {
+      "description": "toothbrush_041 appeared",
+      "event_type": "appeared",
+      "object_name": "toothbrush_041",
+      "sequence_number": 306,
+      "timestamp": "2026-08-18T07:43:08.630068+00:00",
+      "track_id": 41
+    },
+    {
+      "description": "toothbrush_041 started moving",
+      "event_type": "started moving",
+      "object_name": "toothbrush_041",
+      "sequence_number": 307,
+      "timestamp": "2026-08-18T07:43:08.878769+00:00",
+      "track_id": 41
+    },
+    {
+      "description": "person_041 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_041",
+      "sequence_number": 308,
+      "timestamp": "2026-08-18T07:43:09.129352+00:00",
+      "track_id": 41
+    },
+    {
+      "description": "cell phone_042 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_042",
+      "sequence_number": 309,
+      "timestamp": "2026-08-18T07:43:09.175805+00:00",
+      "track_id": 42
+    },
+    {
+      "description": "cell phone_042 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_042",
+      "sequence_number": 310,
+      "timestamp": "2026-08-18T07:43:09.499129+00:00",
+      "track_id": 42
+    },
+    {
+      "description": "cell phone_043 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_043",
+      "sequence_number": 311,
+      "timestamp": "2026-08-18T07:43:10.120363+00:00",
+      "track_id": 43
+    },
+    {
+      "description": "cell phone_043 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_043",
+      "sequence_number": 312,
+      "timestamp": "2026-08-18T07:43:10.465665+00:00",
+      "track_id": 43
+    },
+    {
+      "description": "person_044 appeared",
+      "event_type": "appeared",
+      "object_name": "person_044",
+      "sequence_number": 313,
+      "timestamp": "2026-08-18T07:43:10.697579+00:00",
+      "track_id": 44
+    },
+    {
+      "description": "person_044 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_044",
+      "sequence_number": 314,
+      "timestamp": "2026-08-18T07:43:10.948873+00:00",
+      "track_id": 44
+    },
+    {
+      "description": "remote_045 appeared",
+      "event_type": "appeared",
+      "object_name": "remote_045",
+      "sequence_number": 315,
+      "timestamp": "2026-08-18T07:43:11.398003+00:00",
+      "track_id": 45
+    },
+    {
+      "description": "remote_045 started moving",
+      "event_type": "started moving",
+      "object_name": "remote_045",
+      "sequence_number": 316,
+      "timestamp": "2026-08-18T07:43:11.444898+00:00",
+      "track_id": 45
+    },
+    {
+      "description": "person_030 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_030",
+      "sequence_number": 317,
+      "timestamp": "2026-08-18T07:43:11.570216+00:00",
+      "track_id": 30
+    },
+    {
+      "description": "cell phone_031 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_031",
+      "sequence_number": 318,
+      "timestamp": "2026-08-18T07:43:11.570216+00:00",
+      "track_id": 31
+    },
+    {
+      "description": "person_000 appeared",
+      "event_type": "appeared",
+      "object_name": "person_000",
+      "sequence_number": 319,
+      "timestamp": "2026-08-18T07:45:49.499573+00:00",
+      "track_id": 0
+    },
+    {
+      "description": "person_000 started moving",
+      "event_type": "started moving",
+      "object_name": "person_000",
+      "sequence_number": 320,
+      "timestamp": "2026-08-18T07:46:05.031840+00:00",
+      "track_id": 0
+    },
+    {
+      "description": "person_000 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "person_000",
+      "sequence_number": 321,
+      "timestamp": "2026-08-18T07:46:08.808729+00:00",
+      "track_id": 0
+    },
+    {
+      "description": "person_000 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "person_000",
+      "sequence_number": 322,
+      "timestamp": "2026-08-18T07:46:27.201668+00:00",
+      "track_id": 0
+    },
+    {
+      "description": "person_001 appeared",
+      "event_type": "appeared",
+      "object_name": "person_001",
+      "sequence_number": 323,
+      "timestamp": "2026-08-18T07:46:29.573394+00:00",
+      "track_id": 1
+    },
+    {
+      "description": "person_001 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_001",
+      "sequence_number": 324,
+      "timestamp": "2026-08-18T07:46:29.947888+00:00",
+      "track_id": 1
+    },
+    {
+      "description": "person_002 appeared",
+      "event_type": "appeared",
+      "object_name": "person_002",
+      "sequence_number": 325,
+      "timestamp": "2026-08-18T07:46:35.059166+00:00",
+      "track_id": 2
+    },
+    {
+      "description": "person_002 started moving",
+      "event_type": "started moving",
+      "object_name": "person_002",
+      "sequence_number": 326,
+      "timestamp": "2026-08-18T07:46:35.234008+00:00",
+      "track_id": 2
+    },
+    {
+      "description": "person_002 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "person_002",
+      "sequence_number": 327,
+      "timestamp": "2026-08-18T07:46:38.772219+00:00",
+      "track_id": 2
+    },
+    {
+      "description": "person_002 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_002",
+      "sequence_number": 328,
+      "timestamp": "2026-08-18T07:46:39.393618+00:00",
+      "track_id": 2
+    },
+    {
+      "description": "person_003 appeared",
+      "event_type": "appeared",
+      "object_name": "person_003",
+      "sequence_number": 329,
+      "timestamp": "2026-08-18T07:46:40.013076+00:00",
+      "track_id": 3
+    },
+    {
+      "description": "person_003 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "person_003",
+      "sequence_number": 330,
+      "timestamp": "2026-08-18T07:46:50.711255+00:00",
+      "track_id": 3
+    },
+    {
+      "description": "person_003 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "person_003",
+      "sequence_number": 331,
+      "timestamp": "2026-08-18T07:46:54.056088+00:00",
+      "track_id": 3
+    },
+    {
+      "description": "person_003 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_003",
+      "sequence_number": 332,
+      "timestamp": "2026-08-18T07:46:54.276228+00:00",
+      "track_id": 3
+    },
+    {
+      "description": "person_004 appeared",
+      "event_type": "appeared",
+      "object_name": "person_004",
+      "sequence_number": 333,
+      "timestamp": "2026-08-18T07:46:54.429866+00:00",
+      "track_id": 4
+    },
+    {
+      "description": "person_004 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_004",
+      "sequence_number": 334,
+      "timestamp": "2026-08-18T07:46:55.365941+00:00",
+      "track_id": 4
+    },
+    {
+      "description": "person_005 appeared",
+      "event_type": "appeared",
+      "object_name": "person_005",
+      "sequence_number": 335,
+      "timestamp": "2026-08-18T07:46:55.675262+00:00",
+      "track_id": 5
+    },
+    {
+      "description": "person_005 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_005",
+      "sequence_number": 336,
+      "timestamp": "2026-08-18T07:46:56.726038+00:00",
+      "track_id": 5
+    },
+    {
+      "description": "person_006 appeared",
+      "event_type": "appeared",
+      "object_name": "person_006",
+      "sequence_number": 337,
+      "timestamp": "2026-08-18T07:46:56.943088+00:00",
+      "track_id": 6
+    },
+    {
+      "description": "person_006 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_006",
+      "sequence_number": 338,
+      "timestamp": "2026-08-18T07:46:57.423789+00:00",
+      "track_id": 6
+    },
+    {
+      "description": "cell phone_007 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_007",
+      "sequence_number": 339,
+      "timestamp": "2026-08-18T07:46:57.517151+00:00",
+      "track_id": 7
+    },
+    {
+      "description": "cell phone_007 started moving",
+      "event_type": "started moving",
+      "object_name": "cell phone_007",
+      "sequence_number": 340,
+      "timestamp": "2026-08-18T07:46:57.625248+00:00",
+      "track_id": 7
+    },
+    {
+      "description": "person_007 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "person_007",
+      "sequence_number": 341,
+      "timestamp": "2026-08-18T07:47:02.133913+00:00",
+      "track_id": 7
+    },
+    {
+      "description": "person_000 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_000",
+      "sequence_number": 342,
+      "timestamp": "2026-08-18T07:47:04.150918+00:00",
+      "track_id": 0
+    },
+    {
+      "description": "person_008 appeared",
+      "event_type": "appeared",
+      "object_name": "person_008",
+      "sequence_number": 343,
+      "timestamp": "2026-08-18T07:47:04.553880+00:00",
+      "track_id": 8
+    },
+    {
+      "description": "person_008 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_008",
+      "sequence_number": 344,
+      "timestamp": "2026-08-18T07:47:04.897070+00:00",
+      "track_id": 8
+    },
+    {
+      "description": "cell phone_009 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_009",
+      "sequence_number": 345,
+      "timestamp": "2026-08-18T07:47:05.843780+00:00",
+      "track_id": 9
+    },
+    {
+      "description": "cell phone_009 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_009",
+      "sequence_number": 346,
+      "timestamp": "2026-08-18T07:47:06.200823+00:00",
+      "track_id": 9
+    },
+    {
+      "description": "cell phone_010 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_010",
+      "sequence_number": 347,
+      "timestamp": "2026-08-18T07:47:07.431826+00:00",
+      "track_id": 10
+    },
+    {
+      "description": "cell phone_010 started moving",
+      "event_type": "started moving",
+      "object_name": "cell phone_010",
+      "sequence_number": 348,
+      "timestamp": "2026-08-18T07:47:07.558663+00:00",
+      "track_id": 10
+    },
+    {
+      "description": "person_010 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "person_010",
+      "sequence_number": 349,
+      "timestamp": "2026-08-18T07:47:09.112727+00:00",
+      "track_id": 10
+    },
+    {
+      "description": "person_010 stopped moving",
+      "event_type": "stopped moving",
+      "object_name": "person_010",
+      "sequence_number": 350,
+      "timestamp": "2026-08-18T07:47:14.861877+00:00",
+      "track_id": 10
+    },
+    {
+      "description": "person_010 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_010",
+      "sequence_number": 351,
+      "timestamp": "2026-08-18T07:47:16.448608+00:00",
+      "track_id": 10
+    },
+    {
+      "description": "person_011 appeared",
+      "event_type": "appeared",
+      "object_name": "person_011",
+      "sequence_number": 352,
+      "timestamp": "2026-08-18T07:47:16.743362+00:00",
+      "track_id": 11
+    },
+    {
+      "description": "person_011 disappeared",
+      "event_type": "disappeared",
+      "object_name": "person_011",
+      "sequence_number": 353,
+      "timestamp": "2026-08-18T07:47:18.036340+00:00",
+      "track_id": 11
+    },
+    {
+      "description": "cell phone_012 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_012",
+      "sequence_number": 354,
+      "timestamp": "2026-08-18T07:47:20.167890+00:00",
+      "track_id": 12
+    },
+    {
+      "description": "cell phone_012 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_012",
+      "sequence_number": 355,
+      "timestamp": "2026-08-18T07:47:20.602440+00:00",
+      "track_id": 12
+    },
+    {
+      "description": "cell phone_013 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_013",
+      "sequence_number": 356,
+      "timestamp": "2026-08-18T07:47:21.041237+00:00",
+      "track_id": 13
+    },
+    {
+      "description": "cell phone_013 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_013",
+      "sequence_number": 357,
+      "timestamp": "2026-08-18T07:47:21.398950+00:00",
+      "track_id": 13
+    },
+    {
+      "description": "cell phone_014 appeared",
+      "event_type": "appeared",
+      "object_name": "cell phone_014",
+      "sequence_number": 358,
+      "timestamp": "2026-08-18T07:47:21.630197+00:00",
+      "track_id": 14
+    },
+    {
+      "description": "cell phone_014 disappeared",
+      "event_type": "disappeared",
+      "object_name": "cell phone_014",
+      "sequence_number": 359,
+      "timestamp": "2026-08-18T07:47:21.988388+00:00",
+      "track_id": 14
+    },
+    {
+      "description": "person_015 appeared",
+      "event_type": "appeared",
+      "object_name": "person_015",
+      "sequence_number": 360,
+      "timestamp": "2026-08-18T07:47:23.328323+00:00",
+      "track_id": 15
+    },
+    {
+      "description": "person_015 started moving",
+      "event_type": "started moving",
+      "object_name": "person_015",
+      "sequence_number": 361,
+      "timestamp": "2026-08-18T07:47:23.700911+00:00",
+      "track_id": 15
     }
   ]
 }

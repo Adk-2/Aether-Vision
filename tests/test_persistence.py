@@ -225,13 +225,122 @@ class PersistenceTests(unittest.TestCase):
             pipeline._print_persistent_memory()
 
         text = output.getvalue()
-        self.assertIn("Remembered Objects:", text)
-        self.assertIn("Historical Events:", text)
-        self.assertIn("Movement Noise Suppressed:", text)
-        self.assertIn("Track Identity: 002", text)
-        self.assertIn("historical, not currently visible", text)
+        self.assertIn("========== AETHER MEMORY ==========", text)
+        self.assertIn("OBJECTS", text)
+        self.assertIn("RECENT EVENTS", text)
+        self.assertIn("MOVEMENT STATISTICS", text)
+        self.assertIn("Movement Events Suppressed:", text)
+        self.assertIn("Current Status: Not observed", text)
         self.assertLessEqual(text.count("started moving"), 1)
         self.assertLessEqual(text.count("stopped moving"), 1)
+
+    def test_multiple_track_identities_aggregate_into_one_category(self) -> None:
+        pipeline = _pipeline()
+        pipeline.memory_engine.store.add(
+            _record(track_id=6, object_name="cell phone_006", seconds=1)
+        )
+        pipeline.memory_engine.store.add(
+            _record(track_id=8, object_name="cell phone_008", seconds=2)
+        )
+        pipeline.memory_engine.store.add(
+            _record(track_id=9, object_name="cell phone_009", seconds=3)
+        )
+
+        summaries = pipeline._persistent_object_summaries(
+            pipeline.memory_engine.store.list_all()
+        )
+
+        self.assertEqual(len(summaries), 1)
+        self.assertEqual(summaries[0].category, "cell phone")
+
+    def test_aggregation_reports_observation_count_correctly(self) -> None:
+        pipeline = _pipeline()
+        for track_id in [6, 8, 9, 10]:
+            pipeline.memory_engine.store.add(
+                _record(
+                    track_id=track_id,
+                    object_name=f"cell phone_{track_id:03d}",
+                    seconds=track_id,
+                )
+            )
+
+        summary = pipeline._persistent_object_summaries(
+            pipeline.memory_engine.store.list_all()
+        )[0]
+
+        self.assertEqual(summary.observations, 4)
+        self.assertEqual(summary.track_identities_observed, 4)
+
+    def test_aggregation_reports_current_vs_historical_status(self) -> None:
+        pipeline = _pipeline()
+        pipeline.memory_engine.store.add(
+            _record(
+                track_id=6,
+                object_name="cell phone_006",
+                status=MemoryStatus.MOVING,
+            )
+        )
+        pipeline.memory_engine.store.add(
+            _record(
+                track_id=8,
+                object_name="cell phone_008",
+                status=MemoryStatus.LOST,
+                restored=True,
+            )
+        )
+
+        historical = pipeline._persistent_object_summaries(
+            pipeline.memory_engine.store.list_all()
+        )[0]
+        pipeline._visible_track_ids = {6}
+        current = pipeline._persistent_object_summaries(
+            pipeline.memory_engine.store.list_all()
+        )[0]
+
+        self.assertFalse(historical.currently_observed)
+        self.assertTrue(current.currently_observed)
+
+    def test_last_known_state_is_separate_from_current_status(self) -> None:
+        pipeline = _pipeline()
+        pipeline.memory_engine.store.add(
+            _record(
+                track_id=6,
+                object_name="cell phone_006",
+                status=MemoryStatus.MOVING,
+                restored=True,
+            )
+        )
+        output = io.StringIO()
+
+        with redirect_stdout(output):
+            pipeline._print_persistent_memory()
+
+        text = output.getvalue()
+        self.assertIn("Current Status: Not observed", text)
+        self.assertIn("Last Known State: Moving", text)
+        self.assertNotIn("Status: MOVING", text)
+
+    def test_h_output_does_not_expose_raw_track_identity_wall(self) -> None:
+        pipeline = _pipeline()
+        for track_id in range(1, 13):
+            name = f"cell phone_{track_id:03d}"
+            pipeline.memory_engine.store.add(
+                _record(track_id=track_id, object_name=name, seconds=track_id)
+            )
+            pipeline.timeline.process(
+                [_event(object_name=name, track_id=track_id, seconds=track_id)]
+            )
+        output = io.StringIO()
+
+        with redirect_stdout(output):
+            pipeline._print_persistent_memory()
+
+        text = output.getvalue()
+        self.assertEqual(text.count("Cell Phone"), 11)
+        self.assertNotIn("cell phone_001", text)
+        self.assertNotIn("cell phone_012", text)
+        self.assertNotIn("Track Identity", text)
+        self.assertEqual(text.count("Observations: 12"), 1)
 
     def test_historical_object_is_distinguished_from_current_object(self) -> None:
         memory_engine = MemoryEngine()
@@ -296,6 +405,17 @@ def _record(
         history=history or [event],
         confidence=0.91,
         restored=restored,
+    )
+
+
+def _pipeline() -> PerceptionPipeline:
+    return PerceptionPipeline(
+        manager=object(),
+        detector=object(),
+        adapter=object(),
+        renderer=object(),
+        tracker=object(),
+        persistence_store=FailingPersistenceStore(),
     )
 
 
