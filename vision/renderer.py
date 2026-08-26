@@ -88,7 +88,7 @@ class Renderer:
             ord(PERSISTENT_MEMORY_KEY),
             ord(PERSISTENT_MEMORY_KEY.upper()),
         )
-        return key == ord(QUIT_KEY)
+        return key in (ord(QUIT_KEY), ord(QUIT_KEY.upper()))
 
     @staticmethod
     def _draw_track(image: object, track: "Track") -> None:

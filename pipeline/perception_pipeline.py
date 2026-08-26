@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from time import perf_counter
 
-from assistant import Assistant
+from assistant import Assistant, QueryEngine
 from belief import BeliefEngine, BeliefState, alternatives
 from camera import CameraManager
 from events import Event, EventEngine, EventFilter
@@ -82,6 +82,7 @@ class PerceptionPipeline:
         reasoning_engine: ReasoningEngine | None = None,
         planner: Planner | None = None,
         assistant: Assistant | None = None,
+        query_engine: QueryEngine | None = None,
         persistence_store: PersistenceStore | None = None,
     ) -> None:
         self.camera_manager = manager or CameraManager()
@@ -128,6 +129,7 @@ class PerceptionPipeline:
             self.reasoning_engine,
             self.planner,
         )
+        self.query_engine = query_engine or QueryEngine()
         self._restore_persistent_memory()
 
     def start(self) -> None:
@@ -222,13 +224,32 @@ class PerceptionPipeline:
             self._print_persistent_memory()
 
     def _ask_assistant(self) -> None:
+        print("\n========== ASK AETHER ==========")
+        print("Type your question in the terminal:")
         try:
-            query = input("Ask Aether > ")
+            query = input("Question: ")
         except EOFError:
+            print("================================")
             return
         if not query.strip():
+            print("================================")
             return
-        print(self.assistant.answer(query))
+        response = self.query_engine.answer(
+            query,
+            self._current_visible_tracks(),
+            self.memory_engine,
+            self.timeline,
+        )
+        print("\nAether:")
+        print(response.answer)
+        print("================================")
+
+    def _current_visible_tracks(self) -> list[Track]:
+        return [
+            track
+            for track in self.tracker.get_active_tracks()
+            if track.track_id in self._visible_track_ids
+        ]
 
     @staticmethod
     def _default_rule_registry() -> RuleRegistry:
