@@ -9,6 +9,7 @@ from .scenarios import (
     event_quality,
     identity_stability,
     planner_quality,
+    query_accuracy,
     reasoning_accuracy,
 )
 
@@ -25,6 +26,7 @@ class Evaluator:
             event_quality.run,
             reasoning_accuracy.run,
             planner_quality.run,
+            query_accuracy.run,
         ]
 
     def run(self) -> EvaluationReport:
@@ -32,9 +34,10 @@ class Evaluator:
         return EvaluationReport([scenario() for scenario in self._scenarios])
 
 
-def main() -> None:
+def main(markdown: bool = False) -> None:
     """Run evaluation benchmarks and print a console report."""
-    Evaluator().run().print_console()
+    report = Evaluator().run()
+    print(report.to_markdown() if markdown else report.to_console_text())
 
 
 if __name__ == "__main__":

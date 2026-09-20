@@ -1,5 +1,6 @@
 """Orchestration for one complete perception cycle."""
 
+from collections import deque
 from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import datetime
@@ -130,6 +131,7 @@ class PerceptionPipeline:
             self.planner,
         )
         self.query_engine = query_engine or QueryEngine()
+        self._frame_durations: deque[float] = deque(maxlen=30)
         self._restore_persistent_memory()
 
     def start(self) -> None:
@@ -189,10 +191,13 @@ class PerceptionPipeline:
         self.camera_manager.stop()
         self.renderer.close()
 
-    @staticmethod
-    def _calculate_fps(iteration_started: float) -> float:
+    def _calculate_fps(self, iteration_started: float) -> float:
         elapsed_seconds = perf_counter() - iteration_started
-        return 1.0 / elapsed_seconds if elapsed_seconds > 0.0 else ZERO_FPS
+        if elapsed_seconds <= 0.0:
+            return ZERO_FPS
+        self._frame_durations.append(elapsed_seconds)
+        average_duration = sum(self._frame_durations) / len(self._frame_durations)
+        return 1.0 / average_duration if average_duration > 0.0 else ZERO_FPS
 
     @staticmethod
     def _print_events(events: list[Event]) -> None:
