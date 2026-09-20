@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any
 
-from belief import BeliefState
+from belief import MIN_BELIEF_CONFIDENCE, BeliefState
 from events import Event, EventType
 from memory import MemoryRecord, MemoryStatus
 from timeline import TimelineEntry
@@ -179,7 +179,7 @@ def _belief_to_json(state: BeliefState) -> dict[str, Any]:
 def _belief_from_json(data: dict[str, Any]) -> BeliefState | None:
     try:
         alternatives = data.get("alternative_beliefs", {})
-        return BeliefState(
+        state = BeliefState(
             track_id=int(data["track_id"]),
             current_belief=str(data["current_belief"]),
             confidence=float(data["confidence"]),
@@ -192,8 +192,22 @@ def _belief_from_json(data: dict[str, Any]) -> BeliefState | None:
             if isinstance(alternatives, dict)
             else {},
         )
+        return state if _is_valid_belief(state) else None
     except (KeyError, TypeError, ValueError):
         return None
+
+
+def _is_valid_belief(state: BeliefState) -> bool:
+    if state.confidence < MIN_BELIEF_CONFIDENCE:
+        return False
+    if state.frames_stable < 1:
+        return False
+    state.alternative_beliefs = {
+        label: confidence
+        for label, confidence in state.alternative_beliefs.items()
+        if confidence >= MIN_BELIEF_CONFIDENCE
+    }
+    return True
 
 
 def _parse_datetime(value: Any) -> datetime:

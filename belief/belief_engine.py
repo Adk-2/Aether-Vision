@@ -2,7 +2,7 @@
 
 from identity import Identity
 
-from .belief_policy import BeliefPolicy
+from .belief_policy import MIN_BELIEF_CONFIDENCE, BeliefPolicy
 from .belief_state import BeliefState
 from .exceptions import BeliefError
 
@@ -20,9 +20,12 @@ class BeliefEngine:
         if len(track_ids) != len(set(track_ids)):
             raise BeliefError("Identities must have unique track identifiers")
         observed_track_ids = set(track_ids)
-        for track_id, state in self._beliefs.items():
+        for track_id, state in list(self._beliefs.items()):
             if track_id not in observed_track_ids:
                 self._policy.decay(state)
+                self._sanitize_alternatives(state)
+                if state.confidence < MIN_BELIEF_CONFIDENCE:
+                    self._beliefs.pop(track_id, None)
         updated = []
         for identity in identities:
             state = self._beliefs.get(identity.track_id)
@@ -44,7 +47,11 @@ class BeliefEngine:
 
     def replace_all(self, states: list[BeliefState]) -> None:
         """Replace belief state from a trusted serialized snapshot."""
-        self._beliefs = {state.track_id: state for state in states}
+        self._beliefs = {
+            state.track_id: state
+            for state in states
+            if self._is_persistable(state)
+        }
 
     @staticmethod
     def _create(identity: Identity) -> BeliefState:
@@ -55,3 +62,20 @@ class BeliefEngine:
             stable_since=identity.last_updated,
             frames_stable=1,
         )
+
+    @staticmethod
+    def _is_persistable(state: BeliefState) -> bool:
+        if state.confidence < MIN_BELIEF_CONFIDENCE:
+            return False
+        if state.frames_stable < 1:
+            return False
+        BeliefEngine._sanitize_alternatives(state)
+        return True
+
+    @staticmethod
+    def _sanitize_alternatives(state: BeliefState) -> None:
+        state.alternative_beliefs = {
+            label: confidence
+            for label, confidence in state.alternative_beliefs.items()
+            if confidence >= MIN_BELIEF_CONFIDENCE
+        }

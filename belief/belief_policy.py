@@ -8,6 +8,7 @@ from .exceptions import BeliefError
 MIN_CONSECUTIVE_OBSERVATIONS = 10
 MIN_CONFIDENCE_MARGIN = 0.20
 BELIEF_DECAY = 0.98
+MIN_BELIEF_CONFIDENCE = 0.05
 
 
 class BeliefPolicy:
@@ -31,10 +32,12 @@ class BeliefPolicy:
         return state
 
     def decay(self, state: BeliefState) -> BeliefState:
-        """Decay an unobserved belief and break any challenger streak."""
+        """Decay an unobserved belief and break any challenger streak.
+
+        Decay is applied once per frame, so confidence loss depends on FPS.
+        """
         state.confidence *= self._decay
         self._decay_alternatives(state)
-        state.frames_stable += 1
         self._clear_challenger(state.track_id)
         return state
 
