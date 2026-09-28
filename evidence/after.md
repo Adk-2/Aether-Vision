@@ -1,0 +1,24 @@
+| Scenario | Computation | Metrics |
+| --- | --- | --- |
+| Identity Stability | 20 fixed seeds; steady-state excludes each track's first 15 observations; cold start is 1-based first correct observation across all tracks/seeds. Adaptation: 30 old + 100 new frames. Burst: L=1..20 at confidence 0.9, fresh established track per L, including recovery. | steady-state pooled accuracy: 100.00% (9000/9000 steady-state pooled accuracy)<br>steady-state accuracy mean: 100.0000 %<br>cold start mean: 1.3250 frames<br>steady-state accuracy min: 100.0000 %<br>cold start min: 1 frames<br>steady-state accuracy max: 100.0000 %<br>cold start max: 4 frames<br>frames until switch: 31 frames<br>largest burst neither identity nor belief flips: 20 frames |
+| Belief Stability | 20 fixed seeds; steady-state excludes each track's first 15 observations; cold start is 1-based first correct observation across all tracks/seeds. Adaptation: 30 old + 100 new frames. Burst: L=1..20 at confidence 0.9, fresh established track per L, including recovery. | steady-state pooled accuracy: 100.00% (9000/9000 steady-state pooled accuracy)<br>steady-state accuracy mean: 100.0000 %<br>cold start mean: 10.3750 frames<br>steady-state accuracy min: 100.0000 %<br>cold start min: 10 frames<br>steady-state accuracy max: 100.0000 %<br>cold start max: 13 frames<br>frames until switch: 43 frames<br>largest burst neither identity nor belief flips: 20 frames |
+| Event Quality | Real EventEngine on >=30 multiset ground-truth events across two objects, with jitter/no-move frames, reappearance, simultaneous events, and stop/start cycles. | precision tp/(tp+fp): 100.00% (34/34 precision tp/(tp+fp))<br>recall tp/(tp+fn): 100.00% (34/34 recall tp/(tp+fn))<br>F1: 100.00% (tp=34; fp=0; fn=0)<br>jitter false-movement rate: 0.00% (0/8 jitter false-movement rate)<br>real moves missed: 0 events |
+| Event Pipeline Quality (engine + filter) | Default EventEngine then EventFilter, as PerceptionPipeline; hand-authored transitions, jitter, stop/start, disappearance and reappearance. | precision tp/(tp+fp): 100.00% (8/8 precision tp/(tp+fp))<br>recall tp/(tp+fn): 100.00% (8/8 recall tp/(tp+fn))<br>F1: 100.00% (tp=8; fp=0; fn=0)<br>jitter false-movement rate: 0.00% (0/2 jitter false-movement rate)<br>real moves missed: 0 events |
+| Reasoning Regression (golden cases) | Golden-output regression check for real ReasoningEngine rules over fixed memory/timeline/scene states; score is exact-match rate for conclusion tuples. | cases: 100.00% (9/9 cases) |
+| Planner Regression (golden cases) | Golden-output regression check for the real Planner over fixed knowledge/reasoning states; score is exact-match rate for ordered action descriptions AND absence of forbidden actions (shell-style patterns). | cases: 100.00% (6/6 cases) |
+| Query Accuracy | Real QueryEngine over fixed tracks, memory, and timeline; supported cases are grouped by intent and paraphrase coverage means expected source/text answered correctly. | CURRENT_OBJECTS supported: 100.00% (6/6 CURRENT_OBJECTS supported)<br>LAST_SEEN supported: 100.00% (6/6 LAST_SEEN supported)<br>RECENT_HISTORY supported: 100.00% (7/7 RECENT_HISTORY supported)<br>VISIBILITY supported: 100.00% (7/7 VISIBILITY supported)<br>WHERE_IS supported: 100.00% (8/8 WHERE_IS supported)<br>WHERE_WAS supported: 100.00% (6/6 WHERE_WAS supported)<br>supported questions: 100.00% (40/40 supported questions)<br>paraphrases: 0.00% (0/60 paraphrases)<br>supported confidently wrong answers: 0.00% (0/40 supported confidently wrong answers)<br>paraphrases confidently wrong answers: 0.00% (0/60 paraphrases confidently wrong answers) |
+| Note | Scenarios are synthetic/scripted and are not measured on real video. | |
+
+Identity Stability: seeds=[20260920, 20260921, 20260922, 20260923, 20260924, 20260925, 20260926, 20260927, 20260928, 20260929, 20260930, 20260931, 20260932, 20260933, 20260934, 20260935, 20260936, 20260937, 20260938, 20260939]; cold_start_samples=[1, 4, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3]; frames_until_switch=31.
+
+Belief Stability: seeds=[20260920, 20260921, 20260922, 20260923, 20260924, 20260925, 20260926, 20260927, 20260928, 20260929, 20260930, 20260931, 20260932, 20260933, 20260934, 20260935, 20260936, 20260937, 20260938, 20260939]; cold_start_samples=[10, 13, 10, 11, 10, 10, 10, 10, 11, 10, 10, 10, 11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 10, 10, 11, 11, 13, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 12]; frames_until_switch=43.
+
+Event Quality: tp=34; fp=0; fn=0; precision=1.0000; recall=1.0000; f1=1.0000; mismatches=[].
+
+Event Pipeline Quality (engine + filter): tp=8; fp=0; fn=0; precision=1.0000; recall=1.0000; f1=1.0000; mismatches=[].
+
+Reasoning Regression (golden cases): correct=9/9; mismatches=none.
+
+Planner Regression (golden cases): correct=6/6; mismatches=none.
+
+Query Accuracy: supported=40/40; paraphrase_coverage=0/60.
