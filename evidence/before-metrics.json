@@ -1,0 +1,54 @@
+{
+  "Identity Stability": {
+    "steady-state pooled accuracy": "100.00% (9000/9000 steady-state pooled accuracy)",
+    "steady-state accuracy mean": "100.0000 %",
+    "cold start mean": "1.3250 frames",
+    "steady-state accuracy min": "100.0000 %",
+    "cold start min": "1 frames",
+    "steady-state accuracy max": "100.0000 %",
+    "cold start max": "4 frames",
+    "frames until switch": "31 frames",
+    "largest burst neither identity nor belief flips": "20 frames"
+  },
+  "Belief Stability": {
+    "steady-state pooled accuracy": "99.57% (8961/9000 steady-state pooled accuracy)",
+    "steady-state accuracy mean": "99.5667 %",
+    "cold start mean": "5.4500 frames",
+    "steady-state accuracy min": "97.3333 %",
+    "cold start min": "1 frames",
+    "steady-state accuracy max": "100.0000 %",
+    "cold start max": "28 frames",
+    "frames until switch": "43 frames",
+    "largest burst neither identity nor belief flips": "20 frames"
+  },
+  "Event Quality": {
+    "precision tp/(tp+fp)": "80.95% (34/42 precision tp/(tp+fp))",
+    "recall tp/(tp+fn)": "100.00% (34/34 recall tp/(tp+fn))",
+    "F1": "89.47% (tp=34; fp=8; fn=0)",
+    "jitter false-movement rate": "100.00% (8/8 jitter false-movement rate)"
+  },
+  "Event Pipeline Quality (engine + filter)": {
+    "precision tp/(tp+fp)": "87.50% (7/8 precision tp/(tp+fp))",
+    "recall tp/(tp+fn)": "87.50% (7/8 recall tp/(tp+fn))",
+    "F1": "87.50% (tp=7; fp=1; fn=1)",
+    "jitter false-movement rate": "50.00% (1/2 jitter false-movement rate)"
+  },
+  "Reasoning Regression (golden cases)": {
+    "cases": "100.00% (9/9 cases)"
+  },
+  "Planner Regression (golden cases)": {
+    "cases": "100.00% (6/6 cases)"
+  },
+  "Query Accuracy": {
+    "CURRENT_OBJECTS supported": "100.00% (6/6 CURRENT_OBJECTS supported)",
+    "LAST_SEEN supported": "100.00% (6/6 LAST_SEEN supported)",
+    "RECENT_HISTORY supported": "100.00% (7/7 RECENT_HISTORY supported)",
+    "VISIBILITY supported": "100.00% (7/7 VISIBILITY supported)",
+    "WHERE_IS supported": "100.00% (8/8 WHERE_IS supported)",
+    "WHERE_WAS supported": "100.00% (6/6 WHERE_WAS supported)",
+    "supported questions": "100.00% (40/40 supported questions)",
+    "paraphrases": "0.00% (0/60 paraphrases)",
+    "supported confidently wrong answers": "0.00% (0/40 supported confidently wrong answers)",
+    "paraphrases confidently wrong answers": "0.00% (0/60 paraphrases confidently wrong answers)"
+  }
+}
