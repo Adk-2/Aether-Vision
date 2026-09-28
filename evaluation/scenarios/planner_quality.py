@@ -1,6 +1,7 @@
 """Measured benchmark for deterministic planner quality."""
 
 from dataclasses import dataclass
+from fnmatch import fnmatchcase
 
 from evaluation.benchmark import Benchmark
 from evaluation.metrics import Score
@@ -19,6 +20,7 @@ class PlannerCase:
     goal: Goal
     planner: Planner
     expected_actions: tuple[str, ...]
+    forbidden_actions: tuple[str, ...] = ()
 
 
 def cases() -> list[PlannerCase]:
@@ -40,8 +42,16 @@ def cases() -> list[PlannerCase]:
     )
     nearby_knowledge = _knowledge(
         [
-            record("keys_002", 2, MemoryStatus.LOST, position=(50, 60), events=[keys_event]),
-            record("chair_003", 3, MemoryStatus.STATIC, position=(55, 61), events=[chair_event]),
+            record(
+                "keys_002", 2, MemoryStatus.LOST, position=(50, 60), events=[keys_event]
+            ),
+            record(
+                "chair_003",
+                3,
+                MemoryStatus.STATIC,
+                position=(55, 61),
+                events=[chair_event],
+            ),
         ],
         [keys_event, chair_event],
         scene_with_near(2, 3, "keys_002", "chair_003"),
@@ -64,17 +74,44 @@ def cases() -> list[PlannerCase]:
         PlannerCase(
             goal=_goal("remote_009"),
             planner=_planner(unknown_knowledge),
-            expected_actions=(),
+            expected_actions=("Expand search area.",),
+        ),
+        # Independent negatives: explicit prohibitions also guard the oracle itself.
+        PlannerCase(
+            goal=_goal("cup_010"),
+            planner=_planner(
+                _knowledge(
+                    [record("cup_010", 10, MemoryStatus.STATIC, position=(7, 8))], []
+                )
+            ),
+            expected_actions=("Inspect last known location (7, 8).",),
+            forbidden_actions=("Expand search area.",),
         ),
         PlannerCase(
-            goal=_goal(""),
-            planner=_planner(unknown_knowledge),
-            expected_actions=(),
+            goal=_goal("bottle_011"),
+            planner=_planner(
+                _knowledge(
+                    [record("bottle_011", 11, MemoryStatus.ACTIVE, position=(9, 10))],
+                    [],
+                )
+            ),
+            expected_actions=("Inspect last known location (9, 10).",),
+            forbidden_actions=("Search near *",),
         ),
         PlannerCase(
-            goal=_goal("unobserved_object_999"),
-            planner=_planner(unknown_knowledge),
-            expected_actions=(),
+            goal=_goal("bag_012"),
+            planner=_planner(
+                _knowledge(
+                    [
+                        record("bag_012", 12, MemoryStatus.LOST, position=None),
+                        record("chair_013", 13, MemoryStatus.STATIC),
+                    ],
+                    [],
+                    scene_with_near(12, 13, "bag_012", "chair_013"),
+                )
+            ),
+            expected_actions=("Search near chair.",),
+            forbidden_actions=("Expand search area.",),
         ),
     ]
 
@@ -87,7 +124,11 @@ def evaluate(input_cases: list[PlannerCase] | None = None) -> Benchmark:
     for case in measured_cases:
         plan = case.planner.create_plan(case.goal)
         actual = tuple(action.description for action in plan.actions)
-        if actual == case.expected_actions:
+        if actual == case.expected_actions and not any(
+            fnmatchcase(action, forbidden)
+            for action in actual
+            for forbidden in case.forbidden_actions
+        ):
             correct += 1
         else:
             mismatches.append(case.goal.target_object)
@@ -97,8 +138,7 @@ def evaluate(input_cases: list[PlannerCase] | None = None) -> Benchmark:
         description=(
             "Golden-output regression check for the real Planner over fixed "
             "knowledge/reasoning states; score is exact-match rate for ordered "
-            "action descriptions, including negative cases where no action is "
-            "expected."
+            "action descriptions AND absence of forbidden actions (shell-style patterns)."
         ),
         expected_result=f"{total} exact ordered action lists.",
         actual_result=(

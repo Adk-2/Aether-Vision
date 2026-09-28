@@ -67,14 +67,16 @@ def cases() -> list[ReasoningCase]:
                 [record("cup_001", 1, MemoryStatus.STATIC, events=[cup_event])],
                 [cup_event],
             ),
-            expected_conclusions=(
-                "cup is probably still where it was last observed.",
-            ),
+            expected_conclusions=("cup is probably still where it was last observed.",),
         ),
         ReasoningCase(
             object_name="bag_002",
             knowledge=_knowledge(
-                [record("bag_002", 2, MemoryStatus.MOVING, seconds=1, events=bag_events)],
+                [
+                    record(
+                        "bag_002", 2, MemoryStatus.MOVING, seconds=1, events=bag_events
+                    )
+                ],
                 bag_events,
             ),
             expected_conclusions=("bag was recently moved.",),
@@ -83,7 +85,9 @@ def cases() -> list[ReasoningCase]:
             object_name="cell phone_003",
             knowledge=_knowledge(
                 [
-                    record("cell phone_003", 3, MemoryStatus.STATIC, events=[phone_event]),
+                    record(
+                        "cell phone_003", 3, MemoryStatus.STATIC, events=[phone_event]
+                    ),
                     record("book_004", 4, MemoryStatus.STATIC, events=[book_event]),
                 ],
                 [phone_event, book_event],
@@ -91,7 +95,7 @@ def cases() -> list[ReasoningCase]:
             ),
             expected_conclusions=(
                 "cell phone is probably still where it was last observed.",
-                "cell phone is near book_004.",
+                "cell phone is near book.",
             ),
         ),
         ReasoningCase(
@@ -116,14 +120,16 @@ def cases() -> list[ReasoningCase]:
             object_name="keys_006",
             knowledge=_knowledge(
                 [
-                    record("keys_006", 6, MemoryStatus.LOST, seconds=1, events=keys_events),
+                    record(
+                        "keys_006", 6, MemoryStatus.LOST, seconds=1, events=keys_events
+                    ),
                     record("chair_007", 7, MemoryStatus.STATIC, events=[chair_event]),
                 ],
                 [*keys_events, chair_event],
                 scene_with_near(6, 7, "keys_006", "chair_007"),
             ),
             expected_conclusions=(
-                "keys is near chair_007.",
+                "keys is near chair.",
                 "keys is probably occluded.",
                 "keys probably still exists outside the current camera view.",
             ),
@@ -150,6 +156,12 @@ def cases() -> list[ReasoningCase]:
                 ],
                 box_events,
             ),
+            expected_conclusions=(),
+        ),
+        # StationaryObjectRule requires STATIC; MOVING alone cannot imply stillness.
+        ReasoningCase(
+            object_name="cart_011",
+            knowledge=_knowledge([record("cart_011", 11, MemoryStatus.MOVING)], []),
             expected_conclusions=(),
         ),
         ReasoningCase(
