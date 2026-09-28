@@ -1,0 +1,28 @@
+SYNTHETIC isolation: one fixed track, unique immutable detections; 30 measured snapshots after 5 warm-up updates.
+| History entries | p50 update ms |
+| ---: | ---: |
+| 200 | 0.0041 |
+| 2000 | 0.0086 |
+
+cProfile for one 2000-entry snapshot (not used in latency medians):
+         27 function calls in 0.000 seconds
+
+   Ordered by: cumulative time
+   List reduced from 14 to 12 due to restriction <12>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 D:\Data Sciece Mastery\VisionOS\project_aether\world\world_state.py:31(update)
+        1    0.000    0.000    0.000    0.000 D:\Data Sciece Mastery\VisionOS\project_aether\world\object_registry.py:28(clear)
+        2    0.000    0.000    0.000    0.000 D:\Data Sciece Mastery\VisionOS\project_aether\world\world_state.py:48(<genexpr>)
+        1    0.000    0.000    0.000    0.000 C:\Users\ayush\AppData\Local\Programs\Python\Python312\Lib\dataclasses.py:1540(replace)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 D:\Data Sciece Mastery\VisionOS\project_aether\world\object_registry.py:32(values)
+        1    0.000    0.000    0.000    0.000 C:\Users\ayush\AppData\Local\Programs\Python\Python312\Lib\dataclasses.py:1296(_is_dataclass_instance)
+       10    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+        1    0.000    0.000    0.000    0.000 {method 'clear' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 {method 'values' of 'dict' objects}
+        3    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        1    0.000    0.000    0.000    0.000 <string>:2(__init__)
+
+
+

@@ -1,6 +1,6 @@
 """Current and immediately previous world state management."""
 
-from copy import deepcopy
+from dataclasses import replace
 from datetime import datetime
 
 from events.exceptions import WorldStateError
@@ -43,7 +43,12 @@ class WorldState:
             if track.active:
                 self._registry.register(track)
 
-        snapshot_tracks = deepcopy(self._registry.values())
+        # Detection is frozen and contains only immutable values. Detach the
+        # mutable Track and history list, while retaining all historical entries.
+        snapshot_tracks = tuple(
+            replace(track, history=list(track.history))
+            for track in self._registry.values()
+        )
         snapshot_time = timestamp or self._infer_timestamp(snapshot_tracks)
         snapshot = WorldSnapshot(
             timestamp=snapshot_time,
