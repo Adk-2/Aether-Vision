@@ -39,17 +39,24 @@ class StageTimings:
 
 
 def run(
-    video_path=None, frame_count=DEFAULT_FRAME_COUNT, model_path=DEFAULT_MODEL_PATH
+    video_path=None,
+    frame_count=DEFAULT_FRAME_COUNT,
+    model_path=DEFAULT_MODEL_PATH,
+    loop_video=False,
 ):
     if frame_count <= WARMUP:
         raise ValueError("Need more than five frames for warm-up and measurement")
+    if loop_video and not video_path:
+        raise ValueError("--loop-video requires --video")
     frames = (
-        _load_video_frames(video_path, frame_count)
+        (
+            _load_video_frames(video_path, frame_count, loop_video=True)
+            if loop_video
+            else _load_video_frames(video_path, frame_count)
+        )
         if video_path
         else _synthetic_frames(frame_count)
     )
-    if len(frames) <= WARMUP:
-        raise ValueError("Video has no frames remaining after five-frame warm-up")
     detector = VisionDetector(model_path) if video_path else None
     adapter, confidence, stabilizer = (
         DetectionAdapter(),
@@ -61,7 +68,12 @@ def run(
     memory, timeline, query = MemoryEngine(), Timeline(), QueryEngine()
     timings, durations = StageTimings(), []
     image_size = "n/a"
+    source_size = "n/a"
+    observed_frames = 0
+    history_sizes, track_counts = [], []
     for index, frame in enumerate(frames):
+        observed_frames += 1
+        source_size = f"{frame.width}x{frame.height}"
         measured = index >= WARMUP
 
         def timed(name, function, *args):
@@ -120,10 +132,15 @@ def run(
         timed("query", query.answer, "where is the cup", tracks, memory, timeline)
         if measured:
             durations.append(perf_counter() - start)
+            history_sizes.append(sum(len(track.history) for track in tracks))
+            track_counts.append(len(tracks))
+    if not durations:
+        raise ValueError("Video has no frames remaining after five-frame warm-up")
     lines = [
         "========== Project Aether Performance ==========",
-        f"Frames: {len(frames)}; warm-up discarded: {WARMUP}; measured: {len(durations)}",
+        f"Frames: {observed_frames}; warm-up discarded: {WARMUP}; measured: {len(durations)}",
         f"Input: {video_path or 'synthetic frames'}",
+        f"Requested frames: {frame_count}; replay at EOF: {loop_video}",
         f"Platform: {platform.platform()}",
         f"CPU: {platform.processor() or 'unknown'}",
     ]
@@ -132,7 +149,7 @@ def run(
         lines.extend(
             [
                 f"Model path: {Path(model_path).resolve()}",
-                f"Image size: inference={image_size}; source={frames[0].width}x{frames[0].height}",
+                f"Image size: inference={image_size}; source={source_size}",
                 "Timing scope: detect through query; excludes video decoding, rendering and persistence.",
                 f"End-to-end mean FPS: {len(durations) / elapsed:.4f}",
                 f"FPS excluding detector: {len(durations) / (elapsed - sum(timings.samples['detector'])):.4f}",
@@ -147,6 +164,11 @@ def run(
         lines.append(
             f"| {stage} | {_percentile(samples, 50) * 1000:.4f} | {_percentile(samples, 95) * 1000:.4f} |"
         )
+    lines.extend(
+        window_report(
+            timings.samples["world + apply beliefs"], history_sizes, track_counts
+        )
+    )
     lines.append("================================================")
     return "\n".join(lines)
 
@@ -156,8 +178,13 @@ def main():
     parser.add_argument("--video")
     parser.add_argument("--frames", type=int, default=DEFAULT_FRAME_COUNT)
     parser.add_argument("--model", default=DEFAULT_MODEL_PATH)
+    parser.add_argument(
+        "--loop-video",
+        action="store_true",
+        help="explicitly replay the clip at EOF, retaining pipeline state",
+    )
     args = parser.parse_args()
-    print(run(args.video, args.frames, args.model))
+    print(run(args.video, args.frames, args.model, args.loop_video))
 
 
 def _synthetic_frames(frame_count: int) -> list[Frame]:
@@ -174,39 +201,59 @@ def _synthetic_frames(frame_count: int) -> list[Frame]:
     ]
 
 
-def _load_video_frames(video_path: str, frame_count: int) -> list[Frame]:
-    try:
-        import cv2
-    except ImportError as exc:
-        raise RuntimeError("OpenCV is required for --video benchmarking") from exc
+def _load_video_frames(video_path: str, frame_count: int, loop_video: bool = False):
+    """Stream decoded real frames; replay only when explicitly requested."""
+    import cv2
 
     capture = cv2.VideoCapture(video_path)
     if not capture.isOpened():
         capture.release()
         raise ValueError(f"Cannot open video: {video_path}")
-    frames: list[Frame] = []
-    index = 0
-    while index < frame_count:
-        ok, image = capture.read()
-        if not ok:
-            break
-        height, width = image.shape[:2]
-        channels = image.shape[2] if len(image.shape) == 3 else 1
-        frames.append(
-            Frame(
-                frame_id=index,
+    count = 0
+    try:
+        while count < frame_count:
+            ok, image = capture.read()
+            if not ok and loop_video and count:
+                capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                ok, image = capture.read()
+            if not ok:
+                break
+            height, width = image.shape[:2]
+            yield Frame(
+                frame_id=count,
                 image=image,
-                timestamp=BASE_TIME + timedelta(milliseconds=33 * index),
+                timestamp=BASE_TIME + timedelta(milliseconds=33 * count),
                 width=width,
                 height=height,
-                channels=channels,
+                channels=image.shape[2] if len(image.shape) == 3 else 1,
             )
-        )
-        index += 1
-    capture.release()
-    if not frames:
+            count += 1
+    finally:
+        capture.release()
+    if not count:
         raise ValueError(f"Video yielded zero frames: {video_path}")
-    return frames
+
+
+def window_report(samples, history_sizes, track_counts):
+    """Compare disjoint measured windows after warm-up, preserving all raw samples."""
+    if len(samples) < 400:
+        return ["World first/last 200 measured frames: n/a (need at least 400 samples)"]
+    lines = [
+        "",
+        "| World window (1-based source frame) | p50 ms | p50 history entries copied | p50 active tracks |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for label, start, stop in [
+        ("first 200", 0, 200),
+        ("last 200", len(samples) - 200, len(samples)),
+    ]:
+        lines.append(
+            f"| {label}: {start + WARMUP + 1}-{stop + WARMUP} | "
+            f"{_percentile(samples[start:stop], 50) * 1000:.4f} | "
+            f"{_percentile(history_sizes[start:stop], 50):.1f} | "
+            f"{_percentile(track_counts[start:stop], 50):.1f} |"
+        )
+    return lines
 
 
 def _synthetic_detections(frame_index: int, timestamp: datetime) -> list[Detection]:

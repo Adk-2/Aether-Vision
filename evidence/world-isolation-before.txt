@@ -1,0 +1,28 @@
+SYNTHETIC isolation: one fixed track, unique immutable detections; 30 measured snapshots after 5 warm-up updates.
+| History entries | p50 update ms |
+| ---: | ---: |
+| 200 | 3.1331 |
+| 2000 | 29.5920 |
+
+cProfile for one 2000-entry snapshot (not used in latency medians):
+         314174 function calls (256149 primitive calls) in 0.137 seconds
+
+   Ordered by: cumulative time
+   List reduced from 30 to 12 due to restriction <12>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    0.137    0.137 D:\Data Sciece Mastery\VisionOS\project_aether\world\world_state.py:31(update)
+  48025/1    0.060    0.000    0.136    0.136 C:\Users\ayush\AppData\Local\Programs\Python\Python312\Lib\copy.py:118(deepcopy)
+   4001/1    0.008    0.000    0.136    0.136 C:\Users\ayush\AppData\Local\Programs\Python\Python312\Lib\copy.py:200(_deepcopy_tuple)
+   4002/1    0.009    0.000    0.136    0.136 C:\Users\ayush\AppData\Local\Programs\Python\Python312\Lib\copy.py:247(_reconstruct)
+   2001/1    0.010    0.000    0.136    0.136 C:\Users\ayush\AppData\Local\Programs\Python\Python312\Lib\copy.py:217(_deepcopy_dict)
+        1    0.001    0.001    0.136    0.136 C:\Users\ayush\AppData\Local\Programs\Python\Python312\Lib\copy.py:191(_deepcopy_list)
+   100050    0.016    0.000    0.016    0.000 {method 'get' of 'dict' objects}
+    64036    0.011    0.000    0.011    0.000 {built-in method builtins.id}
+     8004    0.002    0.000    0.010    0.000 C:\Users\ayush\AppData\Local\Programs\Python\Python312\Lib\copy.py:252(<genexpr>)
+     6005    0.003    0.000    0.005    0.000 C:\Users\ayush\AppData\Local\Programs\Python\Python312\Lib\copy.py:231(_keep_alive)
+    38018    0.004    0.000    0.004    0.000 C:\Users\ayush\AppData\Local\Programs\Python\Python312\Lib\copy.py:172(_deepcopy_atomic)
+     8004    0.002    0.000    0.002    0.000 {built-in method builtins.getattr}
+
+
+

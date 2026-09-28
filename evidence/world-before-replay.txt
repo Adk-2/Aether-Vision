@@ -1,0 +1,33 @@
+========== Project Aether Performance ==========
+Frames: 2000; warm-up discarded: 5; measured: 1995
+Input: data/evaluation/vtest.avi
+Requested frames: 2000; replay at EOF: True
+Platform: Windows-11-10.0.26200-SP0
+CPU: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+Model path: D:\Data Sciece Mastery\VisionOS\project_aether\yolov8n.pt
+Image size: inference=[640, 640]; source=768x576
+Timing scope: detect through query; excludes video decoding, rendering and persistence.
+End-to-end mean FPS: 11.2749
+FPS excluding detector: 20.6791
+
+| Stage | p50 latency ms | p95 latency ms |
+| --- | ---: | ---: |
+| detector | 39.7635 | 76.8363 |
+| adapter | 1.9444 | 3.7193 |
+| confidence filter | 0.0024 | 0.0039 |
+| tracker | 0.1073 | 0.1745 |
+| stabilizer | 0.1760 | 0.2759 |
+| identity | 0.5058 | 0.9660 |
+| belief | 0.0337 | 0.0521 |
+| world + apply beliefs | 42.9737 | 83.5749 |
+| event engine | 0.0657 | 0.1141 |
+| event filter | 0.0080 | 0.0231 |
+| memory | 0.0007 | 0.0100 |
+| timeline | 0.0006 | 0.0112 |
+| query | 0.1741 | 0.3206 |
+
+| World window (1-based source frame) | p50 ms | p50 history entries copied | p50 active tracks |
+| --- | ---: | ---: | ---: |
+| first 200: 6-205 | 11.5948 | 629.0 | 9.0 |
+| last 200: 1801-2000 | 71.3321 | 3018.5 | 9.0 |
+================================================
