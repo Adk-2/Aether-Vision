@@ -40,7 +40,7 @@ def noise_measurements(frames, component):
         for o in frame.observations:
             age = ages.get(o.track_id, 0) + 1
             ages[o.track_id] = age
-            matches = outputs[component][o.track_id] == o.expected_label
+            matches = outputs[component].get(o.track_id) == o.expected_label
             if matches:
                 first_correct.setdefault(o.track_id, age)
             if age > 15:
@@ -57,7 +57,7 @@ def frames_until_switch(frames, component):
         zip(frames, predictions(frames), strict=True)
     ):
         if index >= 30 and all(
-            outputs[component][o.track_id] == o.expected_label
+            outputs[component].get(o.track_id) == o.expected_label
             for o in frame.observations
         ):
             return index - 30 + 1
@@ -82,7 +82,7 @@ def burst_tolerance(expected_label="cup"):
         outputs = list(predictions(frames))
         safe.append(
             all(
-                a[1] == expected_label and b[1] == expected_label
+                a.get(1) == expected_label and b.get(1) == expected_label
                 for a, b in outputs[30:]
             )
         )

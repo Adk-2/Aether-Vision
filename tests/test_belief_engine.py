@@ -12,6 +12,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from belief import BeliefEngine, BeliefPolicy, BeliefState, MIN_BELIEF_CONFIDENCE
 from identity import Identity, LabelHistory
+from belief import MIN_CONSECUTIVE_OBSERVATIONS
 from storage import PersistenceStore
 
 
@@ -43,7 +44,8 @@ class BeliefEngineTests(unittest.TestCase):
 
     def test_continuously_observed_belief_is_not_pruned(self) -> None:
         engine = BeliefEngine()
-        engine.update([_identity(confidence=0.9)])
+        for _ in range(MIN_CONSECUTIVE_OBSERVATIONS):
+            engine.update([_identity(confidence=0.9)])
         unobserved_frames_to_prune = _unobserved_frames_to_prune()
 
         for _ in range(unobserved_frames_to_prune):
@@ -69,7 +71,9 @@ class BeliefEngineTests(unittest.TestCase):
 
 def _unobserved_frames_to_prune() -> int:
     engine = BeliefEngine()
-    engine.update([_identity(confidence=0.9)])
+    for _ in range(MIN_CONSECUTIVE_OBSERVATIONS):
+        engine.update([_identity(confidence=0.9)])
+    assert engine.get(1) is not None
     frames_elapsed = 0
     while engine.get(1) is not None:
         engine.update([])

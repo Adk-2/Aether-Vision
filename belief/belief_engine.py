@@ -2,7 +2,11 @@
 
 from identity import Identity
 
-from .belief_policy import MIN_BELIEF_CONFIDENCE, BeliefPolicy
+from .belief_policy import (
+    MIN_BELIEF_CONFIDENCE,
+    MIN_CONSECUTIVE_OBSERVATIONS,
+    BeliefPolicy,
+)
 from .belief_state import BeliefState
 from .exceptions import BeliefError
 
@@ -13,6 +17,7 @@ class BeliefEngine:
     def __init__(self, policy: BeliefPolicy | None = None) -> None:
         self._policy = policy or BeliefPolicy()
         self._beliefs: dict[int, BeliefState] = {}
+        self._pending: dict[int, tuple[str, int]] = {}
 
     def update(self, identities: list[Identity]) -> list[BeliefState]:
         """Update beliefs from the current frame's identities."""
@@ -20,6 +25,11 @@ class BeliefEngine:
         if len(track_ids) != len(set(track_ids)):
             raise BeliefError("Identities must have unique track identifiers")
         observed_track_ids = set(track_ids)
+        self._pending = {
+            track_id: candidate
+            for track_id, candidate in self._pending.items()
+            if track_id in observed_track_ids
+        }
         for track_id, state in list(self._beliefs.items()):
             if track_id not in observed_track_ids:
                 self._policy.decay(state)
@@ -30,7 +40,13 @@ class BeliefEngine:
         for identity in identities:
             state = self._beliefs.get(identity.track_id)
             if state is None:
+                label, streak = self._pending.get(identity.track_id, ("", 0))
+                streak = streak + 1 if label == identity.current_label else 1
+                self._pending[identity.track_id] = (identity.current_label, streak)
+                if streak < MIN_CONSECUTIVE_OBSERVATIONS:
+                    continue
                 state = self._create(identity)
+                self._pending.pop(identity.track_id, None)
                 self._beliefs[identity.track_id] = state
             else:
                 self._policy.apply(state, identity)
@@ -47,10 +63,9 @@ class BeliefEngine:
 
     def replace_all(self, states: list[BeliefState]) -> None:
         """Replace belief state from a trusted serialized snapshot."""
+        self._pending.clear()
         self._beliefs = {
-            state.track_id: state
-            for state in states
-            if self._is_persistable(state)
+            state.track_id: state for state in states if self._is_persistable(state)
         }
 
     @staticmethod
