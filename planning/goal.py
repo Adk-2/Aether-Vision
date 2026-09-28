@@ -3,6 +3,8 @@
 from dataclasses import dataclass
 from datetime import datetime
 
+from .exceptions import PlanningError
+
 
 @dataclass(frozen=True)
 class Goal:
@@ -12,3 +14,7 @@ class Goal:
     target_object: str
     priority: int
     timestamp: datetime
+
+    def __post_init__(self) -> None:
+        if not self.target_object.strip():
+            raise PlanningError("Goal target must not be empty or whitespace-only")

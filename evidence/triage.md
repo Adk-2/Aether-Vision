@@ -17,3 +17,5 @@ User-authorized oracle corrections; no reasoning/planner behavior changes in ste
 A planner case passes only when the complete ordered expected action tuple matches AND no actual action matches any forbidden pattern. These expectations were written from rule contracts and the user decision, not by copying observed outputs.
 
 Step A verification: `python -m pytest -q`: 67 passed, 6 subtests passed. `python -m evaluation --markdown`: reasoning 9/9, planner 6/6. Full outputs: triage-oracles-pytest.txt and triage-oracles-evaluation.md.
+
+Step B: `Goal.__post_init__` now rejects empty/whitespace-only targets with the existing `planning.exceptions.PlanningError`, as explicitly required by Phase 3a-1 B.6. Nonblank targets are preserved; planner rule behavior is unchanged. Unit tests cover empty, spaces, tabs/newlines, and preservation of a nonblank target. Verification: 71 passed, 6 subtests passed; reasoning 9/9 and planner 6/6. Full outputs: goal-pytest.txt and goal-evaluation.md.
