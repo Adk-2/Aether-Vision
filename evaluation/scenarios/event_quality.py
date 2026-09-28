@@ -8,6 +8,7 @@ from evaluation.benchmark import Benchmark
 from evaluation.metrics import Measurement, Score
 from evaluation.scenarios.common import BASE_TIME, track
 from events import EventEngine, EventFilter, EventType
+from events.event_policy import EventPolicy
 from tracking import Track
 from world import WorldSnapshot
 
@@ -20,7 +21,7 @@ class EventFrame:
 
     tracks: list[Track]
     expected_events: tuple[tuple[int, EventType], ...]
-    jitter_only: bool = False
+    jitter_tracks: tuple[int, ...] = ()
 
 
 def scripted_frames() -> list[EventFrame]:
@@ -135,14 +136,21 @@ def scripted_frames() -> list[EventFrame]:
             EventFrame(
                 tracks,
                 expected_by_frame[frame_index],
-                frame_index in {1, 2, 8, 9, 13, 14, 19, 20},
+                (1,)
+                if frame_index in {1, 2, 13, 14}
+                else (2,)
+                if frame_index in {8, 9, 19, 20}
+                else (),
             )
         )
     return frames
 
 
 def evaluate(
-    frames: list[EventFrame] | None = None, *, pipeline: bool = False
+    frames: list[EventFrame] | None = None,
+    *,
+    pipeline: bool = False,
+    policy: EventPolicy | None = None,
 ) -> Benchmark:
     """Run the real event engine and score event multisets."""
     scripted = (
@@ -152,7 +160,9 @@ def evaluate(
     )
     if not scripted:
         raise ValueError("No event frames")
-    engine = EventEngine() if pipeline else EventEngine(stopped_frame_threshold=2)
+    engine = EventEngine(
+        policy=policy or EventPolicy(stopped_frame_threshold=3 if pipeline else 2)
+    )
     event_filter = EventFilter()
     previous: WorldSnapshot | None = None
     predicted: Counter[EventKey] = Counter()
@@ -179,7 +189,12 @@ def evaluate(
     precision = _ratio(true_positive, true_positive + false_positive)
     recall = _ratio(true_positive, true_positive + false_negative)
     f1 = _ratio(2 * precision * recall, precision + recall)
-    jitter_indices = {i for i, frame in enumerate(scripted) if frame.jitter_only}
+    jitter_indices = {
+        (i, t) for i, frame in enumerate(scripted) for t in frame.jitter_tracks
+    }
+    for i, t in jitter_indices:
+        if t not in {track.track_id for track in scripted[i].tracks}:
+            raise ValueError("Jitter annotation references an absent track")
     movement = {
         EventType.MOVED,
         EventType.STOPPED,
@@ -187,8 +202,8 @@ def evaluate(
         EventType.STOPPED_MOVING,
     }
     jitter_count = sum(
-        any(key[0] == i and key[2] in movement for key in predicted)
-        for i in jitter_indices
+        any(key[:2] == (i, t) and key[2] in movement for key in predicted)
+        for i, t in jitter_indices
     )
     jitter = (
         Score(
@@ -250,7 +265,21 @@ def evaluate(
             f"precision={precision:.4f}; recall={recall:.4f}; f1={f1:.4f}; mismatches={mismatches}."
         ),
         score=f1_score,
-        metrics=(precision_score, recall_score, f1_score, jitter),
+        metrics=(
+            precision_score,
+            recall_score,
+            f1_score,
+            jitter,
+            Measurement(
+                "real moves missed",
+                sum(
+                    count
+                    for (_, _, kind), count in (expected - predicted).items()
+                    if kind in {EventType.MOVED, EventType.STARTED_MOVING}
+                ),
+                "events",
+            ),
+        ),
     )
 
 
@@ -303,7 +332,7 @@ def pipeline_frames() -> list[EventFrame]:
         EventFrame(
             [track("cup", frame_index=i, center=center)] if center else [],
             ((1, expected[i]),) if i in expected else (),
-            i in {1, 2},
+            (1,) if i in {1, 2} else (),
         )
         for i, center in enumerate(centers)
     ]

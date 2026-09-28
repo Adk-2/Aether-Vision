@@ -1,6 +1,7 @@
 """Configurable policy for behavioral event filtering."""
 
 from dataclasses import dataclass
+from math import isfinite
 
 from .event_types import EventType
 from .exceptions import EventError
@@ -14,8 +15,16 @@ class EventPolicy:
     """Centralize deterministic event filtering configuration."""
 
     stopped_frame_threshold: int = DEFAULT_STOPPED_FRAME_THRESHOLD
+    # Smallest threshold eliminating fixture jitter; tuned on synthetic data.
+    min_pixels: float = 1.0
+    fraction: float = 0.0
 
     def __post_init__(self) -> None:
+        if any(
+            not isfinite(value) or value < 0
+            for value in (self.min_pixels, self.fraction)
+        ):
+            raise EventError("Movement thresholds must be finite and nonnegative")
         if self.stopped_frame_threshold < MINIMUM_STOPPED_FRAME_THRESHOLD:
             raise EventError("Stopped frame threshold must be at least one")
 

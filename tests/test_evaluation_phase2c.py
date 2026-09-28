@@ -17,6 +17,7 @@ from evaluation.scenarios.common import noisy_multitrack_stream, relabel_stream
 from evaluation.scenarios.label_quality import burst_tolerance, SEEDS
 from evaluation import perf
 from events import EventType
+from events.event_policy import EventPolicy
 from assistant import QuerySource
 
 
@@ -53,12 +54,12 @@ def test_raw_event_oracle_retains_jitter_and_frame8_stop():
     frames = event_quality.scripted_frames()
     assert (1, EventType.STOPPED) in frames[8].expected_events
     for frame in frames:
-        if frame.jitter_only:
+        if frame.jitter_tracks:
             assert all(kind is not EventType.MOVED for _, kind in frame.expected_events)
 
 
 def test_pipeline_oracle_and_mismatches():
-    result = event_quality.run_pipeline()
+    result = event_quality.evaluate(pipeline=True, policy=EventPolicy(min_pixels=0))
     assert "(1, 1, 'STARTED_MOVING', 'predicted')" in result.actual_result
     assert "(3, 1, 'STARTED_MOVING', 'missed')" in result.actual_result
     frames = event_quality.pipeline_frames()
@@ -75,10 +76,13 @@ def test_jitter_frame_truth_controls_jitter_metric(pipeline):
     frames = (
         event_quality.pipeline_frames() if pipeline else event_quality.scripted_frames()
     )
-    baseline = event_quality.evaluate(frames, pipeline=pipeline)
+    policy = EventPolicy(3 if pipeline else 2, min_pixels=0)
+    baseline = event_quality.evaluate(frames, pipeline=pipeline, policy=policy)
     # Jitter membership is its ground truth, not the expected-event multiset.
-    corrupt = [replace(f, jitter_only=i == 0) for i, f in enumerate(frames)]
-    changed = event_quality.evaluate(corrupt, pipeline=pipeline)
+    corrupt = [
+        replace(f, jitter_tracks=(1,) if i == 0 else ()) for i, f in enumerate(frames)
+    ]
+    changed = event_quality.evaluate(corrupt, pipeline=pipeline, policy=policy)
     assert (
         metric(baseline, "jitter false-movement rate").value
         != metric(changed, "jitter false-movement rate").value
@@ -175,7 +179,10 @@ def test_reports_have_no_aggregate_score_or_duplicate_footer():
     text = report.to_console_text()
     assert "Overall Score" not in text
     assert text.count("\n==============================================") == 1
-    assert "'predicted'" in report.to_markdown()
+    legacy_report = EvaluationReport(
+        [event_quality.evaluate(pipeline=True, policy=EventPolicy(min_pixels=0))]
+    )
+    assert "'predicted'" in legacy_report.to_markdown()
 
 
 def test_synthetic_never_calls_detector_and_omits_fps():

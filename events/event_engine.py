@@ -1,5 +1,7 @@
 """Detection of changes between consecutive world snapshots."""
 
+from math import hypot
+
 from tracking import Track
 from world.snapshot import WorldSnapshot
 
@@ -7,6 +9,7 @@ from .event import Event
 from .event_types import EventType
 from .event_policy import DEFAULT_STOPPED_FRAME_THRESHOLD, EventPolicy
 from .exceptions import EventError
+
 TRACK_ID_WIDTH = 3
 
 
@@ -68,7 +71,20 @@ class EventEngine:
         """Generate movement or stopped events for a continuing track."""
         if previous.current_detection.center != current.current_detection.center:
             self._unchanged_frames[current.track_id] = 0
-            return [self._event(EventType.MOVED, current, snapshot)]
+            previous_center = previous.current_detection.center
+            current_center = current.current_detection.center
+            displacement = hypot(
+                current_center[0] - previous_center[0],
+                current_center[1] - previous_center[1],
+            )
+            x1, y1, x2, y2 = current.current_detection.bounding_box
+            threshold = max(
+                self._policy.min_pixels, self._policy.fraction * hypot(x2 - x1, y2 - y1)
+            )
+            # Preserve the unchanged-frame stop clock: even suppressed jitter resets it.
+            if displacement > threshold:
+                return [self._event(EventType.MOVED, current, snapshot)]
+            return []
 
         unchanged = self._unchanged_frames.get(current.track_id, 0) + 1
         self._unchanged_frames[current.track_id] = unchanged
