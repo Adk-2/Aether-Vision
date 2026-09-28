@@ -1,7 +1,7 @@
 """Repeatable benchmark evaluation framework for Project Aether."""
 
 from .benchmark import Benchmark
-from .metrics import Average, Counter, Percentage, Score
+from .metrics import Average, Counter, Measurement, Percentage, Score
 from .report import EvaluationReport
 
 __all__ = [
@@ -11,6 +11,7 @@ __all__ = [
     "EvaluationReport",
     "Evaluator",
     "Percentage",
+    "Measurement",
     "Score",
 ]
 

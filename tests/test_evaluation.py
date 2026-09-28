@@ -44,9 +44,12 @@ class EvaluationScenarioTests(unittest.TestCase):
 
     def test_corrupting_event_ground_truth_lowers_score(self) -> None:
         baseline = event_quality.evaluate()
-        corrupted = event_quality.evaluate([
-            replace(frame, expected_events=()) for frame in event_quality.scripted_frames()
-        ])
+        corrupted = event_quality.evaluate(
+            [
+                replace(frame, expected_events=())
+                for frame in event_quality.scripted_frames()
+            ]
+        )
 
         self.assertLess(corrupted.score.value, baseline.score.value)
 
@@ -75,21 +78,17 @@ class EvaluationScenarioTests(unittest.TestCase):
         self.assertLess(corrupted.score.value, baseline.score.value)
 
     def test_empty_input_lists_are_respected(self) -> None:
-        self.assertEqual(
-            identity_stability.evaluate(frames=[], adaptation_frames=[]).score.value,
-            0.0,
-        )
-        self.assertEqual(
-            belief_stability.evaluate(frames=[], adaptation_frames=[]).score.value,
-            0.0,
-        )
-        self.assertEqual(event_quality.evaluate([]).score.value, 0.0)
-        self.assertEqual(reasoning_accuracy.evaluate([]).score.value, 0.0)
-        self.assertEqual(planner_quality.evaluate([]).score.value, 0.0)
-        self.assertEqual(
-            query_accuracy.evaluate(supported=[], paraphrases=[]).score.value,
-            0.0,
-        )
+        # Phase 2c item 13 explicitly replaces the old empty-input 0% contract.
+        for call in [
+            lambda: identity_stability.evaluate(frames=[], adaptation_frames=[]),
+            lambda: belief_stability.evaluate(frames=[], adaptation_frames=[]),
+            lambda: event_quality.evaluate([]),
+            lambda: reasoning_accuracy.evaluate([]),
+            lambda: planner_quality.evaluate([]),
+            lambda: query_accuracy.evaluate(supported=[], paraphrases=[]),
+        ]:
+            with self.subTest(call=call), self.assertRaises(ValueError):
+                call()
 
 
 def _wrong_multitrack_truth(frames: list[object]) -> list[object]:

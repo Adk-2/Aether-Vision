@@ -1,7 +1,7 @@
 """Reusable metric primitives for Project Aether evaluation."""
 
 from dataclasses import dataclass
-from math import isclose
+from math import isclose, isfinite
 
 
 @dataclass(frozen=True)
@@ -15,7 +15,7 @@ class Percentage:
     def value(self) -> float:
         """Return the percentage value in the range 0..100."""
         if self.denominator == 0:
-            return 0.0
+            raise ValueError("Empty metric denominator")
         return (self.numerator / self.denominator) * 100.0
 
 
@@ -41,7 +41,7 @@ class Average:
     def value(self) -> float:
         """Return the average value."""
         if self.count == 0:
-            return 0.0
+            raise ValueError("Empty metric denominator")
         return self.total / self.count
 
 
@@ -59,9 +59,18 @@ class Score:
         """Keep scores bounded to the normalized 0..1 range."""
         if not 0.0 <= self.value <= 1.0:
             raise ValueError("Score must be between 0.0 and 1.0")
-        if self.numerator is None or self.denominator is None:
+        if (self.numerator is None) != (self.denominator is None):
+            raise ValueError("Both counts must be supplied")
+        if self.numerator is None:
             return
-        expected = 0.0 if self.denominator == 0 else self.numerator / self.denominator
+        if (
+            not isfinite(self.numerator)
+            or not isfinite(self.denominator)
+            or self.denominator <= 0
+            or not 0 <= self.numerator <= self.denominator
+        ):
+            raise ValueError("Invalid metric counts")
+        expected = self.numerator / self.denominator
         if not isclose(self.value, expected, rel_tol=1e-9, abs_tol=1e-9):
             raise ValueError("Score value must match numerator and denominator")
 
@@ -87,3 +96,19 @@ class Score:
     @staticmethod
     def _format(value: float) -> str:
         return str(int(value)) if float(value).is_integer() else f"{value:.4f}"
+
+
+@dataclass(frozen=True)
+class Measurement:
+    """A measured quantity with an explicit unit; censored results are strings."""
+
+    label: str
+    value: float | int | str
+    unit: str
+
+    @property
+    def display(self) -> str:
+        value = (
+            f"{self.value:.4f}" if isinstance(self.value, float) else str(self.value)
+        )
+        return f"{value} {self.unit}"

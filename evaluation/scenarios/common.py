@@ -72,7 +72,9 @@ def flicker_stream() -> list[LabelFrame]:
     ]
 
 
-def noisy_multitrack_stream(seed: int = 20260920, frames: int = 240) -> list[MultiTrackFrame]:
+def noisy_multitrack_stream(
+    seed: int = 20260920, frames: int = 240
+) -> list[MultiTrackFrame]:
     """Return a seeded multi-track stream with noisy labels and confidence bursts."""
     rng = random.Random(seed)
     specs = [
@@ -109,18 +111,20 @@ def noisy_multitrack_stream(seed: int = 20260920, frames: int = 240) -> list[Mul
 def relabel_stream() -> list[MultiTrackFrame]:
     """Return a scripted real relabel stream for adaptation measurement."""
     stream: list[MultiTrackFrame] = []
-    labels = ["cup"] * 15 + ["bottle"] * 15
+    labels = ["cup"] * 30 + ["bottle"] * 100
     for frame_index, label in enumerate(labels):
         stream.append(
-            MultiTrackFrame((
-                LabelObservation(
-                    track_id=1,
-                    label=label,
-                    confidence=0.95,
-                    expected_label=label,
-                    center=(100, 200),
-                ),
-            ))
+            MultiTrackFrame(
+                (
+                    LabelObservation(
+                        track_id=1,
+                        label=label,
+                        confidence=0.95,
+                        expected_label=label,
+                        center=(100, 200),
+                    ),
+                )
+            )
         )
     return stream
 
@@ -228,16 +232,18 @@ def scene_with_near(
     object_name: str,
 ) -> SceneGraph:
     """Build a scene graph with one NEAR relation."""
-    return SceneGraph([
-        Relation(
-            subject_track_id=subject_track_id,
-            object_track_id=object_track_id,
-            subject_name=subject_name,
-            object_name=object_name,
-            relation_type=RelationType.NEAR,
-            timestamp=BASE_TIME,
-        )
-    ])
+    return SceneGraph(
+        [
+            Relation(
+                subject_track_id=subject_track_id,
+                object_track_id=object_track_id,
+                subject_name=subject_name,
+                object_name=object_name,
+                relation_type=RelationType.NEAR,
+                timestamp=BASE_TIME,
+            )
+        ]
+    )
 
 
 def label_switch_count(labels: list[str]) -> int:

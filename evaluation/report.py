@@ -11,11 +11,15 @@ class EvaluationReport:
 
     benchmarks: list[Benchmark] = field(default_factory=list)
 
+    def __post_init__(self) -> None:
+        if not self.benchmarks:
+            raise ValueError("No benchmarks")
+
     @property
     def overall_score(self) -> float:
         """Return the mean normalized score across all benchmarks."""
         if not self.benchmarks:
-            return 0.0
+            raise ValueError("No benchmarks")
         return sum(benchmark.score.value for benchmark in self.benchmarks) / len(
             self.benchmarks
         )
@@ -71,6 +75,8 @@ class EvaluationReport:
         lines.append(
             "| Note | Scenarios are synthetic/scripted and are not measured on real video. | |"
         )
+        for benchmark in self.benchmarks:
+            lines.append(f"\n{benchmark.name}: {self._cell(benchmark.actual_result)}")
         return "\n".join(lines)
 
     def print_console(self) -> None:

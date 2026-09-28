@@ -16,3 +16,5 @@ env/
 
 # Test cache
 .pytest_cache/
+# Downloaded evaluation clip (source and checksum in evaluation evidence)
+data/evaluation/*.avi

@@ -5,9 +5,9 @@ from dataclasses import dataclass
 from datetime import timedelta
 
 from evaluation.benchmark import Benchmark
-from evaluation.metrics import Score
+from evaluation.metrics import Measurement, Score
 from evaluation.scenarios.common import BASE_TIME, track
-from events import EventEngine, EventType
+from events import EventEngine, EventFilter, EventType
 from tracking import Track
 from world import WorldSnapshot
 
@@ -20,6 +20,7 @@ class EventFrame:
 
     tracks: list[Track]
     expected_events: tuple[tuple[int, EventType], ...]
+    jitter_only: bool = False
 
 
 def scripted_frames() -> list[EventFrame]:
@@ -96,7 +97,7 @@ def scripted_frames() -> list[EventFrame]:
         ((1, EventType.STOPPED), (2, EventType.STOPPED)),
         ((1, EventType.MOVED), (2, EventType.DISAPPEARED)),
         ((2, EventType.APPEARED),),
-        (),
+        ((1, EventType.STOPPED),),
         ((1, EventType.DISAPPEARED),),
         ((1, EventType.APPEARED), (2, EventType.MOVED)),
         (),
@@ -118,20 +119,41 @@ def scripted_frames() -> list[EventFrame]:
         ((2, EventType.MOVED),),
         ((1, EventType.STOPPED),),
     ]
-    for frame_index, (center_1, center_2) in enumerate(zip(centers_1, centers_2, strict=True)):
+    for frame_index, (center_1, center_2) in enumerate(
+        zip(centers_1, centers_2, strict=True)
+    ):
         tracks: list[Track] = []
         if center_1 is not None:
-            tracks.append(track("cup", track_id=1, frame_index=frame_index, center=center_1))
+            tracks.append(
+                track("cup", track_id=1, frame_index=frame_index, center=center_1)
+            )
         if center_2 is not None:
-            tracks.append(track("book", track_id=2, frame_index=frame_index, center=center_2))
-        frames.append(EventFrame(tracks, expected_by_frame[frame_index]))
+            tracks.append(
+                track("book", track_id=2, frame_index=frame_index, center=center_2)
+            )
+        frames.append(
+            EventFrame(
+                tracks,
+                expected_by_frame[frame_index],
+                frame_index in {1, 2, 8, 9, 13, 14, 19, 20},
+            )
+        )
     return frames
 
 
-def evaluate(frames: list[EventFrame] | None = None) -> Benchmark:
+def evaluate(
+    frames: list[EventFrame] | None = None, *, pipeline: bool = False
+) -> Benchmark:
     """Run the real event engine and score event multisets."""
-    scripted = scripted_frames() if frames is None else frames
-    engine = EventEngine(stopped_frame_threshold=2)
+    scripted = (
+        (pipeline_frames() if pipeline else scripted_frames())
+        if frames is None
+        else frames
+    )
+    if not scripted:
+        raise ValueError("No event frames")
+    engine = EventEngine() if pipeline else EventEngine(stopped_frame_threshold=2)
+    event_filter = EventFilter()
     previous: WorldSnapshot | None = None
     predicted: Counter[EventKey] = Counter()
     expected: Counter[EventKey] = Counter()
@@ -142,7 +164,10 @@ def evaluate(frames: list[EventFrame] | None = None) -> Benchmark:
             tracks=tuple(frame.tracks),
             active_track_count=len(frame.tracks),
         )
-        for generated in engine.generate_events(previous, snapshot):
+        generated_events = engine.generate_events(previous, snapshot)
+        if pipeline:
+            generated_events = event_filter.filter_events(generated_events)
+        for generated in generated_events:
             predicted[(index, generated.track_id, generated.event_type)] += 1
         for track_id, event_type in frame.expected_events:
             expected[(index, track_id, event_type)] += 1
@@ -154,17 +179,52 @@ def evaluate(frames: list[EventFrame] | None = None) -> Benchmark:
     precision = _ratio(true_positive, true_positive + false_positive)
     recall = _ratio(true_positive, true_positive + false_negative)
     f1 = _ratio(2 * precision * recall, precision + recall)
-    precision_score = Score(
-        precision,
-        true_positive,
-        true_positive + false_positive,
-        "precision tp/(tp+fp)",
+    jitter_indices = {i for i, frame in enumerate(scripted) if frame.jitter_only}
+    movement = {
+        EventType.MOVED,
+        EventType.STOPPED,
+        EventType.STARTED_MOVING,
+        EventType.STOPPED_MOVING,
+    }
+    jitter_count = sum(
+        any(key[0] == i and key[2] in movement for key in predicted)
+        for i in jitter_indices
     )
-    recall_score = Score(
-        recall,
-        true_positive,
-        true_positive + false_negative,
-        "recall tp/(tp+fn)",
+    jitter = (
+        Score(
+            jitter_count / len(jitter_indices),
+            jitter_count,
+            len(jitter_indices),
+            "jitter false-movement rate",
+        )
+        if jitter_indices
+        else Measurement("jitter false-movement rate", "n/a", "")
+    )
+    mismatches = [
+        (i, t, e.name, kind)
+        for diff, kind in [
+            (predicted - expected, "predicted"),
+            (expected - predicted, "missed"),
+        ]
+        for (i, t, e), count in diff.items()
+        for _ in range(count)
+    ]
+    precision_score = (
+        Score(
+            precision,
+            true_positive,
+            true_positive + false_positive,
+            "precision tp/(tp+fp)",
+        )
+        if predicted
+        else Measurement("precision tp/(tp+fp)", "n/a", "")
+    )
+    recall_score = (
+        Score(
+            recall, true_positive, true_positive + false_negative, "recall tp/(tp+fn)"
+        )
+        if expected
+        else Measurement("recall tp/(tp+fn)", "n/a", "")
     )
     f1_score = Score(
         f1,
@@ -174,19 +234,23 @@ def evaluate(frames: list[EventFrame] | None = None) -> Benchmark:
         ),
     )
     return Benchmark(
-        name="Event Quality",
+        name="Event Pipeline Quality (engine + filter)"
+        if pipeline
+        else "Event Quality",
         description=(
-            "Real EventEngine on >=30 multiset ground-truth events across two "
+            "Default EventEngine then EventFilter, as PerceptionPipeline; hand-authored transitions, jitter, stop/start, disappearance and reappearance."
+            if pipeline
+            else "Real EventEngine on >=30 multiset ground-truth events across two "
             "objects, with jitter/no-move frames, reappearance, simultaneous "
             "events, and stop/start cycles."
         ),
         expected_result=f"{sum(expected.values())} ground-truth events.",
         actual_result=(
             f"tp={true_positive}; fp={false_positive}; fn={false_negative}; "
-            f"precision={precision:.4f}; recall={recall:.4f}; f1={f1:.4f}."
+            f"precision={precision:.4f}; recall={recall:.4f}; f1={f1:.4f}; mismatches={mismatches}."
         ),
         score=f1_score,
-        metrics=(precision_score, recall_score, f1_score),
+        metrics=(precision_score, recall_score, f1_score, jitter),
     )
 
 
@@ -197,3 +261,53 @@ def run() -> Benchmark:
 
 def _ratio(numerator: float, denominator: float) -> float:
     return numerator / denominator if denominator else 0.0
+
+
+def pipeline_frames() -> list[EventFrame]:
+    """Hand-authored spec: ignore 1px jitter, start on displacement, stop after
+    three unchanged frames (EventPolicy default), suppress redundant stops.
+    EventFilter APPEARED resets movement state; disappearance removes it.
+    This oracle never calls either event component.
+    """
+    centers = [
+        (10, 10),
+        (11, 10),
+        (10, 10),
+        (20, 10),
+        (20, 10),
+        (20, 10),
+        (20, 10),
+        (20, 10),
+        None,
+        (30, 10),
+        (30, 10),
+        (30, 10),
+        (30, 10),
+        (40, 10),
+        (40, 10),
+        (40, 10),
+        (40, 10),
+        None,
+    ]
+    expected = {
+        0: EventType.APPEARED,
+        3: EventType.STARTED_MOVING,
+        6: EventType.STOPPED_MOVING,
+        8: EventType.DISAPPEARED,
+        9: EventType.APPEARED,
+        13: EventType.STARTED_MOVING,
+        16: EventType.STOPPED_MOVING,
+        17: EventType.DISAPPEARED,
+    }
+    return [
+        EventFrame(
+            [track("cup", frame_index=i, center=center)] if center else [],
+            ((1, expected[i]),) if i in expected else (),
+            i in {1, 2},
+        )
+        for i, center in enumerate(centers)
+    ]
+
+
+def run_pipeline() -> Benchmark:
+    return evaluate(pipeline=True)

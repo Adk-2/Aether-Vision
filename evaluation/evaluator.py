@@ -20,14 +20,21 @@ class Evaluator:
     """Run benchmark scenarios and produce an evaluation report."""
 
     def __init__(self, scenarios: list[Scenario] | None = None) -> None:
-        self._scenarios = scenarios or [
-            identity_stability.run,
-            belief_stability.run,
-            event_quality.run,
-            reasoning_accuracy.run,
-            planner_quality.run,
-            query_accuracy.run,
-        ]
+        self._scenarios = (
+            [
+                identity_stability.run,
+                belief_stability.run,
+                event_quality.run,
+                event_quality.run_pipeline,
+                reasoning_accuracy.run,
+                planner_quality.run,
+                query_accuracy.run,
+            ]
+            if scenarios is None
+            else scenarios
+        )
+        if not self._scenarios:
+            raise ValueError("No scenarios")
 
     def run(self) -> EvaluationReport:
         """Run every configured benchmark scenario."""

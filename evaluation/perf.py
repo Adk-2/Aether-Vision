@@ -1,99 +1,163 @@
-"""Synthetic performance benchmark for Project Aether stages."""
+"""Stage timings for the actual inference path, or explicitly synthetic inputs."""
 
 from __future__ import annotations
-
 import argparse
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
+from pathlib import Path
 import platform
 from time import perf_counter
-
 from assistant import QueryEngine
 from belief import BeliefEngine
 from camera import Frame
-from events import EventEngine
+from events import EventEngine, EventFilter
 from identity import IdentityResolver
 from memory import MemoryEngine
 from timeline import Timeline
 from tracking import Tracker
-from vision import Detection
-from world import WorldSnapshot
+from vision import (
+    Detection,
+    VisionDetector,
+    DetectionAdapter,
+    ConfidenceFilter,
+    DetectionStabilizer,
+    DEFAULT_MODEL_PATH,
+)
+from world import WorldState
 
-MODEL_NAME = "synthetic-scripted-detector"
 DEFAULT_FRAME_COUNT = 120
 BASE_TIME = datetime(2026, 8, 26, 7, 43, 10)
+WARMUP = 5
 
 
 @dataclass
 class StageTimings:
-    """Accumulate per-stage latency samples."""
-
     samples: dict[str, list[float]] = field(default_factory=dict)
 
-    def add(self, stage: str, seconds: float) -> None:
-        """Record one latency sample in seconds."""
+    def add(self, stage, seconds):
         self.samples.setdefault(stage, []).append(seconds)
 
 
-def main() -> None:
-    """Run the stage benchmark and print a plain-text report."""
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--video", type=str, default=None)
-    parser.add_argument("--frames", type=int, default=DEFAULT_FRAME_COUNT)
-    args = parser.parse_args()
-    print(run(video_path=args.video, frame_count=args.frames))
-
-
-def run(video_path: str | None = None, frame_count: int = DEFAULT_FRAME_COUNT) -> str:
-    """Run the benchmark and return its report text."""
-    frames = _load_video_frames(video_path, frame_count) if video_path else _synthetic_frames(frame_count)
-    timings = StageTimings()
-    tracker = Tracker()
-    identity = IdentityResolver()
-    beliefs = BeliefEngine()
-    events = EventEngine()
-    query = QueryEngine()
-    memory = MemoryEngine()
-    timeline = Timeline()
-    previous: WorldSnapshot | None = None
-    started = perf_counter()
-
+def run(
+    video_path=None, frame_count=DEFAULT_FRAME_COUNT, model_path=DEFAULT_MODEL_PATH
+):
+    if frame_count <= WARMUP:
+        raise ValueError("Need more than five frames for warm-up and measurement")
+    frames = (
+        _load_video_frames(video_path, frame_count)
+        if video_path
+        else _synthetic_frames(frame_count)
+    )
+    if len(frames) <= WARMUP:
+        raise ValueError("Video has no frames remaining after five-frame warm-up")
+    detector = VisionDetector(model_path) if video_path else None
+    adapter, confidence, stabilizer = (
+        DetectionAdapter(),
+        ConfidenceFilter(),
+        DetectionStabilizer(),
+    )
+    tracker, identity, beliefs = Tracker(), IdentityResolver(), BeliefEngine()
+    engine, event_filter, world = EventEngine(), EventFilter(), WorldState()
+    memory, timeline, query = MemoryEngine(), Timeline(), QueryEngine()
+    timings, durations = StageTimings(), []
+    image_size = "n/a"
     for index, frame in enumerate(frames):
-        stage_started = perf_counter()
-        detections = _synthetic_detections(index, frame.timestamp)
-        timings.add("detector", perf_counter() - stage_started)
+        measured = index >= WARMUP
 
-        stage_started = perf_counter()
-        tracks = tracker.update(detections)
-        timings.add("tracker", perf_counter() - stage_started)
+        def timed(name, function, *args):
+            start = perf_counter()
+            result = function(*args)
+            if measured:
+                timings.add(name, perf_counter() - start)
+            return result
 
-        stage_started = perf_counter()
-        identities = identity.update(tracks)
-        timings.add("identity", perf_counter() - stage_started)
+        start = perf_counter()
+        if detector:
+            raw = timed("detector", detector.detect, frame)
+            # Read the effective inference size after predict has initialized its predictor.
+            image_size = str(
+                detector._model_loader.load(detector._create_yolo_model).predictor.imgsz
+            )
+        else:
+            # Feed scripted model-shaped results through the real adapter too.
+            from types import SimpleNamespace
 
-        stage_started = perf_counter()
-        beliefs.update(identities)
-        timings.add("belief", perf_counter() - stage_started)
+            scripted = _synthetic_detections(index, frame.timestamp)
+            raw = [
+                SimpleNamespace(
+                    names={d.class_id: d.class_name for d in scripted},
+                    boxes=[
+                        SimpleNamespace(
+                            cls=[d.class_id], conf=[d.confidence], xyxy=[d.bounding_box]
+                        )
+                        for d in scripted
+                    ],
+                )
+            ]
+        detections = timed("adapter", adapter.convert, raw, frame.timestamp)
+        detections = timed("confidence filter", confidence.filter, detections)
+        tracks = timed("tracker", tracker.update, detections)
+        tracks = timed("stabilizer", stabilizer.stabilize, tracks)
+        identities = timed("identity", identity.update, tracks)
+        states = timed("belief", beliefs.update, identities)
 
-        stage_started = perf_counter()
-        snapshot = WorldSnapshot(
-            timestamp=frame.timestamp,
-            tracks=tuple(tracks),
-            active_track_count=len(tracks),
+        def update_world():
+            by_track = {state.track_id: state for state in states}
+            for track in tracks:
+                state = by_track.get(track.track_id)
+                if state is not None:
+                    track.stabilized_label = state.current_belief
+                    track.identity_confidence = state.confidence
+            return world.update(tracks, frame.timestamp)
+
+        snapshot = timed("world + apply beliefs", update_world)
+        events = timed(
+            "event engine", engine.generate_events, world.previous_snapshot, snapshot
         )
-        generated_events = events.generate_events(previous, snapshot)
-        previous = snapshot
-        timings.add("events", perf_counter() - stage_started)
-        memory.process(generated_events)
-        timeline.process(generated_events)
+        events = timed("event filter", event_filter.filter_events, events)
+        timed("memory", memory.process, events)
+        timed("timeline", timeline.process, events)
+        timed("query", query.answer, "where is the cup", tracks, memory, timeline)
+        if measured:
+            durations.append(perf_counter() - start)
+    lines = [
+        "========== Project Aether Performance ==========",
+        f"Frames: {len(frames)}; warm-up discarded: {WARMUP}; measured: {len(durations)}",
+        f"Input: {video_path or 'synthetic frames'}",
+        f"Platform: {platform.platform()}",
+        f"CPU: {platform.processor() or 'unknown'}",
+    ]
+    if video_path:
+        elapsed = sum(durations)
+        lines.extend(
+            [
+                f"Model path: {Path(model_path).resolve()}",
+                f"Image size: inference={image_size}; source={frames[0].width}x{frames[0].height}",
+                "Timing scope: detect through query; excludes video decoding, rendering and persistence.",
+                f"End-to-end mean FPS: {len(durations) / elapsed:.4f}",
+                f"FPS excluding detector: {len(durations) / (elapsed - sum(timings.samples['detector'])):.4f}",
+            ]
+        )
+    else:
+        lines.append("SYNTHETIC: detector not run, FPS not representative")
+    lines.extend(
+        ["", "| Stage | p50 latency ms | p95 latency ms |", "| --- | ---: | ---: |"]
+    )
+    for stage, samples in timings.samples.items():
+        lines.append(
+            f"| {stage} | {_percentile(samples, 50) * 1000:.4f} | {_percentile(samples, 95) * 1000:.4f} |"
+        )
+    lines.append("================================================")
+    return "\n".join(lines)
 
-        stage_started = perf_counter()
-        query.answer("where is the cup", tracks, memory, timeline)
-        timings.add("query", perf_counter() - stage_started)
 
-    elapsed = perf_counter() - started
-    mean_fps = len(frames) / elapsed if elapsed > 0.0 else 0.0
-    return _report(timings, mean_fps, len(frames), video_path)
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--video")
+    parser.add_argument("--frames", type=int, default=DEFAULT_FRAME_COUNT)
+    parser.add_argument("--model", default=DEFAULT_MODEL_PATH)
+    args = parser.parse_args()
+    print(run(args.video, args.frames, args.model))
 
 
 def _synthetic_frames(frame_count: int) -> list[Frame]:
@@ -117,6 +181,9 @@ def _load_video_frames(video_path: str, frame_count: int) -> list[Frame]:
         raise RuntimeError("OpenCV is required for --video benchmarking") from exc
 
     capture = cv2.VideoCapture(video_path)
+    if not capture.isOpened():
+        capture.release()
+        raise ValueError(f"Cannot open video: {video_path}")
     frames: list[Frame] = []
     index = 0
     while index < frame_count:
@@ -137,6 +204,8 @@ def _load_video_frames(video_path: str, frame_count: int) -> list[Frame]:
         )
         index += 1
     capture.release()
+    if not frames:
+        raise ValueError(f"Video yielded zero frames: {video_path}")
     return frames
 
 
@@ -166,37 +235,9 @@ def _detection(
     )
 
 
-def _report(
-    timings: StageTimings,
-    mean_fps: float,
-    frame_count: int,
-    video_path: str | None,
-) -> str:
-    lines = [
-        "========== Project Aether Performance ==========",
-        f"Frames: {frame_count}",
-        f"Input: {video_path if video_path else 'synthetic frames'}",
-        f"Platform: {platform.platform()}",
-        f"CPU: {platform.processor() or 'unknown'}",
-        f"Model: {MODEL_NAME}",
-        f"Mean FPS: {mean_fps:.4f}",
-        "",
-        "| Stage | p50 latency ms | p95 latency ms |",
-        "| --- | ---: | ---: |",
-    ]
-    for stage in ["detector", "tracker", "identity", "belief", "events", "query"]:
-        samples = timings.samples.get(stage, [])
-        lines.append(
-            f"| {stage} | {_percentile(samples, 50) * 1000.0:.4f} | "
-            f"{_percentile(samples, 95) * 1000.0:.4f} |"
-        )
-    lines.append("================================================")
-    return "\n".join(lines)
-
-
 def _percentile(values: list[float], percentile: int) -> float:
     if not values:
-        return 0.0
+        raise ValueError("No latency samples")
     ordered = sorted(values)
     rank = (len(ordered) - 1) * (percentile / 100.0)
     lower = int(rank)
