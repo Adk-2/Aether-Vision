@@ -72,6 +72,7 @@ def extract(video: str | Path, every_n_frames: int) -> tuple[Path, int]:
 
     template = {
         "schema_version": SCHEMA_VERSION,
+        "annotation_status": "unlabeled",
         "video": video_path.name,
         "source_frame_count": decoded_count,
         "source_fps": source_fps if source_fps > 0 else None,

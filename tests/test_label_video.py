@@ -34,6 +34,7 @@ def test_extracts_every_nth_frame_and_empty_truth_template(tmp_path):
     assert all(frame["events"] == [] for frame in payload["frames"])
     assert payload["source_frame_count"] == 5
     assert payload["every_n_frames"] == 2
+    assert payload["annotation_status"] == "unlabeled"
     assert len(list(labels_path.parent.glob("*.jpg"))) == 3
 
 
