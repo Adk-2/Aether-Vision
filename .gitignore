@@ -18,3 +18,10 @@ env/
 .pytest_cache/
 # Downloaded evaluation clip (source and checksum in evaluation evidence)
 data/evaluation/*.avi
+
+# Self-recorded evaluation media and extracted images; keep hand labels/evidence.
+data/evaluation/own_clips/*.avi
+data/evaluation/own_clips/*.mp4
+data/evaluation/own_clips/*.mov
+data/evaluation/own_clips/*.mkv
+data/evaluation/own_clips/*_labels/*.jpg
