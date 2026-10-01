@@ -1,0 +1,2176 @@
+{
+  "schema_version": 1,
+  "annotation_status": "complete",
+  "video": "desk_01.mp4",
+  "source_frame_count": 2028,
+  "source_fps": 30.00404886984256,
+  "every_n_frames": 30,
+  "annotation_schema": {
+    "visible_objects": {
+      "tag": "consistent physical-object tag, e.g. phone_1",
+      "class": "phone, wallet, or bottle",
+      "center": [
+        "x_pixels",
+        "y_pixels"
+      ]
+    },
+    "events": {
+      "tag": "same physical-object tag",
+      "event": "appeared|moved|stopped|disappeared|none"
+    }
+  },
+  "frames": [
+    {
+      "frame_index": 0,
+      "timestamp_seconds": 0.0,
+      "image": "frame_000000.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            720,
+            281
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "appeared"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "appeared"
+        }
+      ]
+    },
+    {
+      "frame_index": 30,
+      "timestamp_seconds": 0.9998650558842866,
+      "image": "frame_000030.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            720,
+            281
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 60,
+      "timestamp_seconds": 1.9997301117685733,
+      "image": "frame_000060.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            720,
+            281
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 90,
+      "timestamp_seconds": 2.9995951676528603,
+      "image": "frame_000090.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            720,
+            281
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 120,
+      "timestamp_seconds": 3.9994602235371466,
+      "image": "frame_000120.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            720,
+            281
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 150,
+      "timestamp_seconds": 4.999325279421433,
+      "image": "frame_000150.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            719,
+            281
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 180,
+      "timestamp_seconds": 5.9991903353057205,
+      "image": "frame_000180.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            715,
+            283
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 210,
+      "timestamp_seconds": 6.999055391190007,
+      "image": "frame_000210.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            714,
+            284
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 240,
+      "timestamp_seconds": 7.998920447074293,
+      "image": "frame_000240.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            713,
+            284
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 270,
+      "timestamp_seconds": 8.99878550295858,
+      "image": "frame_000270.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            713,
+            284
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 300,
+      "timestamp_seconds": 9.998650558842867,
+      "image": "frame_000300.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            713,
+            284
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 330,
+      "timestamp_seconds": 10.998515614727154,
+      "image": "frame_000330.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            713,
+            284
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 360,
+      "timestamp_seconds": 11.998380670611441,
+      "image": "frame_000360.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            720,
+            285
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "moved"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 390,
+      "timestamp_seconds": 12.998245726495727,
+      "image": "frame_000390.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            682,
+            286
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "moved"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 420,
+      "timestamp_seconds": 13.998110782380014,
+      "image": "frame_000420.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            480,
+            236
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "moved"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 450,
+      "timestamp_seconds": 14.997975838264301,
+      "image": "frame_000450.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            272
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "stopped"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 480,
+      "timestamp_seconds": 15.997840894148586,
+      "image": "frame_000480.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 510,
+      "timestamp_seconds": 16.997705950032874,
+      "image": "frame_000510.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 540,
+      "timestamp_seconds": 17.99757100591716,
+      "image": "frame_000540.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 570,
+      "timestamp_seconds": 18.997436061801448,
+      "image": "frame_000570.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 600,
+      "timestamp_seconds": 19.997301117685733,
+      "image": "frame_000600.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 630,
+      "timestamp_seconds": 20.99716617357002,
+      "image": "frame_000630.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 660,
+      "timestamp_seconds": 21.997031229454308,
+      "image": "frame_000660.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 690,
+      "timestamp_seconds": 22.996896285338593,
+      "image": "frame_000690.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 720,
+      "timestamp_seconds": 23.996761341222882,
+      "image": "frame_000720.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 750,
+      "timestamp_seconds": 24.996626397107168,
+      "image": "frame_000750.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 780,
+      "timestamp_seconds": 25.996491452991453,
+      "image": "frame_000780.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 810,
+      "timestamp_seconds": 26.996356508875742,
+      "image": "frame_000810.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 840,
+      "timestamp_seconds": 27.996221564760027,
+      "image": "frame_000840.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 870,
+      "timestamp_seconds": 28.996086620644313,
+      "image": "frame_000870.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 900,
+      "timestamp_seconds": 29.995951676528602,
+      "image": "frame_000900.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 930,
+      "timestamp_seconds": 30.995816732412887,
+      "image": "frame_000930.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 960,
+      "timestamp_seconds": 31.995681788297173,
+      "image": "frame_000960.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 990,
+      "timestamp_seconds": 32.99554684418146,
+      "image": "frame_000990.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1020,
+      "timestamp_seconds": 33.99541190006575,
+      "image": "frame_001020.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1050,
+      "timestamp_seconds": 34.99527695595003,
+      "image": "frame_001050.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1080,
+      "timestamp_seconds": 35.99514201183432,
+      "image": "frame_001080.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1110,
+      "timestamp_seconds": 36.99500706771861,
+      "image": "frame_001110.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            165,
+            405
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1140,
+      "timestamp_seconds": 37.994872123602896,
+      "image": "frame_001140.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            449,
+            125
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "wallet_1",
+          "event": "moved"
+        },
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1170,
+      "timestamp_seconds": 38.99473717948718,
+      "image": "frame_001170.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "wallet_1",
+          "event": "disappeared"
+        },
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1200,
+      "timestamp_seconds": 39.99460223537147,
+      "image": "frame_001200.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1230,
+      "timestamp_seconds": 40.99446729125575,
+      "image": "frame_001230.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1260,
+      "timestamp_seconds": 41.99433234714004,
+      "image": "frame_001260.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1290,
+      "timestamp_seconds": 42.99419740302433,
+      "image": "frame_001290.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1320,
+      "timestamp_seconds": 43.994062458908616,
+      "image": "frame_001320.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1350,
+      "timestamp_seconds": 44.9939275147929,
+      "image": "frame_001350.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1380,
+      "timestamp_seconds": 45.993792570677186,
+      "image": "frame_001380.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1410,
+      "timestamp_seconds": 46.99365762656147,
+      "image": "frame_001410.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            650,
+            390
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "wallet_1",
+          "event": "appeared"
+        },
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1440,
+      "timestamp_seconds": 47.993522682445764,
+      "image": "frame_001440.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "wallet_1",
+          "event": "moved"
+        },
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1470,
+      "timestamp_seconds": 48.99338773833005,
+      "image": "frame_001470.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "wallet_1",
+          "event": "stopped"
+        },
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1500,
+      "timestamp_seconds": 49.993252794214335,
+      "image": "frame_001500.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1530,
+      "timestamp_seconds": 50.99311785009862,
+      "image": "frame_001530.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1560,
+      "timestamp_seconds": 51.992982905982906,
+      "image": "frame_001560.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1590,
+      "timestamp_seconds": 52.99284796186719,
+      "image": "frame_001590.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1620,
+      "timestamp_seconds": 53.992713017751484,
+      "image": "frame_001620.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1650,
+      "timestamp_seconds": 54.99257807363577,
+      "image": "frame_001650.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1680,
+      "timestamp_seconds": 55.992443129520055,
+      "image": "frame_001680.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1710,
+      "timestamp_seconds": 56.99230818540434,
+      "image": "frame_001710.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1740,
+      "timestamp_seconds": 57.992173241288626,
+      "image": "frame_001740.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1770,
+      "timestamp_seconds": 58.99203829717292,
+      "image": "frame_001770.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1800,
+      "timestamp_seconds": 59.991903353057204,
+      "image": "frame_001800.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1830,
+      "timestamp_seconds": 60.99176840894149,
+      "image": "frame_001830.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1860,
+      "timestamp_seconds": 61.991633464825775,
+      "image": "frame_001860.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1890,
+      "timestamp_seconds": 62.99149852071006,
+      "image": "frame_001890.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1920,
+      "timestamp_seconds": 63.991363576594345,
+      "image": "frame_001920.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1950,
+      "timestamp_seconds": 64.99122863247864,
+      "image": "frame_001950.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 1980,
+      "timestamp_seconds": 65.99109368836292,
+      "image": "frame_001980.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    },
+    {
+      "frame_index": 2010,
+      "timestamp_seconds": 66.99095874424721,
+      "image": "frame_002010.jpg",
+      "visible_objects": [
+        {
+          "tag": "bottle_1",
+          "class": "bottle",
+          "center": [
+            437,
+            273
+          ]
+        },
+        {
+          "tag": "wallet_1",
+          "class": "wallet",
+          "center": [
+            610,
+            420
+          ]
+        }
+      ],
+      "events": [
+        {
+          "tag": "bottle_1",
+          "event": "none"
+        },
+        {
+          "tag": "wallet_1",
+          "event": "none"
+        }
+      ]
+    }
+  ]
+}
