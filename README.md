@@ -2,127 +2,153 @@
 
 ### A Layered Computer Vision System for Perception, Memory, Reasoning, and World Understanding
 
-Project Aether is an experimental **real-time visual perception system** designed to move beyond simple object detection.
+Project Aether is an experimental **real-time visual perception and world-modeling system** designed to move beyond frame-by-frame object detection.
 
-Instead of treating every camera frame as an isolated prediction, Aether maintains a continuously evolving representation of the world.
+Instead of treating every camera frame as an isolated prediction, Aether maintains a continuously evolving representation of the observed world.
 
-It detects objects, tracks them across frames, stabilizes uncertain labels, maintains object identity, records events, stores memories, constructs spatial relationships, maintains beliefs, performs deterministic reasoning, generates search plans, and provides a queryable assistant interface.
+It combines:
 
-The system is built around the following idea:
+- Object detection
+- Object tracking
+- Temporal label stabilization
+- Identity resolution
+- Belief management
+- World-state modeling
+- Spatial relationships
+- Event detection
+- Working memory
+- Persistent memory
+- Timeline construction
+- Knowledge queries
+- Deterministic reasoning
+- Explainable planning
+- Evaluation and benchmarking
 
-> **Camera → Perception → Tracking → Memory → World Model → Reasoning → Planning**
+The central idea is:
+
+```text
+Camera
+  ↓
+Perception
+  ↓
+Tracking
+  ↓
+Identity
+  ↓
+Belief
+  ↓
+World State
+  ↓
+Events + Memory
+  ↓
+Knowledge
+  ↓
+Reasoning
+  ↓
+Planning
+  ↓
+Assistant
+```
 
 ---
 
 # Overview
 
-Traditional object detection answers questions such as:
+A conventional object detector primarily answers:
 
-> "What objects are in this frame?"
+> What objects are visible in this frame?
 
-Aether attempts to answer higher-level questions such as:
+Aether attempts to maintain answers to higher-level questions such as:
 
 ```text
 What objects are currently visible?
-```
 
-```text
-Where was the bottle last seen?
-```
+Where was the object last observed?
 
-```text
+What changed?
+
 What happened to the object?
+
+What objects are spatially related?
+
+What does the system currently believe about an object?
+
+What information has been observed previously?
+
+What search action would make sense given the available evidence?
 ```
 
-```text
-What objects are near the person?
-```
-
-```text
-Is the object currently visible?
-```
-
-```text
-How should I search for the missing object?
-```
-
-The system therefore treats vision as a **continuous perception problem**, rather than a sequence of independent detections.
+The system therefore treats visual understanding as a **continuous state-estimation problem**, rather than a sequence of independent detections.
 
 ---
 
 # Core Architecture
 
-Aether is organized into multiple layers, each responsible for a specific aspect of world understanding.
-
 ```text
-┌─────────────────────────────────────────────────────────────┐
-│                         CAMERA                              │
-│                     OpenCV Capture                          │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                         VISION                              │
-│                    YOLO Object Detection                    │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                        TRACKING                             │
-│              Persistent Object Track IDs                    │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                  IDENTITY + BELIEF                          │
-│       Label History • Confidence • Belief Stability          │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                       WORLD STATE                           │
-│                 Current Object Registry                     │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-                 ┌────────────┼────────────┐
-                 ▼            ▼            ▼
-          ┌────────────┐ ┌──────────┐ ┌─────────────┐
-          │   SCENE    │ │  EVENTS  │ │   MEMORY    │
-          │   GRAPH    │ │  ENGINE  │ │  + TIMELINE │
-          └─────┬──────┘ └────┬─────┘ └──────┬──────┘
-                │             │              │
-                └─────────────┼──────────────┘
-                              ▼
-                    ┌──────────────────┐
-                    │ KNOWLEDGE ENGINE │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │ REASONING ENGINE │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │     PLANNER      │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │    ASSISTANT     │
-                    └──────────────────┘
+┌──────────────────────────────────────────────┐
+│                    CAMERA                    │
+│                OpenCV Capture                │
+└──────────────────────┬───────────────────────┘
+                       ↓
+┌──────────────────────────────────────────────┐
+│                   VISION                     │
+│                 YOLOv8n                      │
+└──────────────────────┬───────────────────────┘
+                       ↓
+┌──────────────────────────────────────────────┐
+│                  TRACKING                    │
+│          Persistent Track Association        │
+└──────────────────────┬───────────────────────┘
+                       ↓
+┌──────────────────────────────────────────────┐
+│             IDENTITY + BELIEF                │
+│     Label History • Confidence • Belief       │
+└──────────────────────┬───────────────────────┘
+                       ↓
+┌──────────────────────────────────────────────┐
+│                WORLD STATE                   │
+│            Current Object Registry            │
+└───────────────┬──────────────┬───────────────┘
+                ↓              ↓
+         ┌────────────┐ ┌──────────────┐
+         │   SCENE    │ │    EVENTS    │
+         │   GRAPH    │ │    ENGINE    │
+         └─────┬──────┘ └──────┬───────┘
+               │               │
+               └───────┬───────┘
+                       ↓
+               ┌──────────────┐
+               │    MEMORY    │
+               │  + TIMELINE  │
+               └──────┬───────┘
+                      ↓
+               ┌──────────────┐
+               │   KNOWLEDGE  │
+               └──────┬───────┘
+                      ↓
+               ┌──────────────┐
+               │   REASONING  │
+               └──────┬───────┘
+                      ↓
+               ┌──────────────┐
+               │   PLANNING   │
+               └──────┬───────┘
+                      ↓
+               ┌──────────────┐
+               │   ASSISTANT  │
+               └──────────────┘
 ```
 
 ---
 
 # Perception Pipeline
 
-Each camera frame passes through a deterministic multi-stage pipeline.
+Each frame passes through a deterministic processing pipeline:
 
 ```text
 Frame
  ↓
-YOLO Inference
+YOLOv8n Inference
  ↓
 Detection Adapter
  ↓
@@ -142,6 +168,8 @@ Scene Graph
  ↓
 Event Engine
  ↓
+Event Filter
+ ↓
 Memory
  ↓
 Timeline
@@ -153,227 +181,135 @@ Reasoning
 Planning
 ```
 
-This entire cycle is implemented by `PerceptionPipeline`.
+The complete frame-processing cycle is orchestrated by `PerceptionPipeline`.
 
 ---
 
-# 👁️ Vision Layer
+# Vision Layer
 
-Aether uses **YOLOv8 Nano** as its default object detector.
-
-Model:
+Aether currently uses:
 
 ```text
+YOLOv8n
 yolov8n.pt
 ```
 
-The detector is isolated behind a dedicated `VisionDetector` abstraction.
+The detector is isolated behind the `VisionDetector` abstraction so that the rest of the architecture does not directly depend on the detector implementation.
 
-```python
-VisionDetector.detect(frame)
+A detection contains information such as:
+
+```text
+class
+confidence
+bounding box
+center
+timestamp
 ```
-
-The detector produces raw YOLO inference results, which are converted into Aether's internal `Detection` representation.
-
-This separation keeps the rest of the system independent from the underlying detection framework.
 
 ---
 
-# Detection Representation
+# Confidence Filtering
 
-Raw model predictions are converted into canonical detection objects containing information such as:
+Raw detector predictions are passed through a confidence filter before entering the downstream tracking pipeline.
 
-* Object class
-* Confidence
-* Bounding box
-* Center position
-* Timestamp
-
-Conceptually:
+Current production configuration:
 
 ```text
-YOLO Result
-     ↓
-Detection
- ├── class_name
- ├── confidence
- ├── bounding_box
- ├── center
- └── timestamp
+Confidence threshold: 0.35
 ```
 
-This creates a stable interface between computer vision and the rest of the architecture.
+Real-video evaluation demonstrated that some missed bottle instances were caused by low-confidence detections, while others were confidently classified as the wrong class.
 
 ---
 
-# 🎯 Confidence Filtering
+# Object Tracking
 
-Not every raw detector prediction is accepted.
-
-A confidence filtering layer removes predictions below the configured confidence threshold.
-
-```text
-Raw detections
-      ↓
-Confidence Filter
-      ↓
-Trusted detections
-```
-
-This prevents very weak predictions from immediately entering the tracking and world-model layers.
-
----
-
-# 🔄 Object Tracking
-
-Aether maintains persistent object identities across frames.
-
-Instead of treating:
-
-```text
-Frame 1 → bottle
-Frame 2 → bottle
-Frame 3 → bottle
-```
-
-as three unrelated detections, the tracker attempts to represent them as:
-
-```text
-Track #001
- ├── Frame 1
- ├── Frame 2
- └── Frame 3
-```
+Aether maintains persistent track IDs across frames.
 
 The current tracker uses nearest-neighbour association based on object-center distance.
 
-Default association threshold:
+Current association threshold:
 
 ```text
 50 pixels
 ```
 
-The tracker maintains:
+Tracks maintain:
 
-* Track ID
-* Current detection
-* Track history
-* Missed frames
-* Active/inactive state
-
----
-
-# 🧠 Temporal Detection Stabilization
-
-Object detectors can produce noisy labels.
-
-For example:
-
-```text
-Frame 1 → bottle
-Frame 2 → cup
-Frame 3 → bottle
-Frame 4 → bottle
-```
-
-Aether does not immediately accept every label change.
-
-The `DetectionStabilizer` maintains label history per track and uses a stabilization policy before changing the currently stable label.
-
-Conceptually:
-
-```text
-Raw predictions
-      ↓
-Label history
-      ↓
-Voting / temporal evidence
-      ↓
-Stable label
-```
-
-This reduces frame-to-frame label flickering.
+- Track ID
+- Current detection
+- Track history
+- Missed frames
+- Active/inactive state
 
 ---
 
-# 🪪 Identity Resolution
+# Temporal Detection Stabilization
 
-The identity layer maintains a persistent semantic identity for each track.
+Object detectors can produce frame-to-frame label fluctuations.
 
-An identity contains information such as:
+Aether maintains temporal label history and applies stabilization before changing the current stable label.
 
-* Track ID
-* Current label
-* Confidence
-* Label history
-* Last update time
+```text
+Raw Predictions
+      ↓
+Label History
+      ↓
+Temporal Evidence
+      ↓
+Stable Label
+```
 
-Identity is therefore separated from the raw detector output.
+---
+
+# Identity Resolution
+
+The identity layer associates semantic information with persistent tracks.
+
+An identity can contain:
+
+```text
+Track ID
+Current Label
+Confidence
+Label History
+Last Update
+```
+
+The conceptual relationship is:
 
 ```text
 Detection
-    ↓
+   ↓
 Track
-    ↓
+   ↓
 Identity
+   ↓
+Belief
 ```
-
-This allows downstream systems to reason about persistent objects instead of individual detections.
 
 ---
 
-# 🧠 Belief Engine
+# Belief Engine
 
 Aether contains a separate belief layer for maintaining confidence in object identity.
-
-The belief engine does not immediately switch beliefs whenever a detector produces a different label.
-
-A challenger label must satisfy stability conditions before replacing the existing belief.
 
 Current policy includes:
 
 ```text
 Minimum consecutive observations: 10
 Minimum confidence margin:       0.20
-Belief decay:                     0.98
-Minimum belief confidence:        0.05
+Belief decay:                    0.98
+Minimum belief confidence:       0.05
 ```
 
-This creates a conservative belief transition mechanism.
-
-Example:
-
-```text
-Current belief:
-bottle — 0.84
-
-New observations:
-cup — 0.61
-cup — 0.63
-cup — 0.68
-...
-
-↓
-
-Do not immediately switch.
-
-↓
-
-Require persistent evidence.
-
-↓
-
-Potential belief transition:
-bottle → cup
-```
+The system uses temporal evidence rather than immediately accepting every detector label change.
 
 ---
 
-# 🌍 World State
+# World State
 
-The `WorldState` layer maintains the current and previous snapshots of active tracks.
-
-A world snapshot provides a representation of what Aether currently believes is present in the scene.
+`WorldState` maintains the system's current representation of active objects.
 
 ```text
 WorldSnapshot
@@ -381,15 +317,15 @@ WorldSnapshot
  └── active tracks
 ```
 
-The previous snapshot is used by the event engine to determine what changed between frames.
+Previous and current snapshots are compared to determine what changed.
 
 ---
 
-# 🕸️ Scene Graph
+# Scene Graph
 
-Aether constructs a lightweight scene graph from tracked object geometry.
+Aether constructs a lightweight spatial representation from tracked object geometry.
 
-Supported spatial relationships include:
+Current relationships include:
 
 ```text
 LEFT_OF
@@ -400,133 +336,76 @@ NEAR
 OVERLAPS
 ```
 
-The current scene graph is geometry-driven rather than language-model-driven.
+The scene graph is based on **2D image geometry**, not true 3D spatial understanding.
 
-For example:
-
-```text
-Person_001
-      │
-      ├── NEAR ──► Bottle_002
-      │
-      └── LEFT_OF ──► Chair_003
-```
-
-The default `NEAR` distance threshold is:
+Current `NEAR` threshold:
 
 ```text
 150 pixels
 ```
 
-This provides structured spatial knowledge for downstream reasoning and queries.
+---
+
+# Event Engine
+
+The Event Engine compares world-state changes over time.
+
+Events include:
+
+```text
+APPEARED
+DISAPPEARED
+MOVED
+STOPPED
+STARTED_MOVING
+```
+
+Events are derived from **temporal changes in world state**, rather than directly from individual detector predictions.
 
 ---
 
-# ⚡ Event Engine
+# Event Filtering
 
-Aether compares consecutive world snapshots to identify changes.
+Raw perception can generate noisy movement events.
 
-Supported event types include events such as:
-
-* Appeared
-* Disappeared
-* Moved
-* Stopped
-* Started moving
-* Stopped moving
-* Removed
-* Taken
-* Picked up
-* Destroyed
-* Broken
-
-For example:
+Aether therefore contains an event-filtering layer:
 
 ```text
-Frame N:
-Bottle_001 exists at (300, 250)
-
-Frame N+1:
-Bottle_001 exists at (340, 250)
-
-↓
-
-Event:
-Bottle_001 MOVED
+Raw Perception Changes
+          ↓
+     Event Engine
+          ↓
+     Event Filter
+          ↓
+ Meaningful Events
 ```
 
-If an object disappears from the next snapshot:
-
-```text
-Frame N:
-Bottle_001 visible
-
-Frame N+1:
-Bottle_001 missing
-
-↓
-
-Event:
-Bottle_001 DISAPPEARED
-```
+Real-video evaluation demonstrated that event quality remains substantially more difficult than the deterministic synthetic scenarios.
 
 ---
 
-# 🧹 Event Filtering
+# Memory
 
-Raw event generation can produce noisy movement events.
+Events and object observations are converted into structured memory records.
 
-Aether includes an `EventFilter` layer to suppress events that do not provide useful information.
-
-The pipeline also maintains movement-noise suppression state.
-
-This creates a distinction between:
+Memory can retain:
 
 ```text
-Raw perception changes
-```
-
-and:
-
-```text
-Meaningful world events
+Object
+Track ID
+Status
+Last Position
+First Seen
+Last Seen
+Confidence
+Historical Observations
 ```
 
 ---
 
-# 🧠 Working Memory
+# Timeline
 
-Events are converted into structured memory records.
-
-Memory tracks the state of objects over time.
-
-Possible object states include concepts such as:
-
-```text
-ACTIVE
-MOVING
-STATIC
-LOST
-```
-
-A memory record can retain information such as:
-
-* Object name
-* Track ID
-* Current status
-* Last position
-* First seen time
-* Last seen time
-* Confidence
-* Historical observations
-
-This gives Aether a short-term world memory rather than relying solely on the current frame.
-
----
-
-# ⏳ Timeline
-
-The timeline layer converts events into chronological entries.
+Events are represented chronologically through the timeline layer.
 
 Example:
 
@@ -537,49 +416,42 @@ Example:
 12:01:12  bottle_001 DISAPPEARED
 ```
 
-The timeline provides an episodic representation of what happened.
-
-It is later used by the knowledge and assistant layers.
-
 ---
 
-# 💾 Persistent Memory
+# Persistent Memory
 
-Aether can persist selected memory information to:
+Selected memory information can be persisted to:
 
 ```text
 data/aether_memory.json
 ```
 
-The persistence layer:
+The persistence layer supports:
 
-* Saves memory
-* Loads memory
-* Clears memory
-* Writes atomically
-* Recovers from invalid/missing files
-* Compacts persistent memory
-
-This allows information about previously observed objects to survive application restarts.
+- Saving memory
+- Loading memory
+- Atomic writes
+- Recovery from missing/invalid files
+- Memory compaction
 
 ---
 
-# 🧩 Knowledge Engine
+# Knowledge Engine
 
-The Knowledge Engine acts as a unified query layer over multiple internal knowledge sources.
+The Knowledge Engine provides a unified query layer over internal system state.
 
 It combines:
 
 ```text
-Working Memory
 Current Observation
+Working Memory
 Persistent Memory
 Timeline
 Scene Graph
 Belief Engine
 ```
 
-Supported knowledge queries include:
+Supported query concepts include:
 
 ```text
 WHERE_IS
@@ -589,29 +461,11 @@ CURRENT_BELIEF
 CURRENT_STATE
 ```
 
-The engine also tracks the source modules responsible for each result.
-
-This allows downstream reasoning to distinguish between current observations and historical information.
-
 ---
 
-# 🔬 Reasoning Engine
+# Reasoning Engine
 
 Aether includes a deterministic rule-based reasoning system.
-
-The reasoning engine collects facts from the Knowledge Engine and evaluates registered rules.
-
-It can reason about concepts such as:
-
-* Object movement
-* Object disappearance
-* Nearby people
-* Removal evidence
-* Destruction evidence
-* Recent movement
-* Object relationships
-
-The reasoning system supports iterative inference:
 
 ```text
 Known Facts
@@ -620,788 +474,533 @@ Rule Evaluation
     ↓
 New Conclusions
     ↓
-Evaluate Again
+Rule Evaluation
     ↓
 Additional Conclusions
 ```
 
-This provides a small forward-chaining reasoning mechanism without requiring an LLM.
+This makes reasoning:
+
+- Inspectable
+- Deterministic
+- Testable
+- Reproducible
+
+The reasoning system is **not a general-purpose commonsense reasoning system**.
 
 ---
 
-# 🧭 Planning
+# Planning
 
-The planner converts knowledge and reasoning into explainable actions.
+The planner converts available knowledge and reasoning into explainable search actions.
 
-Current planning rules include:
-
-### Known Location
-
-If the target object has a known location:
+Examples:
 
 ```text
-Inspect last known location.
+Known location
+    ↓
+Inspect last known location
 ```
-
-### Nearby Evidence
-
-If nearby objects provide useful evidence:
 
 ```text
-Search near <object>.
+Nearby evidence
+    ↓
+Search near related object
 ```
-
-### No Evidence
-
-If there is insufficient evidence:
 
 ```text
-Expand search area.
+Insufficient evidence
+    ↓
+Expand search area
 ```
 
-Each proposed action has:
-
-* Description
-* Priority
-* Reason
-
-The planner **proposes actions but does not execute them**.
+The planner currently **proposes actions but does not physically execute them**.
 
 ---
 
-# 🤖 Aether Assistant
+# Aether Assistant
 
-Aether contains a deterministic assistant that exposes the system's internal knowledge through natural-language queries.
+Aether exposes system knowledge through deterministic natural-language queries.
 
-Supported query categories include:
-
-```text
-Where is <object>?
-```
+Examples:
 
 ```text
-Where was <object>?
-```
+Where is the bottle?
 
-```text
-What happened to <object>?
-```
+Where was the bottle?
 
-```text
-What is near <object>?
-```
+What happened to the bottle?
 
-```text
-How do I find <object>?
+What is near the bottle?
+
+How do I find the bottle?
 ```
 
 The assistant combines:
 
 ```text
 Knowledge
-+
+   +
 Reasoning
-+
+   +
 Planning
 ```
 
-to produce an answer.
+It is designed to avoid inventing information when the internal system lacks sufficient evidence.
 
-Example:
+---
+
+# Evaluation Framework
+
+Aether includes a dedicated evaluation framework rather than relying solely on visual inspection.
+
+The evaluation system currently covers:
+
+- Identity Stability
+- Belief Stability
+- Event Quality
+- Reasoning Accuracy
+- Planner Quality
+- Query Accuracy
+- Performance instrumentation
+- Real-video evaluation
+
+---
+
+# Synthetic Evaluation
+
+The latest deterministic evaluation suite:
 
 ```text
-User:
-Where is the bottle?
-
-Aether:
-The bottle was last observed at approximately
-(421, 286).
-
-Planning:
-Inspect last known location.
+90 passed
+6 subtests passed
+16.25 seconds
 ```
 
-The assistant deliberately avoids inventing information when the system has insufficient evidence.
-
----
-
-# 🔎 Query Engine
-
-A separate lightweight query engine provides lower-level queries over current tracks, memory, and timeline.
-
-Supported questions include:
+### Identity Stability
 
 ```text
-What objects do you see?
+100% — 9000 / 9000
+Cold-start mean: 1.325 frames
+Adaptation:       31 frames
+Burst tolerance:  20
 ```
+
+### Belief Stability
 
 ```text
-What did you see earlier?
+100% — 9000 / 9000
+Cold-start mean: 10.375 frames
+Adaptation:       43 frames
+Burst tolerance:  20
 ```
+
+### Event Quality
 
 ```text
-What happened recently?
+100% — 34 / 34
+Jitter false movement: 0 / 8
 ```
+
+### Event Pipeline Quality
 
 ```text
-When was the bottle last seen?
+100% — 8 / 8
+Jitter false movement: 0 / 2
 ```
-
-```text
-Is the bottle visible?
-```
-
-```text
-Where is the bottle?
-```
-
-The query interpreter is deterministic and uses predefined intent patterns rather than a general-purpose LLM.
-
----
-
-# 🔁 Complete System Flow
-
-A single frame can travel through the entire Aether architecture as follows:
-
-```text
-Camera
-  │
-  ▼
-Frame
-  │
-  ▼
-YOLOv8n
-  │
-  ▼
-Detections
-  │
-  ▼
-Confidence Filter
-  │
-  ▼
-Tracker
-  │
-  ▼
-Detection Stabilizer
-  │
-  ▼
-Identity Resolver
-  │
-  ▼
-Belief Engine
-  │
-  ▼
-World Snapshot
-  │
-  ├───────────────► Scene Graph
-  │
-  ▼
-Event Engine
-  │
-  ▼
-Event Filter
-  │
-  ├───────────────► Working Memory
-  │
-  └───────────────► Timeline
-                         │
-                         ▼
-                  Persistent Memory
-                         │
-                         ▼
-                  Knowledge Engine
-                         │
-                  ┌──────┴──────┐
-                  ▼             ▼
-             Reasoning       Queries
-                  │
-                  ▼
-               Planner
-                  │
-                  ▼
-              Assistant
-```
-
----
-
-# 🧪 Evaluation Framework
-
-Aether includes a dedicated evaluation framework rather than relying only on visual inspection.
-
-The evaluator currently contains scenarios for:
-
-* Identity stability
-* Belief stability
-* Event quality
-* Reasoning accuracy
-* Planner quality
-* Query accuracy
-
-The evaluation framework provides reusable metric primitives including:
-
-* Percentage
-* Counter
-* Average
-* Normalized Score
-
-Example evaluation structure:
-
-```text
-Scenario
-   ↓
-Expected Result
-   ↓
-Actual Result
-   ↓
-Metric Calculation
-   ↓
-Evaluation Report
-```
-
-Run the evaluation suite with:
-
-```bash
-python -m evaluation
-```
-
-For Markdown output:
-
-```bash
-python -m evaluation --markdown
-```
-
----
-
-# 📊 Performance Monitoring
-
-The perception pipeline measures frame processing performance and maintains a rolling frame-duration history.
-
-The renderer displays the current FPS.
-
-This allows the system to monitor real-time perception performance while the camera pipeline is running.
-
----
-
-# 🛠️ Tech Stack
-
-### Computer Vision
-
-* Python
-* OpenCV
-* YOLOv8
-* Ultralytics
-
-### Numerical Computing
-
-* NumPy
-
-### Architecture
-
-* Modular Python packages
-* Dataclasses
-* Type hints
-* Protocol-based interfaces
-* Deterministic rule engines
-
-### Storage
-
-* JSON persistence
-* In-memory stores
-
-### Testing
-
-* Pytest
-* Scenario-based evaluation
-
----
-
-# 📂 Project Structure
-
-```text
-Aether-Vision/
-│
-├── app/
-│   ├── main.py
-│   └── runner.py
-│
-├── assistant/
-│   ├── assistant.py
-│   ├── exceptions.py
-│   ├── formatter.py
-│   ├── intent.py
-│   ├── query.py
-│   ├── query_engine.py
-│   ├── query_handler.py
-│   ├── response.py
-│   └── response_builder.py
-│
-├── belief/
-│   ├── belief.py
-│   ├── belief_engine.py
-│   ├── belief_policy.py
-│   ├── belief_state.py
-│   ├── exceptions.py
-│   └── queries.py
-│
-├── camera/
-│   ├── camera.py
-│   ├── camera_manager.py
-│   ├── exceptions.py
-│   └── frame.py
-│
-├── data/
-│   └── aether_memory.json
-│
-├── evaluation/
-│   ├── benchmark.py
-│   ├── evaluator.py
-│   ├── metrics.py
-│   ├── perf.py
-│   ├── report.py
-│   └── scenarios/
-│       ├── belief_stability.py
-│       ├── event_quality.py
-│       ├── identity_stability.py
-│       ├── planner_quality.py
-│       ├── query_accuracy.py
-│       └── reasoning_accuracy.py
-│
-├── events/
-│   ├── event.py
-│   ├── event_engine.py
-│   ├── event_filter.py
-│   ├── event_policy.py
-│   ├── event_types.py
-│   └── exceptions.py
-│
-├── identity/
-│   ├── confidence_fusion.py
-│   ├── identity.py
-│   ├── label_history.py
-│   ├── queries.py
-│   └── resolver.py
-│
-├── knowledge/
-│   ├── knowledge_engine.py
-│   ├── knowledge_query.py
-│   ├── knowledge_result.py
-│   └── query_types.py
-│
-├── memory/
-│   ├── constants.py
-│   ├── enums.py
-│   ├── memory_engine.py
-│   ├── memory_record.py
-│   ├── memory_store.py
-│   ├── object_memory.py
-│   ├── queries.py
-│   └── schemas.py
-│
-├── pipeline/
-│   ├── perception_pipeline.py
-│   └── pipeline_result.py
-│
-├── planning/
-│   ├── action.py
-│   ├── goal.py
-│   ├── plan.py
-│   ├── planner.py
-│   └── planner_rules.py
-│
-├── reasoning/
-│   ├── inference.py
-│   ├── inference_result.py
-│   ├── query.py
-│   ├── reasoning_engine.py
-│   ├── rule.py
-│   └── rule_registry.py
-│
-├── scene/
-│   ├── graph.py
-│   ├── graph_builder.py
-│   ├── queries.py
-│   ├── relation.py
-│   └── relation_types.py
-│
-├── storage/
-│   ├── memory_quality.py
-│   ├── persistence.py
-│   └── serializer.py
-│
-├── tests/
-│   ├── test_belief_engine.py
-│   ├── test_evaluation.py
-│   ├── test_persistence.py
-│   └── test_query_engine.py
-│
-├── timeline/
-│   ├── timeline.py
-│   ├── timeline_entry.py
-│   ├── timeline_store.py
-│   └── queries.py
-│
-├── tracking/
-│   ├── association.py
-│   ├── distance.py
-│   ├── track.py
-│   └── tracker.py
-│
-├── vision/
-│   ├── adapters.py
-│   ├── confidence_filter.py
-│   ├── detection.py
-│   ├── detection_stabilizer.py
-│   ├── detector.py
-│   ├── label_history.py
-│   ├── model.py
-│   ├── renderer.py
-│   └── stabilization_policy.py
-│
-├── world/
-│   ├── object_registry.py
-│   ├── snapshot.py
-│   └── world_state.py
-│
-├── requirements.txt
-└── yolov8n.pt
-```
-
----
-
-# 🚀 Getting Started
-
-## Prerequisites
-
-Install:
-
-* Python 3.10+
-* OpenCV-compatible webcam
-* Git
-* A machine capable of running YOLOv8 inference
-
-Recommended:
-
-* NVIDIA GPU for improved real-time performance
-* CUDA-enabled PyTorch installation when GPU acceleration is desired
-
----
-
-# Installation
-
-Clone the repository:
-
-```bash
-git clone <YOUR_REPOSITORY_URL>
-cd Aether-Vision
-```
-
-Create a virtual environment:
-
-```bash
-python -m venv .venv
-```
-
-Activate it.
-
-### Windows
-
-```powershell
-.venv\Scripts\activate
-```
-
-### Linux / macOS
-
-```bash
-source .venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-The current dependency set includes:
-
-```text
-numpy
-opencv-python
-ultralytics
-```
-
----
-
-# ▶️ Running Aether
-
-From the repository root:
-
-```bash
-python -m app.main
-```
-
-Aether will:
-
-1. Open the configured camera
-2. Capture frames
-3. Run YOLO inference
-4. Convert detections
-5. Filter low-confidence detections
-6. Track objects
-7. Stabilize labels
-8. Update identities and beliefs
-9. Update world state
-10. Generate spatial relationships
-11. Detect events
-12. Update memory and timeline
-13. Render the current scene
-14. Display FPS
-15. Process supported assistant/query interactions
-
-Press the configured quit key to stop the pipeline.
-
----
-
-# 📷 Camera Configuration
-
-The default camera source is:
-
-```python
-DEFAULT_CAMERA_INDEX = 0
-```
-
-This corresponds to the system's default webcam.
-
-The camera abstraction also supports OpenCV-compatible sources.
-
-For example:
-
-```python
-Camera(source=0)
-```
-
-can be replaced with another supported source.
-
----
-
-# 🧠 Model Configuration
-
-The default model is:
-
-```text
-yolov8n.pt
-```
-
-The detector uses lazy model loading and caches the loaded model.
-
-The model path can be replaced through the `VisionDetector` constructor.
-
-Example:
-
-```python
-VisionDetector(model_path="custom_model.pt")
-```
-
----
-
-# 🧪 Testing
-
-Run the test suite with:
-
-```bash
-pytest
-```
-
-The repository includes tests covering areas such as:
-
-* Belief engine
-* Persistence
-* Query engine
-* Evaluation framework
-
----
-
-# 📊 Evaluation
-
-Run all benchmark scenarios:
-
-```bash
-python -m evaluation
-```
-
-Generate Markdown output:
-
-```bash
-python -m evaluation --markdown
-```
-
-Current evaluation categories:
-
-```text
-Identity Stability
-Belief Stability
-Event Quality
-Reasoning Accuracy
-Planner Quality
-Query Accuracy
-```
-
----
-
-# 🔐 Persistence
-
-Aether stores persistent memory in:
-
-```text
-data/aether_memory.json
-```
-
-The persistence layer performs atomic writes using a temporary file before replacing the target file.
-
-If the persistence file is missing or invalid, Aether falls back to an empty memory state.
-
----
-
-# ⚠️ Current Limitations
-
-Aether is an experimental research/development system rather than a finished general-purpose artificial intelligence.
-
-### Object Detection
-
-YOLO predictions can be noisy.
-
-Objects may occasionally be:
-
-* Misclassified
-* Missed
-* Temporarily lost
-* Assigned an incorrect label
-
-Temporal stabilization reduces some of this noise but cannot eliminate detector errors.
-
-### Tracking
-
-The current tracker uses center-distance nearest-neighbour association.
-
-This approach is intentionally simple and can struggle when:
-
-* Objects overlap
-* Objects cross paths
-* Multiple similar objects are close together
-* Objects move rapidly
-
-### Spatial Understanding
-
-Scene relationships are currently derived from 2D image geometry.
-
-The system does not yet understand:
-
-* True 3D distance
-* Depth
-* Physical containment
-* Semantic object affordances
-* Complex spatial relationships
 
 ### Reasoning
 
-The reasoning layer is deterministic and rule-based.
-
-It does not currently provide general-purpose commonsense reasoning.
+```text
+9 / 9 golden cases
+```
 
 ### Planning
 
-The planner generates explainable search actions but does not execute physical actions.
+```text
+6 / 6 golden cases
+```
 
-### Assistant
+### Query Accuracy
 
-The assistant uses predefined deterministic query patterns rather than a general conversational language model.
+```text
+Supported queries:                40 / 40
+Confidently wrong:                 0 / 40
+Paraphrase handling:               0 / 60
+Confidently wrong on paraphrases:  0 / 60
+```
 
-### Memory
-
-Persistent memory is currently JSON-based and designed for the project's experimental scale.
-
----
-
-# 🗺️ Roadmap
-
-### Perception
-
-* [x] Camera abstraction
-* [x] Frame abstraction
-* [x] YOLO object detection
-* [x] Confidence filtering
-* [x] Detection normalization
-* [x] FPS monitoring
-
-### Tracking
-
-* [x] Persistent track IDs
-* [x] Nearest-neighbour association
-* [x] Track history
-* [x] Missed-frame handling
-* [x] Detection stabilization
-
-### World Model
-
-* [x] World snapshots
-* [x] Object registry
-* [x] Scene graph
-* [x] Spatial relations
-
-### Memory
-
-* [x] Working memory
-* [x] Event-driven memory
-* [x] Timeline
-* [x] Persistent JSON memory
-* [x] Memory confidence
-
-### Cognition
-
-* [x] Identity resolution
-* [x] Belief engine
-* [x] Knowledge engine
-* [x] Rule-based reasoning
-* [x] Deterministic planning
-* [x] Query assistant
-
-### Evaluation
-
-* [x] Evaluation framework
-* [x] Identity stability benchmark
-* [x] Belief stability benchmark
-* [x] Event quality benchmark
-* [x] Reasoning benchmark
-* [x] Planner benchmark
-* [x] Query benchmark
-
-### Future Development
-
-* [ ] Stronger multi-object tracking
-* [ ] Re-identification across longer disappearances
-* [ ] Improved spatial reasoning
-* [ ] Depth estimation
-* [ ] 3D scene representation
-* [ ] Object interaction modeling
-* [ ] Temporal activity recognition
-* [ ] Learned event detection
-* [ ] More sophisticated reasoning
-* [ ] LLM-assisted semantic reasoning
-* [ ] Action execution
-* [ ] Robotics integration
-* [ ] Long-term episodic memory
-* [ ] Multi-camera perception
+These results validate deterministic components under scripted conditions. They should **not** be interpreted as equivalent to general real-world vision performance.
 
 ---
 
-# 🧱 Design Principles
+# Real-World Evaluation
 
-Aether follows several architectural principles.
+Aether was additionally evaluated against a manually annotated real-world video:
 
-## 1. Separate perception from cognition
+```text
+Video:
+data/evaluation/own_clips/desk_01.mp4
 
-Computer vision produces observations.
+Resolution:
+848 × 478
 
-Higher-level modules interpret those observations.
+Source FPS:
+30.004
+
+Total frames:
+2028
+
+Annotated frames:
+68
+```
+
+The evaluation used manually reviewed frames sampled throughout the clip.
+
+The annotated evaluation focused on:
+
+```text
+bottle
+wallet
+phone
+```
+
+The ground-truth annotations were reviewed and corrected after a spatial mismatch was identified in the first 12 sampled frames.
+
+---
+
+# Real-World Baseline
+
+Using the corrected annotations and production confidence threshold `0.35`:
+
+```text
+Detection precision: 33.33%
+Detection recall:    14.84%
+
+TP = 19
+FP = 38
+FN = 109
+```
+
+Identity evaluation:
+
+```text
+Spatially matched identity:
+19 / 37 = 51.35%
+```
+
+Track ID switches:
+
+```text
+10
+```
+
+Filtered event evaluation:
+
+```text
+Event precision: 1.37%
+Event recall:    27.27%
+
+Event TP = 3
+Event FP = 216
+Event FN = 8
+```
+
+These real-video measurements are intentionally reported separately from the synthetic evaluation.
+
+---
+
+# Real-World Performance
+
+Measured on the evaluated video:
+
+```text
+End-to-end mean FPS: 102.43
+```
+
+Excluding detector inference:
+
+```text
+1928.32 FPS
+```
+
+Representative stage latency:
+
+| Stage | p50 | p95 |
+|---|---:|---:|
+| Detector | 8.410 ms | 14.663 ms |
+| Adapter | 0.265 ms | 0.495 ms |
+| Confidence Filter | 0.001 ms | 0.002 ms |
+| Tracker | 0.013 ms | 0.023 ms |
+| Stabilizer | 0.030 ms | 0.046 ms |
+| Identity | 0.016 ms | 0.044 ms |
+| Belief | 0.009 ms | 0.012 ms |
+| World + Beliefs | 0.020 ms | 0.029 ms |
+| Event Engine | 0.006 ms | 0.023 ms |
+| Event Filter | 0.001 ms | 0.007 ms |
+
+**YOLO inference dominates the measured end-to-end processing cost.**
+
+---
+
+# Real-World Diagnostic Findings
+
+The real-video evaluation was followed by a diagnostic investigation rather than treating the aggregate score as the final explanation.
+
+## 1. Ground-Truth Annotation Error
+
+The first 12 sampled frames originally contained an incorrect bottle center.
+
+The visible bottle was located substantially farther to the right than the annotated point.
+
+The annotations were manually reviewed and corrected before the final evaluation.
+
+This correction changed spatial matching for identity and event evaluation, but it did not create additional true-positive bottle detections at the production threshold.
+
+---
+
+## 2. Bottle Detection: Confidence vs Classification
+
+For many of the originally mislabeled frames, YOLOv8n was not simply failing to detect the object.
+
+It was detecting the object as:
+
+```text
+cup
+```
+
+with relatively high confidence.
+
+Examples:
+
+```text
+Frame 30  → cup 0.5962
+Frame 90  → cup 0.6224
+Frame 120 → cup 0.6107
+Frame 180 → cup 0.5254
+Frame 240 → cup 0.4237
+```
+
+Therefore:
+
+> Lowering the confidence threshold cannot fix these particular errors because the detector is confidently predicting the wrong class.
+
+This is a **model/classification limitation**, rather than simply a confidence-filtering problem.
+
+---
+
+# Bottle Confidence Sweep
+
+A bottle-only threshold sweep was performed on the corrected annotations.
+
+| Threshold | TP | FP | FN | Precision | Recall |
+|---:|---:|---:|---:|---:|---:|
+| 0.35 | 19 | 0 | 49 | 100% | 27.94% |
+| 0.32 | 27 | 0 | 41 | 100% | 39.71% |
+| 0.30 | 32 | 0 | 36 | 100% | 47.06% |
+| 0.28 | 38 | 0 | 30 | 100% | 55.88% |
+| 0.25 | 41 | 0 | 27 | 100% | 60.29% |
+
+### Important qualification
+
+These are **bottle-only measurements from one controlled desk clip**.
+
+They do not establish that lowering Aether's global production threshold will maintain zero false positives across arbitrary scenes or all detector classes.
+
+The experiment provides evidence for further threshold investigation rather than a universal production-threshold recommendation.
+
+---
+
+# ID Switch Diagnosis
+
+The real-video evaluation produced:
+
+```text
+10 track ID switches
+```
+
+The switches occurred after detector gaps that exceeded the tracker's configured missed-frame lifetime.
+
+The investigation found that the switches were associated with **detection gaps followed by track expiration and subsequent track creation**, rather than an established nearest-neighbour association failure while the object remained continuously detected.
+
+Therefore, no tracker-code modification was made as a result of this diagnostic phase.
+
+```text
+Detector gap
+    ↓
+Track timeout
+    ↓
+Old track becomes inactive
+    ↓
+Object detected again
+    ↓
+New track ID
+```
+
+---
+
+# Wallet Out-of-Vocabulary Limitation
+
+The real-video annotations included a `wallet` object.
+
+However, `wallet` is not one of the classes available in the default YOLOv8n COCO model.
+
+The model includes classes such as:
+
+```text
+bottle
+cup
+handbag
+...
+```
+
+but not a literal:
+
+```text
+wallet
+```
+
+Therefore, literal wallet-class evaluation cannot be interpreted as a normal detector recall problem under the current model.
+
+This is an **out-of-vocabulary limitation** of the selected pretrained detector.
+
+A future custom detector or additional recognition layer would be required for reliable wallet-class recognition.
+
+---
+
+# What the Real-World Evaluation Taught
+
+The real-video evaluation exposed several distinct failure modes:
+
+```text
+Annotation error
+       ↓
+Spatial matching discrepancy
+
+Low-confidence bottle detections
+       ↓
+Potential threshold sensitivity
+
+Bottle → cup classification
+       ↓
+Detector/model limitation
+
+Detection gaps
+       ↓
+Track expiration
+       ↓
+New track IDs
+
+Occlusion
+       ↓
+Reduced detector visibility
+
+Wallet
+       ↓
+Out-of-vocabulary class
+```
+
+Each failure mode requires a different type of intervention.
+
+---
+
+# Current Limitations
+
+Aether remains an experimental research/development system.
+
+## Object Detection
+
+YOLOv8n can:
+
+- Miss objects
+- Misclassify objects
+- Produce low-confidence detections
+- Produce inconsistent predictions under changing viewpoints
+- Struggle with occlusion
+
+Temporal stabilization can reduce some downstream instability, but it cannot correct a detector that consistently predicts the wrong class.
+
+## Tracking
+
+The current tracker uses center-distance nearest-neighbour association.
+
+It can struggle when:
+
+- Objects disappear for extended periods
+- Objects overlap
+- Objects cross paths
+- Multiple similar objects are close together
+- Detection quality becomes unstable
+
+Longer detector gaps can cause tracks to expire and new IDs to be created.
+
+## Object Vocabulary
+
+The default YOLOv8n model is restricted to its pretrained class vocabulary.
+
+Objects outside that vocabulary cannot be evaluated as literal detector classes without additional modeling.
+
+## Spatial Understanding
+
+The current scene representation is based on 2D image geometry.
+
+Aether does not yet provide:
+
+- True 3D distance
+- Depth understanding
+- Physical containment
+- Full object affordances
+- General physical reasoning
+
+## Reasoning
+
+The reasoning engine is deterministic and rule-based.
+
+It is not a general-purpose commonsense reasoning system.
+
+## Planning
+
+The planner produces explainable actions but does not execute physical actions.
+
+## Assistant
+
+The current assistant uses deterministic query handling rather than a general-purpose conversational LLM.
+
+## Memory
+
+Persistent memory is currently JSON-based and intended for the experimental scale of the project.
+
+---
+
+# Evaluation Philosophy
+
+Aether deliberately separates:
+
+```text
+Architecture Validation
+```
+
+from:
+
+```text
+Real-World Perception Validation
+```
+
+Synthetic evaluation asks:
+
+> Does the architecture behave correctly under controlled conditions?
+
+Real-video evaluation asks:
+
+> What happens when the system encounters actual detector uncertainty, occlusion, classification errors, missed detections, and temporal gaps?
+
+A high synthetic score is therefore not presented as evidence that the entire visual system has solved real-world perception.
+
+---
+
+# Design Principles
+
+## 1. Separate Perception From Cognition
 
 ```text
 Vision
@@ -1417,30 +1016,29 @@ Reasoning
 Planning
 ```
 
----
+## 2. Preserve Uncertainty
 
-## 2. Preserve uncertainty
+Aether retains:
 
-Aether does not immediately treat every detector prediction as absolute truth.
+- Confidence
+- Label history
+- Belief state
+- Temporal evidence
 
-Confidence, history, belief stability, and temporal evidence are retained throughout the system.
+rather than immediately treating every detector prediction as absolute truth.
 
----
-
-## 3. Prefer deterministic reasoning
+## 3. Prefer Deterministic Reasoning
 
 Core reasoning and planning are implemented using explicit rules.
 
-This makes conclusions:
+This makes their behavior:
 
-* Inspectable
-* Testable
-* Reproducible
-* Easier to debug
+- Inspectable
+- Testable
+- Reproducible
+- Debuggable
 
----
-
-## 4. Build around persistent entities
+## 4. Build Around Persistent Entities
 
 The system reasons about tracked objects rather than isolated bounding boxes.
 
@@ -1456,36 +1054,32 @@ Belief
 Memory
 ```
 
----
+## 5. Make Information Traceable
 
-## 5. Make information traceable
-
-Knowledge results identify their source modules.
-
-For example:
+Knowledge results preserve their source information, making it possible to distinguish between:
 
 ```text
-WorkingMemory
-CurrentObservation
-PersistentMemory
+Current Observation
+Working Memory
+Persistent Memory
 Timeline
-SceneGraph
-BeliefEngine
+Scene Graph
+Belief
 ```
-
-This makes it possible to determine where an answer originated.
 
 ---
 
-# 🔬 Why Aether Is Different From a Basic Object Detector
+# Why Aether Is Different From a Basic Object Detector
 
-A conventional object detector performs:
+A basic object detector performs:
 
 ```text
-Frame → Objects
+Frame
+ ↓
+Objects
 ```
 
-Aether attempts to perform:
+Aether attempts to build:
 
 ```text
 Frame
@@ -1509,62 +1103,318 @@ Reasoning
 Plans
 ```
 
-The goal is not simply to answer:
+The objective is therefore not simply:
 
 > "What is visible?"
 
-but to build a continuously updated internal representation of:
+but:
 
-> **What exists, what changed, what happened, what is known, what is uncertain, and what can be inferred from the accumulated evidence.**
+> **What exists, what changed, what happened, what is known, what is uncertain, and what can be inferred from accumulated evidence?**
 
 ---
 
-# 🤝 Contributing
+# Tech Stack
 
-Contributions are welcome.
+### Computer Vision
 
-Create a feature branch:
+- Python
+- OpenCV
+- YOLOv8
+- Ultralytics
 
-```bash
-git checkout -b feature/your-feature
+### Numerical Computing
+
+- NumPy
+
+### Architecture
+
+- Modular Python packages
+- Dataclasses
+- Type hints
+- Protocol-based interfaces
+- Deterministic rule engines
+
+### Storage
+
+- JSON persistence
+- In-memory stores
+
+### Testing
+
+- Pytest
+- Scenario-based evaluation
+- Real-video evaluation
+- Performance instrumentation
+
+---
+
+# Project Structure
+
+```text
+Aether-Vision/
+│
+├── app/
+├── assistant/
+├── belief/
+├── camera/
+├── data/
+├── evaluation/
+├── events/
+├── identity/
+├── knowledge/
+├── memory/
+├── pipeline/
+├── planning/
+├── reasoning/
+├── scene/
+├── storage/
+├── tests/
+├── timeline/
+├── tracking/
+├── vision/
+├── world/
+│
+├── requirements.txt
+└── yolov8n.pt
 ```
 
-Run tests:
+---
+
+# Getting Started
+
+## Prerequisites
+
+- Python 3.10+
+- OpenCV-compatible camera
+- Git
+- Machine capable of running YOLOv8 inference
+
+An NVIDIA GPU can improve inference performance.
+
+## Installation
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+cd Aether-Vision
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+### Windows
+
+```powershell
+.venv\Scriptsctivate
+```
+
+### Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Running Aether
+
+```bash
+python -m app.main
+```
+
+The system then performs:
+
+```text
+Camera
+ ↓
+YOLO inference
+ ↓
+Detection normalization
+ ↓
+Confidence filtering
+ ↓
+Tracking
+ ↓
+Stabilization
+ ↓
+Identity
+ ↓
+Belief
+ ↓
+World state
+ ↓
+Events
+ ↓
+Memory
+ ↓
+Rendering
+```
+
+---
+
+# Testing
+
+Run the test suite:
 
 ```bash
 pytest
 ```
 
-Commit changes:
+Run the synthetic evaluation:
 
 ```bash
-git add .
-git commit -m "feat: add your feature"
+python -m evaluation
 ```
 
-Push the branch:
+Generate Markdown evaluation output:
 
 ```bash
-git push origin feature/your-feature
+python -m evaluation --markdown
 ```
-
-Then open a pull request.
 
 ---
 
-# 📄 License
+# Real-Video Evaluation
 
-Add the project's chosen license here.
+```bash
+python -m evaluation.real_video_eval     --video data/evaluation/own_clips/desk_01.mp4     --labels data/evaluation/own_clips/desk_01_labels/labels.json
+```
 
-For example:
+The real-video evaluation measures:
+
+- Detection precision
+- Detection recall
+- Identity matching
+- Track ID switches
+- Event precision
+- Event recall
+- End-to-end FPS
+- Stage-level latency
+
+---
+
+# Roadmap
+
+## Perception
+
+- [x] Camera abstraction
+- [x] Frame abstraction
+- [x] YOLO object detection
+- [x] Detection normalization
+- [x] Confidence filtering
+- [x] FPS monitoring
+
+## Tracking
+
+- [x] Persistent track IDs
+- [x] Nearest-neighbour association
+- [x] Track history
+- [x] Missed-frame handling
+- [x] Temporal stabilization
+
+## World Model
+
+- [x] World snapshots
+- [x] Object registry
+- [x] Scene graph
+- [x] Spatial relationships
+
+## Memory
+
+- [x] Working memory
+- [x] Event-driven memory
+- [x] Timeline
+- [x] Persistent JSON memory
+- [x] Memory confidence
+
+## Cognition
+
+- [x] Identity resolution
+- [x] Belief engine
+- [x] Knowledge engine
+- [x] Rule-based reasoning
+- [x] Deterministic planning
+- [x] Query assistant
+
+## Evaluation
+
+- [x] Evaluation framework
+- [x] Identity stability benchmark
+- [x] Belief stability benchmark
+- [x] Event benchmark
+- [x] Reasoning benchmark
+- [x] Planner benchmark
+- [x] Query benchmark
+- [x] Performance instrumentation
+- [x] Real-video evaluation
+- [x] Error diagnosis
+
+## Future Development
+
+- [ ] Stronger multi-object tracking
+- [ ] Re-identification across longer disappearances
+- [ ] Improved detector vocabulary
+- [ ] Custom object detection training
+- [ ] Improved spatial reasoning
+- [ ] Depth estimation
+- [ ] 3D scene representation
+- [ ] Object interaction modeling
+- [ ] Temporal activity recognition
+- [ ] Learned event detection
+- [ ] More sophisticated reasoning
+- [ ] LLM-assisted semantic reasoning
+- [ ] Physical action execution
+- [ ] Robotics integration
+- [ ] Long-term episodic memory
+- [ ] Multi-camera perception
+
+---
+
+# Project Status
+
+**Experimental / Active Development**
+
+Project Aether currently implements a modular perception-to-reasoning pipeline combining real-time visual perception, tracking, identity, belief management, world-state modeling, spatial relationships, event processing, memory, deterministic reasoning, planning, querying, and evaluation.
+
+The architecture has been validated under controlled synthetic scenarios and additionally tested against manually annotated real-world video.
+
+The real-world evaluation shows that the current system is **not a solved general-purpose vision system**. Detector classification errors, missed detections, occlusion, out-of-vocabulary objects, and track expiration remain important limitations.
+
+Rather than hiding these limitations behind aggregate scores, Aether's evaluation process attempts to identify the underlying cause of each failure and distinguish:
 
 ```text
-MIT License
+Detector limitation
+vs.
+Threshold sensitivity
+vs.
+Tracking behavior
+vs.
+Annotation error
+vs.
+Out-of-vocabulary limitation
+vs.
+Downstream system behavior
 ```
+
+This diagnostic approach is a core part of the project's engineering methodology.
 
 ---
 
-# 👨‍💻 Author
+# License
+
+MIT License
+
+---
+
+# Author
 
 **Ayush Kottary**
 
@@ -1572,28 +1422,18 @@ Project Aether explores the intersection of:
 
 ```text
 Computer Vision
-       +
+      +
 Object Tracking
-       +
+      +
 World Modeling
-       +
+      +
 Memory Systems
-       +
+      +
 Knowledge Representation
-       +
+      +
 Reasoning
-       +
+      +
 Planning
-       +
+      +
 AI Systems Engineering
 ```
-
----
-
-# 📌 Project Status
-
-**Experimental / Active Development**
-
-Project Aether currently implements a functional layered perception pipeline with real-time camera input, YOLO-based object detection, object tracking, temporal label stabilization, identity resolution, belief management, world-state modeling, scene graphs, event detection, working and persistent memory, deterministic reasoning, planning, querying, and evaluation.
-
-The architecture is intentionally modular so that more advanced perception, reasoning, memory, and robotics capabilities can be introduced incrementally.
